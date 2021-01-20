@@ -3,6 +3,7 @@ import '../DinerForm/dinerForm.scss';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import "react-day-picker/lib/style.css";
 import {Link} from 'react-router-dom';
+import fire from '../../config/fire';
 
 class DinerForm extends React.Component {
     state = {
@@ -27,6 +28,10 @@ class DinerForm extends React.Component {
         this.props.history.push('/chefs');
     }
 
+    logout = () => {
+        fire.auth().signOut();
+    }
+
     render(){
         const {selectedDay} = this.state;
         return (
@@ -48,6 +53,7 @@ class DinerForm extends React.Component {
                         <DayPickerInput onDayChange={this.handleDayChange} className="diner__input-calendar"/>
                         </div>
                         <Link to='/chefs' className="diner__link"><button className="diner__button">Submit</button></Link>
+                        <button onClick={this.logout}>Log Out</button>
                     </form>
                 </div>
     

@@ -1,42 +1,38 @@
 import React from 'react';
 import '../Login/login.scss';
 import {Link} from 'react-router-dom';
+import fire from '../../config/fire';
 
 class Login extends React.Component {
 
     state = {
         email: "",
-        password: "",
-        submitEnabled: false
+        password: ""
     }
 
-    updateEmail = e => {
-        this.setState({
-            email: e.target.value
-        }, this.checkSubmitEnabled())
-    };
-
-    updatePassword = e => {
-        this.setState({
-            password: e.target.value
-        }, this.checkSubmitEnabled())
-    };
-
-    checkSubmitEnabled = () => {
-        let isEnabled = false;
-        if ((this.state.email !== '' &&
-            this.state.password !== '')
-            ) {
-                isEnabled = true;
-            }
-            this.setState({
-                submitEnabled: isEnabled
+    login = e => {
+        e.preventDefault();
+        fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+            .then((u) =>{
+            }).catch((error) => {
+                console.log(error);
             });
-    };
-
-    handleClick = () => {
-        this.props.history.push('/diner');
     }
+
+    signUp = (e) => {
+        e.preventDefault();
+        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+            .then((u) => {
+            }).then((u) => {console.log(u)})
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
+    handleChange = e => {
+        this.setState({[e.target.name]: e.target.value});
+    }
+
 
     render(){
         return (
@@ -54,15 +50,16 @@ class Login extends React.Component {
                         placeholder="Enter email..." 
                         name="email" 
                         value={this.state.email}
-                        onChange={this.updateEmail}/>
+                        onChange={this.handleChange}/>
                         <input 
                         className="login__password-input"
                         type="password" 
                         placeholder="Enter password..." 
                         name="password" 
                         value={this.state.password}
-                        onChange={this.updatePassword}/>
-                        <button type="button" onClick={this.handleClick} disabled={!this.state.submitEnabled} className="login__button">Submit</button>
+                        onChange={this.handleChange}/>
+                        <button type="submit" onClick={this.login} className="login__button">Submit</button>
+                        <button type="submit" onClick={this.signUp} className="login__button">Sign Up</button>
                     </form>
                 </div>  
                 <div className="login__signup-div">
