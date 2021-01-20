@@ -1,0 +1,49 @@
+@import "../../styles/global.scss";
+
+
+.diner {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../../assets/images/largebg.jpg');
+    background-size: cover;
+    background-position: center;
+
+    &__form-div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+        background-color: $dark-green;
+        border-radius: 5px;
+        height: 300px;
+    }
+    &__form {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__input-location {
+        @include inputs;
+    }
+    &__input-calendar {
+        @extend .diner__input-location;
+    }
+    &__day-picker {
+        @extend .diner__input-location;
+    }
+    &__link {
+        width: 20%;
+
+        @include tablet {
+            width: 15%;
+        }
+    }
+    &__button {
+        @include submit-buttons;
+    }
+}

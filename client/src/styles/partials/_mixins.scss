@@ -1,0 +1,52 @@
+// Responsive Mixins
+@mixin tablet {
+    @media screen and (min-width: $tablet-breakpoint) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media screen and (min-width: $desktop-breakpoint) {
+        @content;
+    }
+}
+
+// Font Mixins
+
+
+
+// Style Mixins
+@mixin inputs {
+    border-radius: 5px;
+    height: 30px;
+    width: 60%;
+    border: none;
+    margin-bottom: 4%;
+    padding-left: 2%;
+
+    @include tablet {
+        width: 40%;
+        height: 40px;
+        font-size: 1rem;
+    }
+    @include desktop {
+        margin-bottom: 2%;
+    }
+}
+
+@mixin submit-buttons {
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    text-transform: uppercase;
+    background-color: white;
+    font-family: 'Chivo';
+    font-weight: 500;
+    font-size: 0.7rem;
+    margin-bottom: 15%;
+    color: rgb(49, 49, 49);
+
+    @include tablet {
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,15 @@
+@import "../../styles/global.scss";
+
+.header {
+    width: 100%;
+    position: fixed;
+
+    &__logo-image {
+        width: 25%;
+
+        @include desktop {
+            width: 10%;
+        }
+    }
+
+}
