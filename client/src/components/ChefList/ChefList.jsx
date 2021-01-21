@@ -1,31 +1,36 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../ChefList/chefList.scss';
 import ChefCard from '../ChefCard/ChefCard';
+import fire from '../../config/fire';
 
-const URL = "http://localhost:8080/chefs";
 
-class ChefList extends React.Component {
+function ChefList() {
 
-    state = {
-        chefs: []
+   const [chefs, setChefs] = useState([]);
+
+   const ref = fire.firestore().collection('chefs');
+
+    function getChefs() {
+        ref.onSnapshot((querySnapshot) => {
+            const chefs = [];
+            querySnapshot.forEach((doc) => {
+                chefs.push(doc.data());
+            });
+            setChefs(chefs);
+        });
     }
 
-    componentDidMount(){
-        axios.get(URL)
-        .then(res => {
-            this.setState({
-                chefs: res.data
-            })
-        })
-    }
+    useEffect(() => {
+       getChefs(); 
+    }, []);
 
-    render(){
+    
         return (
             <section className="chefs">
                 <h2 className="chefs__title">Select a Chef:</h2>
                 <div className="chefs__list">
-                    {this.state.chefs.map((chef) => 
+                    {chefs.map((chef) => 
                         <ChefCard 
                             name={chef.name}
                             image={chef.image}
@@ -37,7 +42,7 @@ class ChefList extends React.Component {
                 </div>
             </section>
         )
-    }
+    
 }
 
 export default ChefList
