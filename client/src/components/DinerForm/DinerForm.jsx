@@ -1,26 +1,18 @@
 import React, {useState} from 'react';
 import '../DinerForm/dinerForm.scss';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
-import "react-day-picker/lib/style.css";
+import DatePicker from '../DatePicker/DatePicker';
 import {Link} from 'react-router-dom';
 import fire from '../../config/fire';
 
 
 class DinerForm extends React.Component {
     state = {
-        location: "",
-        selectedDay: undefined
+        location: ""
     }
 
     updateLocation = e => {
         this.setState({
             location: e.target.value
-        })
-    };
-
-    handleDayChange = (day) => {
-        this.setState({
-            selectedDay: day
         })
     };
 
@@ -33,7 +25,6 @@ class DinerForm extends React.Component {
     }
 
     render(){
-        const {selectedDay} = this.state;
         return (
             <section className="diner">
                 <div className="diner__form-div">
@@ -48,7 +39,7 @@ class DinerForm extends React.Component {
                             onChange={this.updateLocation}/>
                         <h5 className="diner__date-header">When would you like your meal?</h5>
                         <div className="diner__day-picker">
-                        <DayPickerInput onDayChange={this.handleDayChange} className="diner__input-calendar"/>
+                        <DatePicker/>
                         </div>
                         <Link to='/chefs' className="diner__link"><button className="diner__button">Submit</button></Link>
                         </form>
