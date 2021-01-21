@@ -12,14 +12,28 @@
     background-size: cover;
     background-position: center;
 
+    &__location-header {
+        font-size: 1rem;
+        font-family: 'Playfair';
+        margin-bottom: 2%;
+    }
+    &__date-header{
+        @extend .diner__location-header;
+    }
     &__form-div {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         width: 90%;
         background-color: $dark-green;
         border-radius: 5px;
-        height: 300px;
+        height: 200px;
+
+        @include tablet {
+            height: 400px;
+            width: 60%;
+        }
     }
     &__form {
         width: 80%;

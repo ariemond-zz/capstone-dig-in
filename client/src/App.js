@@ -2,6 +2,7 @@ import React from 'react';
 import fire from './config/fire';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from './components/Header/Header';
+import SignUp from './components/SignUp/SignUp';
 import Login from './components/Login/Login';
 import DinerForm from './components/DinerForm/DinerForm';
 import ChefList from './components/ChefList/ChefList';
@@ -32,14 +33,15 @@ class App extends React.Component {
   }
 
   // {this.state.user ? (<DinerForm />) : (<Login />)}
-
-render() {
-  return (
-    <div className="App">
-    <BrowserRouter>
-    <Header/>
+  
+  render() {
+    return (
+      <div className="App">
+      <BrowserRouter>
+      <Header/>
       <Switch>
-        <Route path='/' exact component={Login}/>
+        <Route path='/' exact component={SignUp}/>
+        <Route path='/login'  component={Login}/>
         <Route path='/diner' component={DinerForm}/>
         <Route path='/chefs' component={ChefList}/>
         <Route path="/chefs/:id" render={(routerProps) => <ChefProfile {...routerProps}/>}/>

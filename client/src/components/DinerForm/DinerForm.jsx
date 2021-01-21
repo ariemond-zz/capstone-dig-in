@@ -1,27 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../DinerForm/dinerForm.scss';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import "react-day-picker/lib/style.css";
 import {Link} from 'react-router-dom';
 import fire from '../../config/fire';
 
+
 class DinerForm extends React.Component {
     state = {
         location: "",
-        selectedDay: undefined,
-        submitEnabled: false
+        selectedDay: undefined
     }
 
     updateLocation = e => {
         this.setState({
             location: e.target.value
-        }, this.checkSubmitEnabled())
+        })
     };
 
     handleDayChange = (day) => {
         this.setState({
             selectedDay: day
-        }, this.checkSubmitEnabled())
+        })
     };
 
     handleClick = () => {
@@ -43,23 +43,26 @@ class DinerForm extends React.Component {
                             className="diner__input-location"
                             name="location"
                             type="text"
-                            placeholder="Enter location"
+                            placeholder="City"
                             value={this.state.location}
                             onChange={this.updateLocation}/>
                         <h5 className="diner__date-header">When would you like your meal?</h5>
                         <div className="diner__day-picker">
-                        {selectedDay && <p>Day: {selectedDay.toLocaleDateString()}</p>}
-                        {!selectedDay && <p>Choose a day:</p>}
                         <DayPickerInput onDayChange={this.handleDayChange} className="diner__input-calendar"/>
                         </div>
                         <Link to='/chefs' className="diner__link"><button className="diner__button">Submit</button></Link>
-                        <button onClick={this.logout}>Log Out</button>
-                    </form>
-                </div>
-    
-            </section>
-        )
-    }
-}
+                        </form>
+                        </div>
+                        
+                        </section>
+                        )
+                    }
+                }
+                
+                export default DinerForm
+                
+// <button onClick={this.logout}>Log Out</button>
 
-export default DinerForm
+
+// {selectedDay && <p>Day: {selectedDay.toLocaleDateString()}</p>}
+// {!selectedDay && <p>Choose a day:</p>}

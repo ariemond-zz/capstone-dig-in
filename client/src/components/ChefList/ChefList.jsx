@@ -29,9 +29,19 @@ function ChefList() {
         return (
             <section className="chefs">
                 <h2 className="chefs__title">Select a Chef:</h2>
+                <input 
+                    type="text" 
+                    placeholder="Search by restaurant" 
+                    className="chefs__search"/>
+                <input 
+                type="text" 
+                placeholder="Search by cuisine" 
+                className="chefs__search"/>
                 <div className="chefs__list">
                     {chefs.map((chef) => 
                         <ChefCard 
+                            id={chef.id}
+                            key={chef.id}
                             name={chef.name}
                             image={chef.image}
                             location={chef.location}
