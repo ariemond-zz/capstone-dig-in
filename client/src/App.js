@@ -31,6 +31,7 @@ class App extends React.Component {
     });
   }
 
+  // {this.state.user ? (<DinerForm />) : (<Login />)}
 
 render() {
   return (
@@ -38,10 +39,9 @@ render() {
     <BrowserRouter>
     <Header/>
       <Switch>
-      {this.state.user ? (<DinerForm />) : (<Login />)}
         <Route path='/' exact component={Login}/>
         <Route path='/diner' component={DinerForm}/>
-        <Route path='/chefs' componen={ChefList}/>
+        <Route path='/chefs' component={ChefList}/>
         <Route path="/chefs/:id" render={(routerProps) => <ChefProfile {...routerProps}/>}/>
       </Switch>
     </BrowserRouter>
