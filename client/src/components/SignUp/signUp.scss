@@ -1,7 +1,7 @@
 @import "../../styles/global.scss";
 
 
-.login {
+.signup {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -62,7 +62,7 @@
         @include inputs;
     }
     &__password-input {
-        @extend .login__email-input;
+        @extend .signup__email-input;
     }
     &__link {
         width: 20%;
@@ -73,7 +73,14 @@
     }
     &__button {
         @include submit-buttons;
-        width: 40%;
+        background-color: $dark-green;
+        color: $light-green;
+        width: 15%;
+
+        &:hover {
+            background-color: $light-green;
+            color: $dark-green;
+        }
     }
     &__signup-div {
         display: flex;

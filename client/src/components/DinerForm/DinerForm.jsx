@@ -49,21 +49,17 @@ class DinerForm extends React.Component {
                             onChange={this.updateLocation}/>
                         <h5 className="diner__date-header">When would you like your meal?</h5>
                         <div className="diner__day-picker">
-                            <DatePicker height="36px"/>
+                            <DatePicker/>
                         </div>
-                        <Link to='/chefs' className="diner__link"><button className="diner__button">Submit</button></Link>
+                        <button className="diner__button">Submit</button>
                         </form>
                         </div>
                         
                         </section>
                         )
-                    }
-                }
+            }
+    }
                 
-                export default DinerForm
+    export default DinerForm
                 
 // <button onClick={this.logout}>Log Out</button>
-
-
-// {selectedDay && <p>Day: {selectedDay.toLocaleDateString()}</p>}
-// {!selectedDay && <p>Choose a day:</p>}

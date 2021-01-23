@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Login/login.scss';
+import '../SignUp/signUp.scss';
 import {Link} from 'react-router-dom';
 import fire from '../../config/fire';
 
@@ -28,41 +28,41 @@ class Login extends React.Component {
 
     render(){
         return (
-            <section className="login">
-                <div className="login__header">
-                    <h1 className="login__title">Stop going out.</h1>
-                    <h1 className="login__title2">Start digging in.</h1>
+            <section className="signup">
+                <div className="signup__header">
+                    <h1 className="signup__title">Stop going out.</h1>
+                    <h1 className="signup__title2">Start digging in.</h1>
                 </div>
-                <div className="login__form-div">
-                    <h5 className="login__form-header">Sign up to get started:</h5>
-                    <form className="login__form">
+                <div className="signup__form-div">
+                    <h5 className="signup__form-header">Sign up to get started:</h5>
+                    <form className="signup__form">
                         <input 
-                        className="login__email-input" 
+                        className="signup__email-input" 
                         type="text" 
                         placeholder="Email" 
                         name="email" 
                         value={this.state.email}
                         onChange={this.handleChange}/>
                         <input 
-                        className="login__password-input"
+                        className="signup__password-input"
                         type="password" 
                         placeholder="Password" 
                         name="password" 
                         value={this.state.password}
                         onChange={this.handleChange}/>
                         <input 
-                        className="login__password-input"
+                        className="signup__password-input"
                         type="password" 
                         placeholder="Confirm password" 
                         name="confirm" 
                         value={this.state.confirm}
                         onChange={this.handleChange}/>
-                        <button type="submit" onClick={this.signUp} className="login__button">Sign Up</button>
+                        <button type="submit" onClick={this.signUp} className="signup__button">Sign Up</button>
                     </form>
                 </div>  
-                <div className="login__signup-div">
-                    <p className="login__signup">Already have an account?</p>
-                    <Link to="/login" className="login__signup-link"><p className="login__signup">Log In.</p></Link>
+                <div className="signup__signup-div">
+                    <p className="signup__signup">Already have an account?</p>
+                    <Link to="/login" className="signup__signup-link"><p className="signup__signup">Log In.</p></Link>
                 </div>
             </section>
         )

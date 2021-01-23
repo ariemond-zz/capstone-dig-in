@@ -7,31 +7,30 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     background-image: url('../../assets/images/largebg.jpg');
     background-size: cover;
     background-position: center;
+
+    @include desktop {
+        height: 120vh;
+    }
 
     &__header {
         display: flex;
         flex-direction: column;
         align-items: center;
         color: $light-green;
-        margin-bottom: 10%;
+        margin: 40% 0 10% 0;
         font-size: 2rem;
 
         @include tablet {
             font-size: 3rem;
+            margin: 30% 0 10% 0;
         }
-    }
-
-    &__location-header {
-        font-size: 1rem;
-        font-family: 'Chivo';
-        margin-bottom: 2%;
-    }
-    &__date-header{
-        @extend .diner__location-header;
+        @include desktop {
+            margin: 10% 0 5% 0;
+            font-size: 4rem;
+        }
     }
     &__form-div {
         display: flex;
@@ -42,10 +41,13 @@
         background-color: $green;
         border-radius: 5px;
         height: 200px;
-
+        
         @include tablet {
-            height: 400px;
-            width: 60%;
+            height: 350px;
+            width: 55%;
+        }
+        @include desktop {
+            width: 50%;
         }
     }
     &__form {
@@ -53,29 +55,50 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        
+        @include tablet {
+            width: 100%;
+        }
+    }
+    &__location-header {
+        font-size: 1rem;
+        font-family: 'Chivo';
+        margin-bottom: 2%;
+
+        @include tablet {
+            font-size: 1.5rem;
+            margin-bottom: 3%;
+        }
+    }
+    &__date-header{
+        @extend .diner__location-header;
     }
     &__input-location {
         @include inputs;
-    }
-    &__input-calendar {
-        @extend .diner__input-location;
-    }
-    &__day-picker {
-        @extend .diner__input-location;
-    }
-    &__link {
-        width: 20%;
 
         @include tablet {
-            width: 15%;
+            margin-bottom: 8%;
+            width: 50%;
+            font-size: 1rem;
+        }
+        @include desktop {
+            font-size: 1.3rem;
         }
     }
     &__button {
         @include submit-buttons;
-        width: 100%;
+        background-color: $dark-green;
+        color: $light-green;
 
         &:hover {
-            background-color: $dark-green;
+            background-color: $light-green;
+            color: $dark-green;
+        }
+
+        @include desktop {
+            margin: 3% 0 0 0;
+            height: 40px;
+            width: 150px;
         }
     }
 }

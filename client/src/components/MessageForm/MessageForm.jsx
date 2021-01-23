@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Row, Col, Form, FormGroup, Label, Input, Button } from "reactstrap";
 import Axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
 import '../MessageForm/messageForm.scss';
 
 function MessageForm() {
@@ -35,15 +34,15 @@ function MessageForm() {
   return (
     <div className="message">
       <Row className="mt-4">
-        <Col sm="10" md={{ size: 6, offset: 3 }}>
-          <Form>
+        <Col sm="10" md={{ size: 3, offset: 3 }}>
+          <Form className="message__main-form">
             <FormGroup>
               <Label for="name">Name</Label>
               <Input
                 name="name"
                 onChange={handleInputChange}
                 value={name}
-                style={{width: 250}}
+                style={{width: 220}}
                 placeholder="Enter your name here"
                 className="message__input"
               ></Input>
@@ -54,7 +53,7 @@ function MessageForm() {
                 type="textarea"
                 value={message}
                 onChange={handleInputChange}
-                style={{ height: 150 , width: 250}}
+                style={{ height: 150 , width: 220}}
                 name="message"
                 placeholder="Enter your message here"
                 className="message__input"

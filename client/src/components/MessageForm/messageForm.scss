@@ -5,11 +5,25 @@
 
     &__input {
         font-size: 0.8rem;
+
+        &:focus {
+            border-color: $green;
+        }
     }
 
     &__button {
-        background-color: $light-green;
+        background-color: $dark-green;
+        color: $light-green;
         border: none;
         font-size: 0.9rem;
+
+        &:hover {
+            background-color: $green;
+            color: $dark-green;
+        }
+        &:focus {
+            background-color: $green;
+            color: $dark-green;
+        }
     }
 }

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import '../ChefList/chefList.scss';
 import ChefCard from '../ChefCard/ChefCard';
 import fire from '../../config/fire';
-import ChefProfile from '../ChefProfile/ChefProfile';
 import Modal from 'react-modal';
 
 function ChefList() {
@@ -64,7 +63,7 @@ function ChefList() {
     
         return (
             <section className="chefs">
-                <h2 className="chefs__title">Select a Chef:</h2>
+                <h2 className="chefs__title">Select a Chef</h2>
                 <div className="chefs__search-container">
                 <input 
                     type="text" 

@@ -73,7 +73,14 @@
     }
     &__button {
         @include submit-buttons;
+        background-color: $dark-green;
+        color: $light-green;
         width: 15%;
+
+        &:hover {
+            background-color: $light-green;
+            color: $dark-green;
+        }
     }
     &__signup-div {
         display: flex;

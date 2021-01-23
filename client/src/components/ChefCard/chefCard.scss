@@ -1,21 +1,31 @@
 @import "../../styles/global.scss";
 
 .card {
-    width: 300px;
+    width: 90%;
     display: flex;
     flex-direction: column;
     background-color: white;
     margin-bottom: 5%;
     height: 150px;
     border-radius: 5px;
-    box-shadow: 5px 10px 20px #888888;
+    box-shadow: 1px 1px 30px rgba(68, 68, 68, 0.6);
+    margin-left: 5%;
+    position: relative;
 
-    &:hover {
-        transform: scale(1.2);
-    }
+        @include tablet {
+            height: 200px;
+        }
+
+        @include desktop {
+            height: 250px;
+        }
 
     &__link {
         width: 100%;
+        
+        @include tablet {
+            width: 50%;
+        }
     }
 
     &__top-container {
@@ -26,38 +36,64 @@
         align-items: center;
         background-size: contain;
         background-color: #1f1f1f;
+
+        @include tablet {
+            padding: 5%;
+        }
     }
 
     &__chef-image {
-        width: 50px;
-        height: 50px;
+        width: 95px;
+        height: 95px;
         border-radius: 100%;
         object-fit: cover;
+        position: absolute;
+        top: 5px;
+        right: 20px;
+
+        @include tablet {
+            width: 120px;
+            height: 120px;
+            top: 10px;
+        }
     }
     &__name {
-        margin-left: 5%;
+        margin-left: 2%;
         font-size: 1.5rem;
         color: $light-green;
-        text-decoration: none;
+        font-family: 'Playfair';
+        font-weight: 400;
+
+        @include tablet {
+            font-size: 1.7rem;
+        }
     }
-    &__info {
-        margin-left: 5%;
+    &__chef-info {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
+        align-items: flex-start;
+        margin-top: 2%;
     }
     &__restaurant {
         font-family: 'Chivo';
-        font-size: 0.9em;
+        font-size: 0.9rem;
         margin: 1% 5%;
-        text-align: center;
         font-style: italic;
+
+        @include tablet {
+            font-size: 1rem;
+        }
     }
     &__cuisine {
         @extend .card__restaurant;
         text-align: left;
         font-size: 0.8rem;
         font-style: normal;
+
+        @include tablet {
+            font-size: 0.9rem;
+        }
     }
     &__wage {
         @extend .card__cuisine;
@@ -66,6 +102,12 @@
         margin-left: 5%;
     }
     &__star {
+        margin-top: 1%;
         width: 5%;
+
+        @include tablet {
+            width: 8%;
+            margin-top: 3%;
+        }
     }
 }

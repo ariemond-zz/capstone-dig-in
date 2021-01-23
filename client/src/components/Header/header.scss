@@ -7,6 +7,10 @@
     &__logo-image {
         width: 25%;
 
+        @include tablet {
+            width: 15%;
+        }
+
         @include desktop {
             width: 10%;
         }

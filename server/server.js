@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const uuid4 = require('uuid4');
 const nodemailer = require("nodemailer");
 const creds = require("./config");
+
+
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded());

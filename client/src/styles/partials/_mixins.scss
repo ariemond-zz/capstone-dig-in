@@ -34,12 +34,11 @@
 }
 
 @mixin submit-buttons {
-    width: 50%;
+    width: 100px;
     height: 30px;
     border: none;
     border-radius: 5px;
     text-transform: uppercase;
-    background-color: white;
     font-family: 'Chivo';
     font-weight: 500;
     font-size: 0.7rem;
