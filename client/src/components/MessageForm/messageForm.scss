@@ -1,0 +1,15 @@
+@import "../../styles/global.scss";
+
+.message {
+    font-size: 0.9rem;
+
+    &__input {
+        font-size: 0.8rem;
+    }
+
+    &__button {
+        background-color: $light-green;
+        border: none;
+        font-size: 0.9rem;
+    }
+}

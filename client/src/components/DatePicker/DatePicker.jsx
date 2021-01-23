@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import DateView from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import '../DatePicker/datepicker.scss';
 
 
 function DatePicker() {
@@ -12,7 +13,8 @@ function DatePicker() {
             <DateView 
                 selected={selectedDate} 
                 onChange={date => setSelectedDate(date)}
-                minDate={new Date()}/>
+                minDate={new Date()}
+                className="date-picker__input"/>
         </div>
     )
 }

@@ -1,0 +1,21 @@
+@import "../../styles/global.scss";
+
+.date-picker { 
+    &__input {
+        @include inputs;
+        width: 100%;
+        // background-color: transparent;
+    }
+}
+
+.react-datepicker {
+    border: none;
+
+    &__header {
+        background-color: white;
+    }
+
+    &__day--selected {
+        background-color: $dark-green;
+    }
+}

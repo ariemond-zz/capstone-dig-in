@@ -65,10 +65,11 @@ function ChefList() {
         return (
             <section className="chefs">
                 <h2 className="chefs__title">Select a Chef:</h2>
+                <div className="chefs__search-container">
                 <input 
                     type="text" 
                     placeholder="Search by restaurant" 
-                    className="chefs__search"
+                    className="chefs__search-rest"
                     value={searchTerm}
                     onChange={handleChange}/>
                 <input 
@@ -77,6 +78,7 @@ function ChefList() {
                 className="chefs__search"
                 value={cuisineSearchTerm}
                 onChange={handleCuisineChange}/>
+                </div>
 
 
                 <div className="chefs__list">
@@ -122,7 +124,6 @@ function ChefList() {
                 </div>
             </section>
         )
-    
 }
 
 export default ChefList

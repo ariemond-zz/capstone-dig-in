@@ -36,7 +36,7 @@ class DinerForm extends React.Component {
     render(){
         return (
             <section className="diner">
-            <h2 className="diner__header">Get Started:</h2>
+            <h2 className="diner__header">Get Started.</h2>
                 <div className="diner__form-div">
                     <form className="diner__form">
                     <h5 className="diner__location-header">Where are you located?</h5>
@@ -49,7 +49,7 @@ class DinerForm extends React.Component {
                             onChange={this.updateLocation}/>
                         <h5 className="diner__date-header">When would you like your meal?</h5>
                         <div className="diner__day-picker">
-                            <DatePicker/>
+                            <DatePicker height="36px"/>
                         </div>
                         <Link to='/chefs' className="diner__link"><button className="diner__button">Submit</button></Link>
                         </form>

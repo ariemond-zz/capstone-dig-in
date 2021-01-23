@@ -44,8 +44,8 @@ class App extends React.Component {
         <Route path='/signup' component={SignUp}/>
         <Route path='/login'  component={Login}/>
         <Route path='/diner' component={DinerForm}/>
-        <Route path='/chefs' component={ChefList}/>
-        <Route path="/chefs/:id" render={(routerProps) => <ChefProfile {...routerProps}/>}/>
+        <Route path='/chefs' exact component={ChefList}/>
+        <Route path="/chefs/profile" render={(routerProps) => <ChefProfile {...routerProps}/>}/>
       </Switch>
     </BrowserRouter>
     </div>

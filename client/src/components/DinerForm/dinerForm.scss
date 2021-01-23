@@ -18,7 +18,7 @@
         align-items: center;
         color: $light-green;
         margin-bottom: 10%;
-        font-size: 1.5rem;
+        font-size: 2rem;
 
         @include tablet {
             font-size: 3rem;
@@ -27,7 +27,7 @@
 
     &__location-header {
         font-size: 1rem;
-        font-family: 'Playfair';
+        font-family: 'Chivo';
         margin-bottom: 2%;
     }
     &__date-header{
@@ -72,6 +72,7 @@
     }
     &__button {
         @include submit-buttons;
+        width: 100%;
 
         &:hover {
             background-color: $dark-green;

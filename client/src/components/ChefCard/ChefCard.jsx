@@ -3,7 +3,7 @@ import '../ChefCard/chefCard.scss';
 import {Link} from 'react-router-dom';
 import Star from '../../assets/icons/star.png';
 
-function ChefCard({name, image, cuisine, restaurant, id}) {
+function ChefCard({name, image, cuisine, restaurant, wage, id}) {
     return (
         <Link to={`/chefs/${id}`}>
         <div className="card">
@@ -14,13 +14,14 @@ function ChefCard({name, image, cuisine, restaurant, id}) {
             <div className="card__chef-info">
                 <h5 className="card__restaurant">{restaurant}</h5>
                 <h5 className="card__cuisine">Favourite Cuisine: {cuisine}</h5>
-            </div>
-            <div className="card__chef-rating">
-                <img src={Star} alt="Star" className="card__star"/>
-                <img src={Star} alt="Star" className="card__star"/>
-                <img src={Star} alt="Star" className="card__star"/>
-                <img src={Star} alt="Star" className="card__star"/>
-                <img src={Star} alt="Star" className="card__star"/>
+                <h5 className="card__wage">Starting at {wage} per person</h5>
+                    <div className="card__chef-rating">
+                        <img src={Star} alt="Star" className="card__star"/>
+                        <img src={Star} alt="Star" className="card__star"/>
+                        <img src={Star} alt="Star" className="card__star"/>
+                        <img src={Star} alt="Star" className="card__star"/>
+                        <img src={Star} alt="Star" className="card__star"/>
+                    </div>
             </div>
         </div>
         </Link>
