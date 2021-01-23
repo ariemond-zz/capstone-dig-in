@@ -7,7 +7,8 @@ class Login extends React.Component {
 
     state = {
         email: "",
-        password: ""
+        password: "",
+        confirm: ""
     }
 
     signUp = (e) => {
@@ -48,6 +49,13 @@ class Login extends React.Component {
                         placeholder="Password" 
                         name="password" 
                         value={this.state.password}
+                        onChange={this.handleChange}/>
+                        <input 
+                        className="login__password-input"
+                        type="password" 
+                        placeholder="Confirm password" 
+                        name="confirm" 
+                        value={this.state.confirm}
                         onChange={this.handleChange}/>
                         <button type="submit" onClick={this.signUp} className="login__button">Sign Up</button>
                     </form>

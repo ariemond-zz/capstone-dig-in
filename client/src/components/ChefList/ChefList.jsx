@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import '../ChefList/chefList.scss';
 import ChefCard from '../ChefCard/ChefCard';
 import fire from '../../config/fire';
-
+import ChefProfile from '../ChefProfile/ChefProfile';
+import Modal from 'react-modal';
 
 function ChefList() {
 
@@ -26,22 +27,38 @@ function ChefList() {
     }, []);
 
 
-    //Search Bars
+    //Restaurant Search Bar
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     
     const handleChange = e => {
         setSearchTerm(e.target.value);
-        console.log(e.target.value)
     };
 
     useEffect(() => {
         const results = chefs.filter(chef => 
-            chef.restaurant.includes(searchTerm)
+            chef.restaurant.toLowerCase().includes(searchTerm)
         );
-        console.log(chefs)
         setSearchResults(results);
     }, [searchTerm]);
+
+
+        //Cuisine Search Bar
+        const [cuisineSearchTerm, setCuisineSearchTerm] = useState("");
+        const [cuisineSearchResults, setCuisineSearchResults] = useState([]);
+        
+        const handleCuisineChange = e => {
+            setCuisineSearchTerm(e.target.value);
+            console.log(e.target.value)
+        };
+    
+        useEffect(() => {
+            const results = chefs.filter(chef => 
+                chef.cuisine.toLowerCase().includes(cuisineSearchTerm)
+            );
+            console.log(chefs)
+            setCuisineSearchResults(results);
+        }, [cuisineSearchTerm]);
 
 
     
@@ -57,7 +74,11 @@ function ChefList() {
                 <input 
                 type="text" 
                 placeholder="Search by cuisine" 
-                className="chefs__search"/>
+                className="chefs__search"
+                value={cuisineSearchTerm}
+                onChange={handleCuisineChange}/>
+
+
                 <div className="chefs__list">
                 {searchResults.map((chef) => 
                     <ChefCard 
@@ -71,6 +92,21 @@ function ChefList() {
                             allergy={chef.allergy}
                             wage={chef.wage}/>)}
                 </div>
+
+                <div className="chefs__list">
+                {cuisineSearchResults.map((chef) => 
+                    <ChefCard 
+                            id={chef.id}
+                            key={chef.id}
+                            name={chef.name}
+                            image={chef.image}
+                            location={chef.location}
+                            cuisine={chef.cuisine}
+                            restaurant={chef.restaurant}
+                            allergy={chef.allergy}
+                            wage={chef.wage}/>)}
+                </div>
+
                 <div className="chefs__list">
                     {chefs.map((chef) => 
                         <ChefCard 

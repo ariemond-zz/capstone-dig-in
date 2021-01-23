@@ -5,10 +5,19 @@ import {Link} from 'react-router-dom';
 import fire from '../../config/fire';
 
 
+
 class DinerForm extends React.Component {
     state = {
-        location: ""
+        location: "",
+        selectedDate: new Date()
     }
+
+    
+  handleDateChange = (date) => {
+      this.setState({
+          selectedDate: date
+      })
+  };
 
     updateLocation = e => {
         this.setState({
@@ -27,6 +36,7 @@ class DinerForm extends React.Component {
     render(){
         return (
             <section className="diner">
+            <h2 className="diner__header">Get Started:</h2>
                 <div className="diner__form-div">
                     <form className="diner__form">
                     <h5 className="diner__location-header">Where are you located?</h5>
@@ -39,7 +49,7 @@ class DinerForm extends React.Component {
                             onChange={this.updateLocation}/>
                         <h5 className="diner__date-header">When would you like your meal?</h5>
                         <div className="diner__day-picker">
-                        <DatePicker/>
+                            <DatePicker/>
                         </div>
                         <Link to='/chefs' className="diner__link"><button className="diner__button">Submit</button></Link>
                         </form>

@@ -34,7 +34,7 @@
 }
 
 @mixin submit-buttons {
-    width: 100%;
+    width: 50%;
     height: 30px;
     border: none;
     border-radius: 5px;
@@ -43,7 +43,7 @@
     font-family: 'Chivo';
     font-weight: 500;
     font-size: 0.7rem;
-    margin-bottom: 15%;
+    margin-bottom: 5%;
     color: rgb(49, 49, 49);
 
     @include tablet {

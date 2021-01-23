@@ -19,15 +19,6 @@ class Login extends React.Component {
             });
     }
 
-    signUp = (e) => {
-        e.preventDefault();
-        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then((u) => {
-            }).then((u) => {console.log(u)})
-            .catch((error) => {
-                console.log(error);
-            })
-    }
 
     handleChange = e => {
         this.setState({[e.target.name]: e.target.value});

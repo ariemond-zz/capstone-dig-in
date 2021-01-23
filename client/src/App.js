@@ -40,7 +40,8 @@ class App extends React.Component {
       <BrowserRouter>
       <Header/>
       <Switch>
-        <Route path='/' exact component={SignUp}/>
+        <Route path='/' exact component={Login}/>
+        <Route path='/signup' component={SignUp}/>
         <Route path='/login'  component={Login}/>
         <Route path='/diner' component={DinerForm}/>
         <Route path='/chefs' component={ChefList}/>
