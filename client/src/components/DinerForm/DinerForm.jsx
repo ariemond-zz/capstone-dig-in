@@ -25,8 +25,11 @@ class DinerForm extends React.Component {
         })
     };
 
-    handleClick = () => {
-        this.props.history.push('/chefs');
+    handleSubmit = () => {
+        this.props.history.push({
+            pathname: '/chefs',
+            search: `?location=${this.state.location}`
+        });
     }
 
     logout = () => {
@@ -38,7 +41,7 @@ class DinerForm extends React.Component {
             <section className="diner">
             <h2 className="diner__header">Get Started.</h2>
                 <div className="diner__form-div">
-                    <form className="diner__form">
+                    <form onSubmit={this.handleSubmit} className="diner__form">
                     <h5 className="diner__location-header">Where are you located?</h5>
                         <input 
                             className="diner__input-location"

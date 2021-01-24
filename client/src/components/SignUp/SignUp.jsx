@@ -3,7 +3,7 @@ import '../SignUp/signUp.scss';
 import {Link} from 'react-router-dom';
 import fire from '../../config/fire';
 
-class Login extends React.Component {
+class SignUp extends React.Component {
 
     state = {
         email: "",
@@ -69,4 +69,4 @@ class Login extends React.Component {
     }
 };
 
-export default Login
+export default SignUp
