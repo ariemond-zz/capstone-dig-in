@@ -39,13 +39,7 @@ function ChefProfile(){
                     <div className="chef-profile__info">
                         <div className="chef-profile__about-container">
                             <h4 className="chef-profile__about">About Me</h4>
-                            <p className="chef-profile__about">I have been all over Eastern and Central 
-                            Europe, the Caribbean, Mediterranean and beyond, 
-                            in order to bring my clients the best of what I 
-                            have found on my culinary travels. I have sought 
-                            out the best tasting foods while traveling around 
-                            the world, and am equipped and excited to share 
-                            it with, and inspire my clients.</p>
+                            <p className="chef-profile__about">{chef.description}</p>
                         </div>
                         <div className="chef-profile__wage-container">
                             <h4 className="chef-profile__wage">Pricing</h4>
