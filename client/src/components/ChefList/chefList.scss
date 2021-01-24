@@ -36,7 +36,7 @@
 
         @include desktop {
             margin-bottom: 3%;
-            width: 60%;
+            width: 100%;
         }
     }
     &__search-rest {
@@ -66,7 +66,7 @@
         }
         @include desktop {
             padding: 0 0 0 2%;
-            width: 35%;
+            width: 25%;
         }
     }
     &__search {
@@ -74,7 +74,7 @@
         width: 45%;
 
         @include tablet {
-            width: 30%;
+            width: 20%;
         }
     }
     &__list {
@@ -85,7 +85,6 @@
 
         @include tablet {
             flex-flow: row wrap;
-            justify-content: center;
         }
 
         @include desktop {

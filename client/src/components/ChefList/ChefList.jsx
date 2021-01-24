@@ -79,48 +79,50 @@ function ChefList() {
                 onChange={handleCuisineChange}/>
                 </div>
 
+                <div className="chefs__list">
+                {chefs.map((chef) => 
+                    <ChefCard 
+                        id={chef.id}
+                        key={chef.id}
+                        name={chef.name}
+                        image={chef.image}
+                        location={chef.location}
+                        cuisine={chef.cuisine}
+                        restaurant={chef.restaurant}
+                        allergy={chef.allergy}
+                        wage={chef.wage}/>)}
+                </div>
+
 
                 <div className="chefs__list">
                 {searchResults.map((chef) => 
                     <ChefCard 
-                            id={chef.id}
-                            key={chef.id}
-                            name={chef.name}
-                            image={chef.image}
-                            location={chef.location}
-                            cuisine={chef.cuisine}
-                            restaurant={chef.restaurant}
-                            allergy={chef.allergy}
-                            wage={chef.wage}/>)}
+                        id={chef.id}
+                        key={chef.id}
+                        name={chef.name}
+                        image={chef.image}
+                        location={chef.location}
+                        cuisine={chef.cuisine}
+                        restaurant={chef.restaurant}
+                        allergy={chef.allergy}
+                        wage={chef.wage}/>)}
                 </div>
 
                 <div className="chefs__list">
                 {cuisineSearchResults.map((chef) => 
                     <ChefCard 
-                            id={chef.id}
-                            key={chef.id}
-                            name={chef.name}
-                            image={chef.image}
-                            location={chef.location}
-                            cuisine={chef.cuisine}
-                            restaurant={chef.restaurant}
-                            allergy={chef.allergy}
-                            wage={chef.wage}/>)}
+                        id={chef.id}
+                        key={chef.id}
+                        name={chef.name}
+                        image={chef.image}
+                        location={chef.location}
+                        cuisine={chef.cuisine}
+                        restaurant={chef.restaurant}
+                        allergy={chef.allergy}
+                        wage={chef.wage}/>)}
                 </div>
 
-                <div className="chefs__list">
-                    {chefs.map((chef) => 
-                        <ChefCard 
-                            id={chef.id}
-                            key={chef.id}
-                            name={chef.name}
-                            image={chef.image}
-                            location={chef.location}
-                            cuisine={chef.cuisine}
-                            restaurant={chef.restaurant}
-                            allergy={chef.allergy}
-                            wage={chef.wage}/>)}
-                </div>
+ 
             </section>
         )
 }

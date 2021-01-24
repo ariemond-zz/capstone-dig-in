@@ -14,18 +14,18 @@
 
         @include tablet {
             height: 200px;
+            width: 40%;
+            margin-left: 7%;
         }
 
         @include desktop {
             height: 250px;
+            width: 25%;
+            margin-left: 5%;
         }
 
     &__link {
         width: 100%;
-        
-        @include tablet {
-            width: 50%;
-        }
     }
 
     &__top-container {
@@ -56,6 +56,11 @@
             height: 120px;
             top: 10px;
         }
+        @include desktop {
+            width: 130px;
+            height: 130px;
+
+        }
     }
     &__name {
         margin-left: 2%;
@@ -74,6 +79,10 @@
         justify-content: center;
         align-items: flex-start;
         margin-top: 2%;
+
+        @include desktop {
+            margin-top: 10%;
+        }
     }
     &__restaurant {
         font-family: 'Chivo';
@@ -83,6 +92,9 @@
 
         @include tablet {
             font-size: 1rem;
+        }
+        @include desktop {
+            font-size: 1.2rem;
         }
     }
     &__cuisine {
@@ -109,5 +121,14 @@
             width: 8%;
             margin-top: 3%;
         }
+        @include desktop {
+            width: 10%;
+            margin-top: 5%;
+        }
     }
+
+}
+
+.card__link:hover .card__chef-image {
+    transform: scale(1.2);
 }

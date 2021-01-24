@@ -2,9 +2,32 @@
 
 .message {
     font-size: 0.9rem;
+    width: 100%;
+    margin: 5% 0 0 15%;
+
+    @include tablet {
+        margin-left: 0;
+    }
+
+    &__main-form {
+        width: 100%;
+        justify-content: center;
+    }
+
+    &__form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
     &__input {
         font-size: 0.8rem;
+        @include inputs;
+        font-family: 'Chivo';
+        border: solid 1px $green;
+        width: 80%;
+        font-size: 0.9rem;
+        padding: 2%;
 
         &:focus {
             border-color: $green;
@@ -12,6 +35,7 @@
     }
 
     &__button {
+        @include submit-buttons;
         background-color: $dark-green;
         color: $light-green;
         border: none;

@@ -36,30 +36,29 @@ function MessageForm() {
       <Row className="mt-4">
         <Col sm="10" md={{ size: 3, offset: 3 }}>
           <Form className="message__main-form">
-            <FormGroup>
-              <Label for="name">Name</Label>
+            <FormGroup className="message__form-group">
+              <Label htmlFor="name">Name</Label>
               <Input
                 name="name"
                 onChange={handleInputChange}
                 value={name}
-                style={{width: 220}}
                 placeholder="Enter your name here"
                 className="message__input"
               ></Input>
             </FormGroup>
-            <FormGroup>
-              <Label for="message">Message</Label>
+            <FormGroup className="message__form-group">
+              <Label htmlFor="message">Message</Label>
               <Input
                 type="textarea"
                 value={message}
                 onChange={handleInputChange}
-                style={{ height: 150 , width: 220}}
+                style={{ height: 150}}
                 name="message"
                 placeholder="Enter your message here"
                 className="message__input"
               ></Input>
+              <Button onClick={sendMessage} className="message__button">SUBMIT</Button>
             </FormGroup>
-            <Button onClick={sendMessage} className="message__button">SUBMIT</Button>
           </Form>
         </Col>
       </Row>
