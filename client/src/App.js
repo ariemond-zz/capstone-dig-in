@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import fire from './config/fire';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Header from './components/Header/Header';
 import SignUp from './components/SignUp/SignUp';
 import Login from './components/Login/Login';
@@ -8,51 +8,56 @@ import DinerForm from './components/DinerForm/DinerForm';
 import ChefList from './components/ChefList/ChefList';
 import ChefProfile from './components/ChefProfile/ChefProfile';
 
+function App(){
+  const [user, setUser] = useState(undefined);
+  const [listenerAdded, setListenerAdded] = useState(false);
 
-class App extends React.Component {
-
-  state = {
-    user: {}
-  }
-
-  componentDidMount() {
-    this.authListener();
-  }
-
-  authListener() {
-    fire.auth().onAuthStateChanged((user) => {           //called whenever the authentication state changes
-      console.log(user);
-      if (user) {                   
-        this.setState({user});
-        localStorage.setItem('user', user.uid);
+  const authListener = () => {
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+        localStorage.setItem('isAuthenticated', 'true');
+        console.log({user})
       } else {
-        this.setState({user: null});
-        localStorage.removeItem('user');
+        setUser(null);
+        localStorage.removeItem('isAuthenticated');
       }
     });
+    setListenerAdded(true);
   }
 
-  // {this.state.user ? (<DinerForm />) : (<Login />)}
-  
-  render() {
+  useEffect(() => {
+    if (!listenerAdded) {
+      authListener();
+    }
+  }, []);
+
+  const handleLogin = (user) => {
+    setUser(user);
+  };
+
+
+  function PrivateRoute({component: Component, ...rest}) {
+    return <Route {...rest} render={(props) => (localStorage.isAuthenticated ? <Component {...props}/> : <Redirect to="/login"/>)}/>;
+  }
+
     return (
       <div className="App">
       <BrowserRouter>
-      <Header/>
-      <Switch>
-        <Route path='/' exact component={SignUp}/>
-        <Route path='/signup' component={SignUp}/>
-        <Route path='/login'  component={Login}/>
-        <Route path='/diner' component={DinerForm}/>
-        <Route path='/chefs' exact component={ChefList} />
-        <Route path="/chefs/:id" render={(routerProps) => <ChefProfile {...routerProps}/>}/>
-      </Switch>
+        <Header/>
+        <Switch>
+          <Route path='/' exact component={SignUp}/>
+          <Route path='/signup' component={SignUp}/>
+          <Route path='/login' component={Login} handler={handleLogin}/>
+          <PrivateRoute path='/diner' component={DinerForm} user={user}/>
+          <PrivateRoute path='/chefs' exact component={ChefList} user={user}/>
+          <PrivateRoute path="/chefs/:id" render={(routerProps) => <ChefProfile {...routerProps} user={user}/>}/>
+        </Switch>
     </BrowserRouter>
     </div>
     );
-    
   }
-}
+
 
 
 

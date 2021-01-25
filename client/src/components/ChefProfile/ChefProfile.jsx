@@ -1,18 +1,19 @@
 import React, {useState, useEffect} from 'react';
-import { Link , useParams} from 'react-router-dom';
-import '../ChefProfile/chefProfile.scss';
-import Chef from '../../assets/images/joe.jpg';
+import { useParams} from 'react-router-dom';
 import '../ChefProfile/chefProfile.scss';
 import GF from '../../assets/icons/glutenfree.png';
 import Vegan from '../../assets/icons/vegan.png';
-import Form from '../MessageForm/MessageForm';
+import MessageForm from '../MessageForm/MessageForm';
 import fire from '../../config/fire';
+import BookingCalendar from 'react-booking-calendar';
+import ChatForm from '../ChatForm/ChatForm';
 
 
 function ChefProfile(){
-    let [chef, setChef] = useState({});
+    let [chef, setChef] = useState([]);
     let {id} = useParams();
     const ref = fire.firestore().collection('chefs').where("id", "==", id);
+
 
     //Initial Firebase call to get all chefs
     function getChef(){
@@ -26,7 +27,7 @@ function ChefProfile(){
 
     useEffect(() => {
         getChef();
-    }, {});
+    }, []);
 
     
         return (
@@ -50,13 +51,13 @@ function ChefProfile(){
                             <p className="chef-profile__about">{chef.restaurant}</p>
                         </div>
                     </div>
-                    <div className="chef-profile__allergies">
+                    <div className={chef.allergy === true ? 'chef-profile__allergies' : 'chef-profile__no-allergies'}>
                         <img src={GF} alt="GF" className="chef-profile__allergy"/>
                         <img src={Vegan} alt="GF" className="chef-profile__allergy"/>
                     </div>
                     <div className="chef-profile__form-section">
                         <h4 className="chef-profile__connect-header">Connect with Chef {chef.name}</h4>
-                        <Form className="chef-profile__form"/>
+                        <MessageForm/>
                     </div>
                 </div>
             </div>

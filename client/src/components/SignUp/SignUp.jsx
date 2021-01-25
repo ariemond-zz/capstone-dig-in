@@ -1,32 +1,24 @@
-import React from 'react';
 import '../SignUp/signUp.scss';
-import {Link} from 'react-router-dom';
+import React, {useRef, useState} from 'react';
+import {Link, useHistory} from 'react-router-dom';
 import fire from '../../config/fire';
 
-class SignUp extends React.Component {
+function SignUp() {
+    const email = useRef();
+    const password = useRef();
+    const history = useHistory();
+    const [error, setError] = useState("");
 
-    state = {
-        email: "",
-        password: "",
-        confirm: ""
+    async function signup(event) {
+        event.preventDefault();
+        try {
+            setError("");
+            await fire.auth().signInWithEmailAndPassword(email.current.value, password.current.value);
+            history.push("/diner");
+        } catch {
+            setError("Failed sign up.")
+        }
     }
-
-    signUp = (e) => {
-        e.preventDefault();
-        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then((u) => {
-            }).then((u) => {console.log(u)})
-            .catch((error) => {
-                console.log(error);
-            })
-    }
-
-    handleChange = e => {
-        this.setState({[e.target.name]: e.target.value});
-    }
-
-
-    render(){
         return (
             <section className="signup">
                 <div className="signup__header">
@@ -41,23 +33,14 @@ class SignUp extends React.Component {
                         type="text" 
                         placeholder="Email" 
                         name="email" 
-                        value={this.state.email}
-                        onChange={this.handleChange}/>
+                        ref={email}/>
                         <input 
                         className="signup__password-input"
                         type="password" 
                         placeholder="Password" 
                         name="password" 
-                        value={this.state.password}
-                        onChange={this.handleChange}/>
-                        <input 
-                        className="signup__password-input"
-                        type="password" 
-                        placeholder="Confirm password" 
-                        name="confirm" 
-                        value={this.state.confirm}
-                        onChange={this.handleChange}/>
-                        <button type="submit" onClick={this.signUp} className="signup__button">Sign Up</button>
+                        ref={password}/>
+                        <button type="submit" onClick={signup} className="signup__button">Sign Up</button>
                     </form>
                 </div>  
                 <div className="signup__signup-div">
@@ -66,7 +49,6 @@ class SignUp extends React.Component {
                 </div>
             </section>
         )
-    }
-};
+    };
 
 export default SignUp

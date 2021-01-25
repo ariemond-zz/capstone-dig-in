@@ -1,11 +1,13 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import '../ChefList/chefList.scss';
 import ChefCard from '../ChefCard/ChefCard';
 import fire from '../../config/fire';
-import Modal from 'react-modal';
+import {useParams} from 'react-router-dom';
 
 function ChefList() {
+
+    // let {location} = useParams();
+    // console.log({location});
 
     //Initial Firebase call to get all chefs
    const [chefs, setChefs] = useState([]);
@@ -56,7 +58,7 @@ function ChefList() {
                 chef.cuisine.toLowerCase().includes(cuisineSearchTerm)
             );
             console.log(chefs)
-            setCuisineSearchResults(results);
+            setCuisineSearchResults(results); 
         }, [cuisineSearchTerm]);
 
 
@@ -95,36 +97,36 @@ function ChefList() {
                     wage={chef.wage}/>)}
                     </div>
                     
+                <div className="chefs__list">
+                {cuisineSearchResults.map((chef) => 
+                    <ChefCard 
+                    id={chef.id}
+                    key={chef.id}
+                    name={chef.name}
+                    image={chef.image}
+                    location={chef.location}
+                    cuisine={chef.cuisine}
+                    restaurant={chef.restaurant}
+                    allergy={chef.allergy}
+                    wage={chef.wage}/>)}
+                    </div>
                     <div className="chefs__list">
-                    {cuisineSearchResults.map((chef) => 
+                    {chefs.map((chef) => 
                         <ChefCard 
-                        id={chef.id}
-                        key={chef.id}
-                        name={chef.name}
-                        image={chef.image}
-                        location={chef.location}
-                        cuisine={chef.cuisine}
-                        restaurant={chef.restaurant}
-                        allergy={chef.allergy}
-                        wage={chef.wage}/>)}
-                        </div>
-                        
-                        <div className="chefs__list">
-                        {chefs.map((chef) => 
-                            <ChefCard 
-                                id={chef.id}
-                                key={chef.id}
-                                name={chef.name}
-                                image={chef.image}
-                                location={chef.location}
-                                cuisine={chef.cuisine}
-                                restaurant={chef.restaurant}
-                                allergy={chef.allergy}
-                                wage={chef.wage}/>)}
-                        </div>
+                            id={chef.id}
+                            key={chef.id}
+                            name={chef.name}
+                            image={chef.image}
+                            location={chef.location}
+                            cuisine={chef.cuisine}
+                            restaurant={chef.restaurant}
+                            allergy={chef.allergy}
+                            wage={chef.wage}/>)}
+                    </div>
+                    
+                    </section>
+                    )
+                }
+                
  
-            </section>
-        )
-}
-
 export default ChefList

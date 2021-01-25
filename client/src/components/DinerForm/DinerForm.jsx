@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import '../DinerForm/dinerForm.scss';
 import DatePicker from '../DatePicker/DatePicker';
-import {Link} from 'react-router-dom';
 import fire from '../../config/fire';
 
 
@@ -14,6 +13,7 @@ class DinerForm extends React.Component {
 
     
   handleDateChange = (date) => {
+      console.log(this.state.selectedDate);
       this.setState({
           selectedDate: date
       })
@@ -32,10 +32,6 @@ class DinerForm extends React.Component {
         });
     }
 
-    logout = () => {
-        fire.auth().signOut();
-    }
-
     render(){
         return (
             <section className="diner">
@@ -43,26 +39,24 @@ class DinerForm extends React.Component {
                 <div className="diner__form-div">
                     <form onSubmit={this.handleSubmit} className="diner__form">
                     <h5 className="diner__location-header">Where are you located?</h5>
-                        <input 
+                    <input 
                             className="diner__input-location"
                             name="location"
                             type="text"
                             placeholder="City"
                             value={this.state.location}
                             onChange={this.updateLocation}/>
-                        <h5 className="diner__date-header">When would you like your meal?</h5>
-                        <div className="diner__day-picker">
-                            <DatePicker/>
-                        </div>
-                        <button className="diner__button">Submit</button>
-                        </form>
-                        </div>
+                    <h5 className="diner__date-header">When would you like your meal?</h5>
+                    <div className="diner__day-picker">
+                        <DatePicker/>
+                    </div>
+                    <button className="diner__button">Submit</button>
+                    </form>
+                </div>
                         
-                        </section>
+            </section>
                         )
             }
     }
                 
-    export default DinerForm
-                
-// <button onClick={this.logout}>Log Out</button>
+export default DinerForm
