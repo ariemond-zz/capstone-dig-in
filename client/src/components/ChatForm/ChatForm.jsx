@@ -1,80 +1,67 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import fire from '../../config/fire';
-// import {db} from '../../config/fire';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 
-export class ChatForm extends React.Component {
+function ChatForm() {
+  const dummy = useRef();
+  const messagesRef = fire.firestore().collection('chats');
+  const query = messagesRef.orderBy('timestamp').limit(25);
 
-    constructor(props) {
-        super(props);
-        this.state = {
-          user: fire.auth().currentUser,
-          chats: [],
-          content: '',
-          readError: null,
-          writeError: null
-        };
-      }
-      
-      async componentDidMount() {
-        this.setState({ readError: null });
-        try {
-          fire.db.ref("chats").on("value", snapshot => {
-            let chats = [];
-            snapshot.forEach((snap) => {
-              chats.push(snap.val());
-            });
-            this.setState({ chats });
-          });
-        } catch (error) {
-          this.setState({ readError: error.message });
-        }
-      }
+  const [messages] = useCollectionData(query, { idField: 'id' });
 
-      handleChange(event) {
-        this.setState({
-          content: event.target.value
-        });
-      }
-
-      async handleSubmit(event) {
-        event.preventDefault();
-        this.setState({ writeError: null });
-        try {
-          await fire.db.ref("chats").push({
-            content: this.state.content,
-            timestamp: Date.now(),
-            uid: this.state.user.uid
-          });
-          this.setState({ content: '' });
-        } catch (error) {
-          this.setState({ writeError: error.message });
-        }
-      }
-
-      render() {
-        return (
-            <div>
-              <div className="chats">
-                {this.state.chats.map(chat => {
-                  return <p key={chat.timestamp}>{chat.content}</p>
-                })}
-              </div>
-              <form onSubmit={this.handleSubmit}>
-                <input onChange={this.handleChange} value={this.state.content}></input>
-                {this.state.error ? <p>{this.state.writeError}</p> : null}
-                <button type="submit">Send</button>
-              </form>
-              <div>
-                Login in as: <strong>{this.state.user.email}</strong>
-              </div>
-            </div>
-          );
-        }
-    }
+  const [formValue, setFormValue] = useState('');
 
 
+  const sendMessage = async (e) => {
+    e.preventDefault();
+
+    const { uid, photoURL } = fire.auth.currentUser;
+
+    await messagesRef.add({
+      content: formValue,
+      timestamp: fire.firestore.FieldValue.serverTimestamp(),
+      uid,
+      photoURL
+    })
+
+    setFormValue('');
+    dummy.current.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  return (
+    <section>
+      <main>
+
+        {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
+
+        <span ref={dummy}></span>
+
+      </main>
+
+      <form onSubmit={sendMessage}>
+
+        <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
+
+        <button type="submit" disabled={!formValue}>🕊️</button>
+
+      </form>
+    </section>
+  )
+}
 
 
+function ChatMessage(props) {
+  const { content, uid, photoURL } = props.message;
+
+  const messageClass = uid === fire.auth.currentUser.uid ? 'sent' : 'received';
+
+  return (
+    <div className={`message ${messageClass}`}>
+      <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} />
+      <p>{content}</p>
+    </div>
+  )
+}
 
 
 export default ChatForm

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useParams} from 'react-router-dom';
-import '../ChefProfile/chefProfile.scss';
+import '../CreateChef/createChef.scss';
 import GF from '../../assets/icons/glutenfree.png';
 import Vegan from '../../assets/icons/vegan.png';
 import MessageForm from '../MessageForm/MessageForm';
@@ -9,10 +9,9 @@ import BookingCalendar from 'react-booking-calendar';
 import ChatForm from '../ChatForm/ChatForm';
 
 
-function ChefProfile(){
+function CreateChef({user}){
     let [chef, setChef] = useState([]);
-    let {id} = useParams();
-    const ref = fire.firestore().collection('chefs').where("id", "==", id);
+    const ref = fire.firestore().collection('users').where("id", "==", user.id);
 
 
     //Initial Firebase call to get all chefs
@@ -28,16 +27,6 @@ function ChefProfile(){
     useEffect(() => {
         getChef();
     }, []);
-
-    const addReview = (e) => {
-        e.preventDefault();
-        let id = this.state.mainVideo.id;
-    
-        const newComment = {
-          comment: e.target.comment.value
-        };
-    
-      };
 
     
         return (
@@ -78,4 +67,4 @@ function ChefProfile(){
 }
 
 
-export default ChefProfile
+export default CreateChef

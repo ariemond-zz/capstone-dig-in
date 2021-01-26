@@ -7,6 +7,7 @@ import Login from './components/Login/Login';
 import DinerForm from './components/DinerForm/DinerForm';
 import ChefList from './components/ChefList/ChefList';
 import ChefProfile from './components/ChefProfile/ChefProfile';
+import CreateChef from './components/CreateChef/CreateChef';
 
 function App(){
   const [user, setUser] = useState(undefined);
@@ -17,7 +18,7 @@ function App(){
       if (user) {
         setUser(user);
         localStorage.setItem('isAuthenticated', 'true');
-        console.log({user})
+        console.log(user)
       } else {
         setUser(null);
         localStorage.removeItem('isAuthenticated');
@@ -51,7 +52,8 @@ function App(){
           <Route path='/login' component={Login} handler={handleLogin}/>
           <PrivateRoute path='/diner' component={DinerForm} user={user}/>
           <PrivateRoute path='/chefs' exact component={ChefList} user={user}/>
-          <PrivateRoute path="/chefs/:id" render={(routerProps) => <ChefProfile {...routerProps} user={user}/>}/>
+          <Route path="/chefs/:id" render={(routerProps) => <ChefProfile {...routerProps} user={user}/>}/>
+          <PrivateRoute path='/newchef' component={CreateChef} user={user}/>
         </Switch>
     </BrowserRouter>
     </div>

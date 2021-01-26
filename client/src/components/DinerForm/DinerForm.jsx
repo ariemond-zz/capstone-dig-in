@@ -26,6 +26,7 @@ class DinerForm extends React.Component {
     };
 
     handleSubmit = () => {
+        console.log(this.state.selectedDate)
         this.props.history.push({
             pathname: '/chefs',
             search: `?location=${this.state.location}`
@@ -53,10 +54,9 @@ class DinerForm extends React.Component {
                     <button className="diner__button">Submit</button>
                     </form>
                 </div>
-                        
-            </section>
-                        )
-            }
+             </section>
+        )
     }
+}
                 
 export default DinerForm
