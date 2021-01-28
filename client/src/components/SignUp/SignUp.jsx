@@ -13,7 +13,7 @@ function SignUp() {
         event.preventDefault();
         try {
             setError("");
-            await fire.auth().signInWithEmailAndPassword(email.current.value, password.current.value);
+            await fire.auth().createUserWithEmailAndPassword(email.current.value, password.current.value);
             history.push("/diner");
         } catch {
             setError("Failed sign up.")
@@ -27,7 +27,7 @@ function SignUp() {
                 </div>
                 <div className="signup__form-div">
                     <h5 className="signup__form-header">Sign up to get started:</h5>
-                    <form className="signup__form">
+                    <form onSubmit={signup} className="signup__form">
                         <input 
                         className="signup__email-input" 
                         type="text" 
@@ -40,13 +40,14 @@ function SignUp() {
                         placeholder="Password" 
                         name="password" 
                         ref={password}/>
-                        <button type="submit" onClick={signup} className="signup__button">Sign Up</button>
+                        <button type="submit"  className="signup__button">Sign Up</button>
                     </form>
                 </div>  
                 <div className="signup__signup-div">
                     <p className="signup__signup">Already have an account?</p>
                     <Link to="/login" className="signup__signup-link"><p className="signup__signup">Log In.</p></Link>
                 </div>
+                <p style={{color: "white"}}>{error}</p>
             </section>
         )
     };

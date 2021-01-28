@@ -6,38 +6,43 @@ import Vegan from '../../assets/icons/vegan.png';
 import MessageForm from '../MessageForm/MessageForm';
 import fire from '../../config/fire';
 import BookingCalendar from 'react-booking-calendar';
-import ChatForm from '../ChatForm/ChatForm';
+import Reviews from '../Reviews/Reviews';
 
 
 function ChefProfile(){
-    let [chef, setChef] = useState([]);
+    let [chef, setChef] = useState({});
     let {id} = useParams();
     const ref = fire.firestore().collection('chefs').where("id", "==", id);
 
-
+    
+    console.log(ref)
     //Initial Firebase call to get all chefs
     function getChef(){
         ref.onSnapshot((querySnapshot) => {
+            let chefSnapshot = {};
             querySnapshot.forEach((doc) => {
-            chef = doc.data();
-        })
-            setChef(chef);
+                chefSnapshot = doc.data();
+            })
+            setChef(chefSnapshot);
         });
     }
-
+    
     useEffect(() => {
-        getChef();
-    }, []);
-
-    const addReview = (e) => {
-        e.preventDefault();
-        let id = this.state.mainVideo.id;
+        (fire.firestore().collection('chefs').where("id", "==", id).get().then(
+            (querySnapshot) => {
+                let chefSnapshot = {};
+                querySnapshot.forEach((doc) => {
+                    chefSnapshot = doc.data();
+                    console.log(doc.data())
+                })
+                setChef({...chefSnapshot});
+            }));
+        // getChef();
+    }, [setChef]);
     
-        const newComment = {
-          comment: e.target.comment.value
-        };
-    
-      };
+    console.log(chef);
+    // console.log(chef.dates);
+    // console.log(chef.reviews);
 
     
         return (
@@ -66,16 +71,13 @@ function ChefProfile(){
                         <img src={Vegan} alt="GF" className="chef-profile__allergy"/>
                     </div>
                     <div className="chef-profile__form-section">
-                        <h4 className="chef-profile__connect-header">Connect with Chef {chef.name}</h4>
-                        <MessageForm/>
+                    {console.log(!!chef.reviews)}
+                    {!!chef.reviews ? <Reviews reviews={chef.reviews} amount={chef.reviews.length} name={chef.name}/> : null}
                     </div>
-                    <div className="conversation__form-section">
-                    <div className="conversation__image"></div>
-                  </div>
-                </div>
-            </div>
-        )
-}
-
+                    </div>
+                    </div>
+                    )
+                }
+                
 
 export default ChefProfile

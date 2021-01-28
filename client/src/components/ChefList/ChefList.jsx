@@ -10,23 +10,37 @@ function ChefList({match, location}) {
     let params = (new URL(document.location)).searchParams;
     let city = params.get('location');
     console.log(city);
- 
+    let date = params.get('date');
+    console.log(date);
+
+    const uppercaseCity = (city) => {
+        let splitCity = city.split(" ")
+        let newCity = splitCity.map(word => {
+            word = word.split("")
+            word[0] = word[0].toUpperCase()
+            return word.join("")
+        }) 
+        return newCity.join(" ")
+    }
+    console.log(uppercaseCity(city))
 
     //Initial Firebase call to get all chefs
    const [chefs, setChefs] = useState([]);
-   const ref = fire.firestore().collection('chefs').where("location", "==", city);
+   const [allChefs, setAllChefs] = useState([]);
+   const ref = fire.firestore().collection('chefs').where("location", "==", uppercaseCity(city));
 
-    function getChefs() {
-        ref.onSnapshot((querySnapshot) => {
-            const chefs = [];
-            querySnapshot.forEach((doc) => {
-                chefs.push(doc.data());
-            });
-            setChefs(chefs);
-        });
-    }
-
-    useEffect(() => {
+   function getChefs() {
+       ref.onSnapshot((querySnapshot) => {
+           const chefsSnapshot = [];
+           querySnapshot.forEach((doc) => {
+               chefsSnapshot.push(doc.data());
+           });
+           setChefs(chefsSnapshot);
+           setAllChefs(chefsSnapshot);
+       });
+   }
+   
+   useEffect(() => {
        getChefs(); 
     }, []);
 
@@ -36,14 +50,15 @@ function ChefList({match, location}) {
     const [searchResults, setSearchResults] = useState([]);
     
     const handleChange = e => {
+        console.log("handleChange")
         setSearchTerm(e.target.value);
     };
 
     useEffect(() => {
-        const results = chefs.filter(chef => 
+        const results = allChefs.filter(chef => 
             chef.restaurant.toLowerCase().includes(searchTerm)
         );
-        setSearchResults(results);
+        setChefs(results);
     }, [searchTerm]);
 
 
@@ -52,14 +67,17 @@ function ChefList({match, location}) {
     const [cuisineSearchResults, setCuisineSearchResults] = useState([]);
     
     const handleCuisineChange = e => {
+        console.log("handleCuisineChange")
         setCuisineSearchTerm(e.target.value);
     };
 
     useEffect(() => {
-        const results = chefs.filter(chef => 
+        const results = allChefs.filter(chef => 
             chef.cuisine.toLowerCase().includes(cuisineSearchTerm)
         );
-        setCuisineSearchResults(results); 
+        console.log(cuisineSearchTerm)
+        setChefs(results); 
+
     }, [cuisineSearchTerm]);
 
 
@@ -84,37 +102,10 @@ function ChefList({match, location}) {
 
                 
                 
+                
                 <div className="chefs__list">
-                {searchResults.map((chef) => 
+                {chefs.map((chef) => 
                     <ChefCard 
-                    id={chef.id}
-                    key={chef.id}
-                    name={chef.name}
-                    image={chef.image}
-                    location={chef.location}
-                    cuisine={chef.cuisine}
-                    restaurant={chef.restaurant}
-                    allergy={chef.allergy}
-                    wage={chef.wage}/>)}
-                    </div>
-                    
-                <div className="chefs__list">
-                {cuisineSearchResults.map((chef) => 
-                    <ChefCard 
-                    id={chef.id}
-                    key={chef.id}
-                    name={chef.name}
-                    image={chef.image}
-                    location={chef.location}
-                    cuisine={chef.cuisine}
-                    restaurant={chef.restaurant}
-                    allergy={chef.allergy}
-                    wage={chef.wage}/>)}
-                    </div>
-
-                    <div className="chefs__list">
-                    {chefs.map((chef) => 
-                        <ChefCard 
                             id={chef.id}
                             key={chef.id}
                             name={chef.name}
@@ -130,9 +121,36 @@ function ChefList({match, location}) {
                     )
                 }
                 
- 
+                
 export default ChefList
 
+// <div className="chefs__list">
+// {searchResults.map((chef) => 
+//     <ChefCard 
+//     id={chef.id}
+//     key={chef.id}
+//     name={chef.name}
+//     image={chef.image}
+//     location={chef.location}
+//     cuisine={chef.cuisine}
+//     restaurant={chef.restaurant}
+//     allergy={chef.allergy}
+//     wage={chef.wage}/>)}
+//     </div>
+    
+// <div className="chefs__list">
+// {cuisineSearchResults.map((chef) => 
+//     <ChefCard 
+//     id={chef.id}
+//     key={chef.id}
+//     name={chef.name}
+//     image={chef.image}
+//     location={chef.location}
+//     cuisine={chef.cuisine}
+//     restaurant={chef.restaurant}
+//     allergy={chef.allergy}
+//     wage={chef.wage}/>)}
+//     </div>
 
 // <div className="chefs__list">
 //                 {searchResults.map((chef) => 
