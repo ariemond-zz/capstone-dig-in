@@ -9,40 +9,13 @@ import BookingCalendar from 'react-booking-calendar';
 import Reviews from '../Reviews/Reviews';
 
 
-function ChefProfile(){
+function ChefProfile({user}){
     let [chef, setChef] = useState({});
     let {id} = useParams();
-    // const ref = fire.firestore().collection('chefs').where("uid", "==", id);
     let [reviews, setReviews] = useState([]);
-
-    
-    // console.log(ref)
-    // //Initial Firebase call to get all chefs
-    // function getChef(){
-    //     ref.onSnapshot((querySnapshot) => {
-    //         let chefSnapshot = {};
-    //         querySnapshot.forEach((doc) => {
-    //             chefSnapshot = doc.data();
-    //         })
-    //         setChef(chefSnapshot);
-    //     });
-    // }
-    
-    // useEffect(() => {
-    //     (fire.firestore().doc(`chefs/${id}`).onSnapshot(
-    //         (querySnapshot) => {
-    //             let chefSnapshot = {};
-    //             querySnapshot.forEach((doc) => {
-    //                 chefSnapshot = doc.data();
-    //                 console.log(doc.data())
-    //             })
-    //             setChef({...chefSnapshot});
-    //         }));
-    //     // getChef();
-    // }, [setChef]);
-
-    
     const db = fire.firestore();
+
+    console.log(user)
     
     function getChef() {
         db.doc(`chefs/${id}`)
@@ -51,7 +24,7 @@ function ChefProfile(){
           setChef(document.data());
         })
         .catch((error) => {
-            console.log(`Error getting documents: ${error}`);
+            console.log(`Error: ${error}`);
         });
     }
     
@@ -59,18 +32,6 @@ function ChefProfile(){
         getChef();
     }, []);
 
-
-    // function getReviews() {
-    //     db.doc(`chefs/${id}`).collection("reviews")
-    //     .get()
-    //     .then((document) => {
-    //       setReviews(document.data());
-    //     })
-    //     .catch((error) => {
-    //         console.log(`Error getting documents: ${error}`);
-    //     });
-    // }
-    
     useEffect(() => {
         db.doc(`chefs/${id}`)
           .collection("reviews")
@@ -79,7 +40,6 @@ function ChefProfile(){
               doc.data()
             ));
             setReviews(data);
-            console.log(data)
           });
       }, []);
     
@@ -111,12 +71,12 @@ function ChefProfile(){
                     </div>
                     <div className="chef-profile__form-section">
                     {!!reviews ? <Reviews reviews={reviews} amount={reviews.length} name={chef.name} id={chef.id}/> : null}
-                    </div>
-                    </div>
                     <MessageForm/>
                     </div>
-                    )
-                }
+                    </div>
+                    </div>
+        );
+    };
                 
 
 export default ChefProfile

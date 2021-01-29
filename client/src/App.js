@@ -37,8 +37,8 @@ function App(){
   };
 
 
-  function PrivateRoute({component: Component, ...rest}) {
-    return <Route {...rest} render={(props) => (localStorage.isAuthenticated ? <Component {...props}/> : <Redirect to="/login"/>)}/>;
+  function PrivateRoute({Component, ...rest}) {
+    return <Route {...rest} render={(props) => (localStorage.isAuthenticated ? React.createElement(Component, {...props}) : <Redirect to="/login"/>)}/>;
   }
 
     return (
@@ -51,7 +51,7 @@ function App(){
           <Route path='/login' component={Login} handler={handleLogin}/>
           <PrivateRoute path='/diner' component={DinerForm} user={user}/>
           <PrivateRoute path='/chefs' exact component={ChefList} user={user}/>
-          <PrivateRoute path="/chefs/:id" render={(routerProps) => <ChefProfile {...routerProps} user={user}/>}/>
+          <PrivateRoute path="/chefs/:id" component={(routerProps) => <ChefProfile {...routerProps} user={user}/>}/>
         </Switch>
     </BrowserRouter>
     </div>

@@ -8,7 +8,7 @@ import fire from '../../config/fire';
 class DinerForm extends React.Component {
     state = {
         location: "",
-        selectedDate: ((new Date()).getTime()) / 1000
+        selectedDate: ((new Date()).getTime()) / 1000      //convert to firebase timestamp format
     }
 
     
@@ -54,8 +54,8 @@ class DinerForm extends React.Component {
                     </form>
                 </div>
              </section>
-        )
-    }
-}
+        );
+    };
+};
                 
 export default DinerForm

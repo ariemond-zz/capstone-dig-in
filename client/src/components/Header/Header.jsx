@@ -9,8 +9,7 @@ function Header(props) {
     const logout = () => {
         fire.auth().signOut();
         props.history.push('/');
-    }
-    // console.log(user)
+    };
 
     return (
         <header className="header">
@@ -19,9 +18,8 @@ function Header(props) {
             </Link>
             <button className="header__logout-link" onClick={logout}>Log Out</button>
             </header>
-            )
-        }
+            );
+        };
         
-
 
 export default withRouter(Header)

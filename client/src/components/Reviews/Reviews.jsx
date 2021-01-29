@@ -11,12 +11,7 @@ function Reviews({amount, name}) {
 
   const db = fire.firestore();
   let {id} = useParams();
-  const history = useHistory();
-  const ref = db.collection('chefs').doc(id);
 
-  console.log(reviews)
-
-  
   const review = useRef();
   
   const reviewSubmit = (event) => {
@@ -24,6 +19,7 @@ function Reviews({amount, name}) {
     db.doc(`chefs/${id}`).collection("reviews").add({
       reviews: review.current.value
     })
+    event.target.reset();
   }
 
   useEffect(() => {
@@ -34,11 +30,9 @@ function Reviews({amount, name}) {
           doc.data()
         ));
         setReviews(data);
-        console.log(data)
       });
   }, []);
 
-  
 
   //mandatory props for carousel component
   const responsive = {
@@ -86,7 +80,7 @@ function Reviews({amount, name}) {
     </div>
 
       <div className="reviews__form-section">
-        <form className="reviews__form" action="" onSubmit={reviewSubmit}>
+        <form className="reviews__form" onSubmit={reviewSubmit}>
               <label htmlFor="name" className="reviews__form-label">Add a Review</label>
               <textarea 
               className="reviews__form-review-input"
@@ -106,26 +100,3 @@ function Reviews({amount, name}) {
 
 
 export default Reviews
-
-
-// <Carousel 
-// swipeable={false}
-// draggable={false}
-// showDots={true}
-// responsive={responsive}
-// ssr={true} // means to render carousel on server-side.
-// infinite={true}
-// autoPlay={false}
-// autoPlaySpeed={1000}
-// keyBoardControl={true}
-// customTransition="all .5"
-// transitionDuration={500}
-// containerClass="carousel-container"
-// removeArrowOnDeviceType={["tablet", "mobile"]}
-// dotListClass="custom-dot-list-style"
-// itemClass="carousel-item-padding-40-px">
-
-// {reviews.map(review => <p>{review}</p>)}      
-
-
-// </Carousel>

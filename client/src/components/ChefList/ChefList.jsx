@@ -2,16 +2,15 @@ import React, { useState, useEffect } from 'react';
 import '../ChefList/chefList.scss';
 import ChefCard from '../ChefCard/ChefCard';
 import fire from '../../config/fire';
-import {useParams, searchParams} from 'react-router-dom';
+// import {useParams, searchParams} from 'react-router-dom';
 
-function ChefList({match, location, user}) {
+function ChefList({user}) {
 
     let params = (new URL(document.location)).searchParams;
     let city = params.get('location');
-    console.log(city);
-    let date = params.get('date');
-    console.log(date);
+    let date = params.get('date');         //need to match dates to dates blocked with chefs
 
+    //Making search input for city case insensitive 
     const uppercaseCity = (city) => {
         let splitCity = city.split(" ")
         let newCity = splitCity.map(word => {
@@ -47,7 +46,6 @@ function ChefList({match, location, user}) {
 
     //Restaurant Search Bar
     const [searchTerm, setSearchTerm] = useState("");
-    const [searchResults, setSearchResults] = useState([]);
     
     const handleChange = e => {
         console.log("handleChange")
@@ -64,7 +62,6 @@ function ChefList({match, location, user}) {
 
     //Cuisine Search Bar
     const [cuisineSearchTerm, setCuisineSearchTerm] = useState("");
-    const [cuisineSearchResults, setCuisineSearchResults] = useState([]);
     
     const handleCuisineChange = e => {
         setCuisineSearchTerm(e.target.value);
