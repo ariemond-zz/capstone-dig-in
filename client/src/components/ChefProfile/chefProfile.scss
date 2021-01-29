@@ -44,6 +44,30 @@
             height: 200px;
         }
     }
+    &__connect-button {
+        position: absolute;
+        top: 20%;
+        left: 70%;
+        border-radius: 5px;
+        text-transform: uppercase;
+        font-family: 'Chivo';
+        font-weight: 500;
+        height: 50px;
+        width: 20%;
+        background-color: $dark-green;
+        color: $light-green;
+        border: none;
+        font-size: 0.9rem;
+
+        &:hover {
+            background-color: $green;
+            color: $dark-green;
+        }
+        &:focus {
+            background-color: $green;
+            color: $dark-green;
+        }
+    }
     &__name {
         color: white;
         padding-top: 5%;

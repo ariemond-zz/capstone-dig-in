@@ -7,12 +7,15 @@ import MessageForm from '../MessageForm/MessageForm';
 import fire from '../../config/fire';
 import BookingCalendar from 'react-booking-calendar';
 import Reviews from '../Reviews/Reviews';
+import Modal from 'react-modal';
+import MessageModal from '../MessageModal/MessageModal';
 
 
 function ChefProfile({user}){
     let [chef, setChef] = useState({});
     let {id} = useParams();
     let [reviews, setReviews] = useState([]);
+    let [isOpen, setOpenModal] = useState(false);
     const db = fire.firestore();
 
     console.log(user)
@@ -42,11 +45,20 @@ function ChefProfile({user}){
             setReviews(data);
           });
       }, []);
+
+      const handleOpenModal = () => {
+        setOpenModal(true);
+      };
+
+      const handleCloseModal = () => {
+          setOpenModal(false)
+      };
     
 
     return (
         <div className="chef-profile">
             <div className="chef-profile__card">
+                <button onClick={handleOpenModal} className="chef-profile__connect-button">Connect with Chef {chef.name}</button>
                 <img src={chef.image} alt="Chef" className="chef-profile__image"/>
                 <div className="chef-profile__top-container">
                     <h1 className="chef-profile__name">Chef {chef.name}</h1>
@@ -71,6 +83,24 @@ function ChefProfile({user}){
                 </div>
                     {!!reviews ? <Reviews reviews={reviews} amount={reviews.length} name={chef.name} id={chef.id}/> : null}
             </div>
+
+
+            <Modal
+            isOpen={isOpen}
+            onRequestClose={handleCloseModal}
+            ariaHideApp={false}
+            style={{
+                content: {
+                top: "40%",
+                left: "50%",
+                right: "auto",
+                bottom: "auto",
+                marginRight: "-50%",
+                transform: "translate(-50%, -50%)",
+                },
+            }}>
+                <MessageModal closeModal={handleCloseModal} name={chef.name}/>
+            </Modal>
         </div>
         );
     };
