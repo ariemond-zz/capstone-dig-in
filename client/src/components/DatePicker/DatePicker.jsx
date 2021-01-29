@@ -16,7 +16,7 @@ function DatePicker() {
                 minDate={new Date()}
                 className="date-picker__input"/>
         </div>
-    )
-}
+    );
+};
 
 export default DatePicker

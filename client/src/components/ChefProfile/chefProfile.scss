@@ -9,7 +9,7 @@
     background-image: url('../../assets/images/cheflistbg.jpg');
     background-size: cover;
     background-repeat: repeat;
-    font-family: 'Chivo';
+    font-family: 'Roboto';
 
     @include tablet {
         padding-top: 15%;
@@ -66,8 +66,8 @@
         @include tablet {
             width: 220px;
             height: 220px;
-            top: 7%;
-            left: 32%;
+            top: 9%;
+            left: 33%;
         }
     }
     &__info {
@@ -90,7 +90,7 @@
         margin: 5% 0;
 
         @include tablet {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             margin-bottom: 0;
             margin-top: 5%;
         }
@@ -101,7 +101,19 @@
             width: 50%;
         }
     }
+    &__rest-container {
+        @include tablet {
+            width: 30%;
+            margin-left: 5%;
+            padding-left: 5%;
+            border-left: 2px solid $light-green;
+        }
+    }
     &__wage {
+        @extend .chef-profile__about;
+        
+    }
+    &__restaurant {
         @extend .chef-profile__about;
     }
     &__allergies {
@@ -126,17 +138,5 @@
         @include tablet {
             margin-top: 10%;
         }
-    }
-    &__form-section {
-        display: flex;
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-    }
-    &__form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
     }
 }

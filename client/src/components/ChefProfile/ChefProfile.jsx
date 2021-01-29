@@ -26,7 +26,7 @@ function ChefProfile({user}){
         .catch((error) => {
             console.log(`Error: ${error}`);
         });
-    }
+    };
     
     useEffect(() => {
         getChef();
@@ -44,37 +44,34 @@ function ChefProfile({user}){
       }, []);
     
 
-        return (
-            <div className="chef-profile">
+    return (
+        <div className="chef-profile">
             <div className="chef-profile__card">
-            <img src={chef.image} alt="Chef" className="chef-profile__image"/>
-                    <div className="chef-profile__top-container">
-                        <h1 className="chef-profile__name">Chef {chef.name}</h1>
+                <img src={chef.image} alt="Chef" className="chef-profile__image"/>
+                <div className="chef-profile__top-container">
+                    <h1 className="chef-profile__name">Chef {chef.name}</h1>
+                </div>
+                <div className="chef-profile__info">
+                    <div className="chef-profile__about-container">
+                        <h4 className="chef-profile__about">About Me</h4>
+                        <p className="chef-profile__about">{chef.description}</p>
                     </div>
-                    <div className="chef-profile__info">
-                        <div className="chef-profile__about-container">
-                            <h4 className="chef-profile__about">About Me</h4>
-                            <p className="chef-profile__about">{chef.description}</p>
-                        </div>
-                        <div className="chef-profile__wage-container">
-                            <h4 className="chef-profile__wage">Pricing</h4>
-                            <p className="chef-profile__about">Starting at {chef.wage} a head.</p>
-                        </div>
-                        <div className="chef-profile__wage-container">
-                            <h4 className="chef-profile__wage">Restaurant</h4>
-                            <p className="chef-profile__about">{chef.restaurant}</p>
-                        </div>
+                    <div className="chef-profile__wage-container">
+                        <h4 className="chef-profile__wage">Pricing</h4>
+                        <p className="chef-profile__about">Starting at {chef.wage} a head.</p>
                     </div>
-                    <div className={chef.allergy === true ? 'chef-profile__allergies' : 'chef-profile__no-allergies'}>
-                        <img src={GF} alt="GF" className="chef-profile__allergy"/>
-                        <img src={Vegan} alt="GF" className="chef-profile__allergy"/>
+                    <div className="chef-profile__rest-container">
+                        <h4 className="chef-profile__restaurant">Restaurant</h4>
+                        <p className="chef-profile__about">{chef.restaurant}</p>
                     </div>
-                    <div className="chef-profile__form-section">
+                </div>
+                <div className={chef.allergy === true ? 'chef-profile__allergies' : 'chef-profile__no-allergies'}>
+                    <img src={GF} alt="GF" className="chef-profile__allergy"/>
+                    <img src={Vegan} alt="GF" className="chef-profile__allergy"/>
+                </div>
                     {!!reviews ? <Reviews reviews={reviews} amount={reviews.length} name={chef.name} id={chef.id}/> : null}
-                    <MessageForm/>
-                    </div>
-                    </div>
-                    </div>
+            </div>
+        </div>
         );
     };
                 

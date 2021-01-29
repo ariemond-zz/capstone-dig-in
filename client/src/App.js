@@ -23,8 +23,8 @@ function App(){
         localStorage.removeItem('isAuthenticated');
       }
     });
-    setListenerAdded(true);
-  }
+      setListenerAdded(true);
+  };
 
   useEffect(() => {
     if (!listenerAdded) {
@@ -36,10 +36,10 @@ function App(){
     setUser(user);
   };
 
-
+  
   function PrivateRoute({Component, ...rest}) {
     return <Route {...rest} render={(props) => (localStorage.isAuthenticated ? React.createElement(Component, {...props}) : <Redirect to="/login"/>)}/>;
-  }
+  };
 
     return (
       <div className="App">
@@ -56,10 +56,7 @@ function App(){
     </BrowserRouter>
     </div>
     );
-  }
-
-
-
+  };
 
 
 export default App;

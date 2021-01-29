@@ -1,8 +1,6 @@
 import React from 'react';
 import '../DinerForm/dinerForm.scss';
 import DatePicker from '../DatePicker/DatePicker';
-import fire from '../../config/fire';
-
 
 
 class DinerForm extends React.Component {
@@ -10,18 +8,17 @@ class DinerForm extends React.Component {
         location: "",
         selectedDate: ((new Date()).getTime()) / 1000      //convert to firebase timestamp format
     }
-
     
   handleDateChange = (date) => {
       this.setState({
           selectedDate: date
-      })
+      });
   };
 
     updateLocation = e => {
         this.setState({
             location: e.target.value
-        })
+        });
     };
 
     handleSubmit = () => {
@@ -30,7 +27,7 @@ class DinerForm extends React.Component {
             pathname: '/chefs',
             search: `?location=${this.state.location}&date=${this.state.selectedDate}`
         });
-    }
+    };
 
     render(){
         return (

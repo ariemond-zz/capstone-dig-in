@@ -17,8 +17,8 @@ function Login() {
             history.push("/diner");
         } catch {
             setError("Failed log in.")
-        }
-    }
+        };
+    };
 
 
 return (
@@ -49,13 +49,10 @@ return (
             <p className="login__signup">Don't have an account?</p>
             <Link to="/signup" className="login__signup-link"><p className="login__signup">Sign Up.</p></Link>
         </div>
+        <p style={{color: "white"}}>{error}</p>
     </section>
-    )
-}
-
-
-
-  
+    );
+};
 
 
 export default Login

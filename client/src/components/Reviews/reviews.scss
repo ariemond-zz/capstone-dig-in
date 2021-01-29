@@ -1,60 +1,68 @@
 @import "../../styles/global.scss";
 
 .reviews {
+    border-top: solid 2px $light-green;
     display: flex;
     flex-direction: column;
     width: 100%;
-    // align-items: center;
-    margin: 5% 0 0 15%;
-
-    @include tablet {
-        margin: 5% 0 0 10%;
-    }
+    align-items: center;
+    margin: 5% 0 0 0;
+    font-family: 'Chivo';
 
     &__title {
         margin: 5% 0;
 
         @include tablet {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
         }
     }
-
     &__all {
         width: 80%;
     }
     &__single {
         height: 150px;
+        font-style: italic;
 
         @include tablet {
             height: 100px;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
     }
     &__form-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+
         @include tablet {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
         }
     }
     &__form {
         display: flex;
         flex-direction: column;
-        margin-top: 20%;
+        align-items: center;
+        margin-top: 15%;
+        width: 100%;
 
         @include tablet {
             margin-top: 5%;
         }
     }
     &__form-label {
+        align-self: flex-start;
+        margin: 0 0 5% 5%;
+        font-weight: 700;
+
         @include tablet {
-            font-size: 1.2rem;
+            margin: 0 0 2% 5%;
+            font-size: 1rem;
         }
     }
     &__form-review-input {
         font-size: 0.8rem;
         @include inputs;
-        font-family: 'Chivo';
+        font-family: 'Roboto';
         border: solid 1px $green;
         width: 80%;
         font-size: 0.9rem;
@@ -67,6 +75,7 @@
 
         @include tablet {
             height: auto;
+            width: 80%;
         }
     }
     &__form-button {
