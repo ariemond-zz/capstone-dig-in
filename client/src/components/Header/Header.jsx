@@ -17,7 +17,7 @@ function Header(props) {
             <Link to="/" className="header__logo-link">
                 <img className="header__logo-image" src={logo} alt="instock logo"/>
             </Link>
-            <button onClick={logout}>Log Out</button>
+            <button className="header__logout-link" onClick={logout}>Log Out</button>
             </header>
             )
         }

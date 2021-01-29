@@ -9,7 +9,7 @@ import ChefList from './components/ChefList/ChefList';
 import ChefProfile from './components/ChefProfile/ChefProfile';
 
 function App(){
-  const [user, setUser] = useState(undefined);
+  const [user, setUser] = useState(null);
   const [listenerAdded, setListenerAdded] = useState(false);
 
   const authListener = () => {
@@ -51,7 +51,7 @@ function App(){
           <Route path='/login' component={Login} handler={handleLogin}/>
           <PrivateRoute path='/diner' component={DinerForm} user={user}/>
           <PrivateRoute path='/chefs' exact component={ChefList} user={user}/>
-          <Route path="/chefs/:id" render={(routerProps) => <ChefProfile {...routerProps} user={user}/>}/>
+          <PrivateRoute path="/chefs/:id" render={(routerProps) => <ChefProfile {...routerProps} user={user}/>}/>
         </Switch>
     </BrowserRouter>
     </div>

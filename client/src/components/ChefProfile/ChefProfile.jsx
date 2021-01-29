@@ -12,39 +12,78 @@ import Reviews from '../Reviews/Reviews';
 function ChefProfile(){
     let [chef, setChef] = useState({});
     let {id} = useParams();
-    const ref = fire.firestore().collection('chefs').where("id", "==", id);
+    // const ref = fire.firestore().collection('chefs').where("uid", "==", id);
+    let [reviews, setReviews] = useState([]);
 
     
-    console.log(ref)
-    //Initial Firebase call to get all chefs
-    function getChef(){
-        ref.onSnapshot((querySnapshot) => {
-            let chefSnapshot = {};
-            querySnapshot.forEach((doc) => {
-                chefSnapshot = doc.data();
-            })
-            setChef(chefSnapshot);
+    // console.log(ref)
+    // //Initial Firebase call to get all chefs
+    // function getChef(){
+    //     ref.onSnapshot((querySnapshot) => {
+    //         let chefSnapshot = {};
+    //         querySnapshot.forEach((doc) => {
+    //             chefSnapshot = doc.data();
+    //         })
+    //         setChef(chefSnapshot);
+    //     });
+    // }
+    
+    // useEffect(() => {
+    //     (fire.firestore().doc(`chefs/${id}`).onSnapshot(
+    //         (querySnapshot) => {
+    //             let chefSnapshot = {};
+    //             querySnapshot.forEach((doc) => {
+    //                 chefSnapshot = doc.data();
+    //                 console.log(doc.data())
+    //             })
+    //             setChef({...chefSnapshot});
+    //         }));
+    //     // getChef();
+    // }, [setChef]);
+
+    
+    const db = fire.firestore();
+    
+    function getChef() {
+        db.doc(`chefs/${id}`)
+        .get()
+        .then((document) => {
+          setChef(document.data());
+        })
+        .catch((error) => {
+            console.log(`Error getting documents: ${error}`);
         });
     }
     
     useEffect(() => {
-        (fire.firestore().collection('chefs').where("id", "==", id).get().then(
-            (querySnapshot) => {
-                let chefSnapshot = {};
-                querySnapshot.forEach((doc) => {
-                    chefSnapshot = doc.data();
-                    console.log(doc.data())
-                })
-                setChef({...chefSnapshot});
-            }));
-        // getChef();
-    }, [setChef]);
-    
-    console.log(chef);
-    // console.log(chef.dates);
-    // console.log(chef.reviews);
+        getChef();
+    }, []);
 
+
+    // function getReviews() {
+    //     db.doc(`chefs/${id}`).collection("reviews")
+    //     .get()
+    //     .then((document) => {
+    //       setReviews(document.data());
+    //     })
+    //     .catch((error) => {
+    //         console.log(`Error getting documents: ${error}`);
+    //     });
+    // }
     
+    useEffect(() => {
+        db.doc(`chefs/${id}`)
+          .collection("reviews")
+          .onSnapshot((querySnapshot) => {
+            const data = querySnapshot.docs.map((doc) => (
+              doc.data()
+            ));
+            setReviews(data);
+            console.log(data)
+          });
+      }, []);
+    
+
         return (
             <div className="chef-profile">
             <div className="chef-profile__card">
@@ -71,10 +110,10 @@ function ChefProfile(){
                         <img src={Vegan} alt="GF" className="chef-profile__allergy"/>
                     </div>
                     <div className="chef-profile__form-section">
-                    {console.log(!!chef.reviews)}
-                    {!!chef.reviews ? <Reviews reviews={chef.reviews} amount={chef.reviews.length} name={chef.name}/> : null}
+                    {!!reviews ? <Reviews reviews={reviews} amount={reviews.length} name={chef.name} id={chef.id}/> : null}
                     </div>
                     </div>
+                    <MessageForm/>
                     </div>
                     )
                 }

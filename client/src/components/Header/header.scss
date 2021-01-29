@@ -2,7 +2,9 @@
 
 .header {
     width: 100%;
+    display: flex;
     position: fixed;
+    background-color: transparent;
 
     &__logo-image {
         width: 25%;
@@ -15,5 +17,11 @@
             width: 10%;
         }
     }
-
+    &__logout-link {
+        width: 10%;
+        color: $light-green;
+        height: 20px;
+        background-color: transparent;
+        border: none;
+    }
 }
