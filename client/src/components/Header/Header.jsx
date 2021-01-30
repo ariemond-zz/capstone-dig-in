@@ -16,8 +16,21 @@ function Header(props) {
             <Link to="/" className="header__logo-link">
                 <img className="header__logo-image" src={logo} alt="instock logo"/>
             </Link>
-            <button className="header__logout-link" onClick={logout}>Log Out</button>
-            </header>
+            {props.user ? <p className="header__user-email">Signed in as: {props.user.email}</p> : null }
+            <nav role="navigation" className="navigation">
+            <div id="menuToggle">
+              <input type="checkbox" />
+              <span></span>
+              <span></span>
+              <span></span>
+              <ul id="menu">
+                <Link to="/" spy={true} smooth={true}><li className="navigation__list-item">Home</li></Link>
+                <Link to="/editprofile" spy={true} smooth={true}><li className="navigation__list-item">Edit Profile</li></Link>
+                <li onClick={logout} className="navigation__list-item">Log Out</li>
+              </ul>
+            </div>
+            </nav>
+        </header>
             );
         };
         

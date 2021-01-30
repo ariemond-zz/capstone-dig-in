@@ -15,6 +15,7 @@ class DinerForm extends React.Component {
       });
   };
 
+
     updateLocation = e => {
         this.setState({
             location: e.target.value

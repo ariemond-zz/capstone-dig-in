@@ -5,7 +5,7 @@ import '../MessageModal/messageModal.scss';
 import fire from '../../config/fire';
 
 
-function MessageModal({closeModal, name}) {
+function MessageModal({closeModal, name, user}) {
 
     let {id} = useParams();
     const [messages, setMessages] = useState([]);
@@ -34,7 +34,8 @@ function MessageModal({closeModal, name}) {
         if (fire.firestore()) {
           fire.firestore().doc(`chefs/${id}`).collection("messages").add({
             content: newMessage,
-            createdAt: fire.firestore.FieldValue.serverTimestamp()
+            createdAt: fire.firestore.FieldValue.serverTimestamp(),
+            uid: user.uid
           });
         }
         setNewMessage("");
@@ -47,22 +48,18 @@ function MessageModal({closeModal, name}) {
         </div>
             <img onClick={closeModal} className="message-modal__closeButton" src={closeButton} alt=""/>
             <div className="message-modal__chat">
-            <div>
-            {messages.map((message) => (
-              <div key={message.id}>
-                {message.content}
-              </div>
-            ))}
-          </div>
+              {messages.map((message) => (
+                <div key={message.id} className={message.uid === user.uid ? 'message-modal__sent' : 'message-modal__received'}>
+                  {message.content}
+                </div>
+              ))}
           <form onSubmit={handleOnSubmit} className="message-modal__form">
-            <input type="text" value={newMessage} onChange={handleOnChange} placeholder="" />
-            <button type="submit" disabled={!newMessage}>Send</button>
+            <input type="text" value={newMessage} onChange={handleOnChange} placeholder="" className="message-modal__input"/>
+            <button type="submit" disabled={!newMessage} className="message-modal__button">Send</button>
           </form>
             </div>
         </div>
     );
-
-
 };
 
 export default MessageModal

@@ -3,6 +3,7 @@ import '../ChefList/chefList.scss';
 import ChefCard from '../ChefCard/ChefCard';
 import fire from '../../config/fire';
 
+
 function ChefList({user}) {
 
     let params = (new URL(document.location)).searchParams;
@@ -26,7 +27,6 @@ function ChefList({user}) {
    const ref = fire.firestore().collection('chefs').where("location", "==", uppercaseCity(city));
 
    function getChefs() {
-    console.log(user);
 
        ref.onSnapshot((querySnapshot) => {
            const chefsSnapshot = [];
@@ -36,7 +36,7 @@ function ChefList({user}) {
            setChefs(chefsSnapshot);
            setAllChefs(chefsSnapshot);
        });
-   }
+   };
    
    useEffect(() => {
        getChefs(); 

@@ -3,7 +3,6 @@ import { useParams} from 'react-router-dom';
 import '../ChefProfile/chefProfile.scss';
 import GF from '../../assets/icons/glutenfree.png';
 import Vegan from '../../assets/icons/vegan.png';
-import MessageForm from '../MessageForm/MessageForm';
 import fire from '../../config/fire';
 import BookingCalendar from 'react-booking-calendar';
 import Reviews from '../Reviews/Reviews';
@@ -99,7 +98,7 @@ function ChefProfile({user}){
                 transform: "translate(-50%, -50%)",
                 },
             }}>
-                <MessageModal closeModal={handleCloseModal} name={chef.name}/>
+                <MessageModal closeModal={handleCloseModal} name={chef.name} user={user}/>
             </Modal>
         </div>
         );

@@ -42,21 +42,21 @@ function App(){
   };
 
     return (
-      <div className="App">
       <BrowserRouter>
-        <Header/>
+      <div className="App">
+      <Header user={user}/>
         <Switch>
           <Route path='/' exact component={SignUp}/>
           <Route path='/signup' component={SignUp}/>
           <Route path='/login' component={Login} handler={handleLogin}/>
           <PrivateRoute path='/diner' component={DinerForm} user={user}/>
-          <PrivateRoute path='/chefs' exact component={ChefList} user={user}/>
+          <PrivateRoute path='/chefs' exact component={ChefList}/>
           <PrivateRoute path="/chefs/:id" component={(routerProps) => <ChefProfile {...routerProps} user={user}/>}/>
         </Switch>
-    </BrowserRouter>
-    </div>
-    );
-  };
+        </div>
+        </BrowserRouter>
+  );
+};
 
 
 export default App;
