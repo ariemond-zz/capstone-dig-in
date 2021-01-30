@@ -11,10 +11,10 @@
     background-color: white;
     background-position: cover;
     background-repeat: no-repeat;
-    font-family: 'Chivo';
+    font-family: 'NotoSans';
     
     &__title {
-        font-family: 'Playfair';
+        font-family: 'NotoSerif';
         color: $dark-green;
         font-size: 2rem;
         margin: 15% 0 5% 0;
@@ -31,10 +31,12 @@
     }
     &__search-container {
         display: flex;
-        justify-content: flex-end;
+        flex-wrap: wrap;
+        justify-content: center;
         width: 95%;
-
+        
         @include desktop {
+            justify-content: flex-end;
             margin-bottom: 3%;
             width: 100%;
         }
@@ -48,8 +50,8 @@
         border: 1px solid $dark-green;
         height: 36px;
         padding-left: 5%;
-        font-family: 'Chivo';
-        width: 55%;
+        width: 90%;
+        margin-bottom: 3%;
 
         &:active {
             border-color: $green;
@@ -71,7 +73,7 @@
     }
     &__search {
         @extend .chefs__search-rest;
-        width: 45%;
+        width: 90%;
 
         @include tablet {
             width: 20%;

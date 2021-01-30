@@ -6,11 +6,12 @@
     flex-direction: column;
     background-color: white;
     margin-bottom: 5%;
-    height: 150px;
+    height: 160px;
     border-radius: 5px;
     box-shadow: 1px 1px 30px rgba(68, 68, 68, 0.6);
     margin-left: 5%;
     position: relative;
+    font-family: 'NotoSans';
 
         @include tablet {
             height: 200px;
@@ -19,15 +20,13 @@
         }
 
         @include desktop {
-            height: 250px;
-            width: 25%;
+            height: 220px;
+            width: 28%;
             margin-left: 5%;
         }
-
     &__link {
         width: 100%;
     }
-
     &__top-container {
         padding: 2% 0 2% 5%;
         border-radius: 5px;
@@ -64,9 +63,9 @@
     }
     &__name {
         margin-left: 2%;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         color: $light-green;
-        font-family: 'Playfair';
+        font-family: 'NotoSerif';
         font-weight: 400;
 
         @include tablet {
@@ -81,11 +80,10 @@
         margin-top: 2%;
 
         @include desktop {
-            margin-top: 10%;
+            margin-top: 5%;
         }
     }
     &__restaurant {
-        font-family: 'Chivo';
         font-size: 0.9rem;
         margin: 1% 5%;
         font-style: italic;
@@ -114,7 +112,7 @@
         margin-left: 5%;
     }
     &__star {
-        margin-top: 1%;
+        margin-top: 0;
         width: 5%;
 
         @include tablet {

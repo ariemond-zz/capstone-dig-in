@@ -1,9 +1,6 @@
 @import "../../styles/global.scss";
 
-// modal {
-//     width: 60rem;
-//     height: 100rem;
-// }
+
 
 .message-modal {
     width: 100%;
@@ -12,15 +9,20 @@
     flex-direction: column;
     position: relative;
     justify-content: space-between;
+    font-family: 'NotoSans';
 
     &__top {
         display: flex;
     }
 
     &__header {
-        margin-top: 15%;
-        font-family: 'Roboto';
+        margin-top: 5%;
+        font-family: 'NotoSerif';
         font-size: 1.2rem;
+
+        @include tablet {
+            margin-top: 5%;
+        }
     }
 
     &__closeButton {
@@ -38,13 +40,13 @@
     }
     &__sent {
         background-color: $green;
-        font-family: 'Roboto';
         text-align: right;
         width: 50%;
         height: 35px;
         border-radius: 20px 20px 20px 50px;
         margin-bottom: 2%;
         align-self: flex-end;
+        padding: 1.5%;
     }
     &__received {
         @extend .message-modal__sent;
@@ -69,7 +71,6 @@
     &__button {
         border-radius: 5px;
         text-transform: uppercase;
-        font-family: 'Chivo';
         font-weight: 500;
         height: 30px;
         width: 30%;

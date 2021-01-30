@@ -1,77 +1,48 @@
 @font-face {
-    font-family: 'Playfair';
-    src: url(../../assets/fonts/PlayfairDisplay-Regular.ttf);
+    font-family: 'NotoSerif';
+    src: url(../../assets/fonts/NotoSerif-Regular.ttf);
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Playfair';
-    src: url(../../assets/fonts/PlayfairDisplay-SemiBold.ttf);
+    font-family: 'NotoSerif';
+    src: url(../../assets/fonts/NotoSerif-Italic.ttf);
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'NotoSerif';
+    src: url(../../assets/fonts/NotoSerif-Bold.ttf);
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NotoSans';
+    src: url(../../assets/fonts/NotoSansHK-Regular.otf);
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NotoSans';
+    src: url(../../assets/fonts/NotoSansHK-Medium.otf);
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Playfair';
-    src: url(../../assets/fonts/PlayfairDisplay-Bold.ttf);
+    font-family: 'NotoSans';
+    src: url(../../assets/fonts/NotoSansHK-Bold.otf);
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Playfair';
-    src: url(../../assets/fonts/PlayfairDisplay-Italic.ttf);
+    font-family: 'NotoSans';
+    src: url(../../assets/fonts/NotoSansHK-Regular.otf);
     font-weight: 400;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Chivo';
-    src: url(../../assets/fonts/Chivo-Regular.ttf);
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Chivo';
-    src: url(../../assets/fonts/Chivo-Bold.ttf);
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Chivo';
-    src: url(../../assets/fonts/Chivo-Italic.ttf);
-    font-weight: 400;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Chivo';
-    src: url(../../assets/fonts/Chivo-Light.ttf);
-    font-weight: 300;
-    font-style: normal;
-}
-
-
-@font-face {
-    font-family: 'Roboto';
-    src: url(../../assets/fonts/Roboto-Regular.ttf);
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Roboto';
-    src: url(../../assets/fonts/Roboto-Bold.ttf);
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Roboto';
-    src: url(../../assets/fonts/Roboto-Medium.ttf);
-    font-weight: 500;
     font-style: italic;
 }

@@ -33,7 +33,7 @@ class DinerForm extends React.Component {
     render(){
         return (
             <section className="diner">
-            <h2 className="diner__header">Get Started.</h2>
+            <h2 className="diner__header">Get Started:</h2>
                 <div className="diner__form-div">
                     <form onSubmit={this.handleSubmit} className="diner__form">
                     <h5 className="diner__location-header">Where are you located?</h5>

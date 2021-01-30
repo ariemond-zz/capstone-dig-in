@@ -8,9 +8,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: 'Playfair';
+    font-family: 'NotoSans';
     background-image: url('../../assets/images/largebg.jpg');
     background-size: cover;
+    letter-spacing: 2%;
 
     @include desktop {
         height: 120vh;
@@ -23,13 +24,10 @@
         color: $light-green;
         margin-bottom: 10%;
         font-size: 1.5rem;
+        font-family: 'NotoSerif';
 
         @include tablet {
             font-size: 3rem;
-        }
-
-        @include desktop {
-            // margin-top: 10%;
         }
     }
     &__title {
@@ -37,7 +35,6 @@
     }
     &__form-header {
         color: $lightest;
-        font-family: 'Chivo';
         font-weight: 400;
         font-size: 0.8rem;
         margin-bottom: 2%;

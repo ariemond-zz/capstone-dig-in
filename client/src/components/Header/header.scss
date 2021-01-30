@@ -25,10 +25,13 @@
         
         @include tablet {
             display: flex;
-            font-family: 'Roboto';
-            width: 50%;
-            margin: 2% 0 0 60%;
+            font-family: 'NotoSans';
+            width: 20%;
+            margin: 2% 0 0 50%;
             color: $dark-green;
+        }
+        @include desktop {
+            margin: 1% 0 0 65%;
         }
     }
     &__logout-link {
@@ -167,9 +170,9 @@
  #menu
  {
     position: absolute;
-    font-family: 'Roboto';
+    font-family: 'NotoSans';
     width: 110px;
-    margin: 5% 0 0 -100%;
+    margin: 5% 0 0 -110%;
     
     list-style-type: none;
     -webkit-font-smoothing: antialiased;
@@ -178,11 +181,6 @@
     transform-origin: 0% 0%;
     transform: translate(100%, 0);    
     transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-  
-    @include desktop {
-      padding: 10px;
-      padding-top: 120px;
-    }
  }
  
  #menu li
@@ -190,16 +188,13 @@
     padding: 5%;
     font-size: 0.8rem;
     background: $dark-green;
-    border-radius: 10px;
+    // border-radius: 10px;
 
 
     // transform: rotate(90deg);
     font-weight: 500;
     color: $light-green;
-  
-    @include desktop {
-      font-size: 20px;
-    }
+
  }
  
  /*

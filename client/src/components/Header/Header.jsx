@@ -16,7 +16,7 @@ function Header(props) {
             <Link to="/" className="header__logo-link">
                 <img className="header__logo-image" src={logo} alt="instock logo"/>
             </Link>
-            {props.user ? <p className="header__user-email">Signed in as: {props.user.email}</p> : null }
+            {props.user ? <p className="header__user-email">Welcome {props.user.email}</p> : null }
             <nav role="navigation" className="navigation">
             <div id="menuToggle">
               <input type="checkbox" />
@@ -24,8 +24,9 @@ function Header(props) {
               <span></span>
               <span></span>
               <ul id="menu">
-                <Link to="/" spy={true} smooth={true}><li className="navigation__list-item">Home</li></Link>
-                <Link to="/editprofile" spy={true} smooth={true}><li className="navigation__list-item">Edit Profile</li></Link>
+                <Link to="/"><li className="navigation__list-item">Home</li></Link>
+                <Link to="/diner"><li className="navigation__list-item">Find a Chef</li></Link>
+                <Link to="/editprofile"><li className="navigation__list-item">Edit Profile</li></Link>
                 <li onClick={logout} className="navigation__list-item">Log Out</li>
               </ul>
             </div>

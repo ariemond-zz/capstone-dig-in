@@ -9,12 +9,11 @@
     background-image: url('../../assets/images/cheflistbg.jpg');
     background-size: cover;
     background-repeat: repeat;
-    font-family: 'Roboto';
+    font-family: 'NotoSans';
 
     @include tablet {
         padding-top: 15%;
     }
-
     &__card {
         width: 90%;
         background-color: white;
@@ -44,16 +43,33 @@
             height: 200px;
         }
     }
+    &__chef-container {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    &__chef-rating {
+        display: flex;
+        margin: 1% 0 5% 0;
+    }
+    &__star {
+        width: 10%;
+
+        @include tablet {
+            width: 12%;
+        }
+
+        @include desktop {
+            width: 15%;
+        }
+    }
     &__connect-button {
-        position: absolute;
-        top: 20%;
-        left: 70%;
         border-radius: 5px;
         text-transform: uppercase;
-        font-family: 'Chivo';
         font-weight: 500;
-        height: 50px;
-        width: 20%;
+        height: 40px;
+        width: 40%;
         background-color: $dark-green;
         color: $light-green;
         border: none;
@@ -67,15 +83,29 @@
             background-color: $green;
             color: $dark-green;
         }
+
+        @include tablet {
+            width: 30%;
+            font-size: 1rem;
+        }
+        @include desktop {
+            width: 25%;
+            font-size: 1.2rem;
+        }
     }
     &__name {
-        color: white;
-        padding-top: 5%;
-        font-family: 'Playfair';
-        font-weight: 300;
+        color: $dark-green;
+        font-family: 'NotoSerif';
+        font-weight: 500;
+        width: 60%;
 
         @include tablet {
             font-size: 2.5rem;
+            width: 65%;
+        }
+        @include desktop {
+            font-size: 3rem;
+            width: 75%;
         }
     }
     &__image {
@@ -85,21 +115,25 @@
         object-fit: cover;
         background: transparent;
         position: absolute;
-        left: 26%;
-        top: 6%;
+        left: 25%;
+        top: 2%;
 
         @include tablet {
-            width: 220px;
-            height: 220px;
-            top: 9%;
-            left: 33%;
+            width: 250px;
+            height: 250px;
+            top: 2%;
+            left: 32%;
+        }
+        @include desktop {
+            width: 300px;
+            height: 300px;
         }
     }
     &__info {
         margin-top: 15%;
         padding: 0 5%;
         display: flex;
-        flex-flow: column;
+        flex-flow: row wrap;
 
         @include tablet {
             margin-top: 10%;
@@ -121,12 +155,15 @@
         }
     }
     &__wage-container {
+        width: 100%;
 
         @include tablet {
-            width: 50%;
+            width: 30%;
         }
     }
     &__rest-container {
+        width: 50%;
+
         @include tablet {
             width: 30%;
             margin-left: 5%;
@@ -134,15 +171,26 @@
             border-left: 2px solid $light-green;
         }
     }
+    &__cuisine-container {
+        @extend .chef-profile__rest-container;
+        padding-left: 15%;
+        border-left: 2px solid $light-green;
+
+        @include tablet {
+            padding-left: 5%;
+        }
+    }
     &__wage {
         @extend .chef-profile__about;
-        
     }
     &__restaurant {
         @extend .chef-profile__about;
     }
+    &__cuisine {
+        @extend .chef-profile__about;
+    }
     &__allergies {
-        margin-left: 5%;
+        margin: 5% 0 0 5%;
     }
     &__no-allergies {
         display: none;
@@ -153,15 +201,6 @@
 
         @include tablet {
             width: 5%;
-            margin-top: 5%;
-        }
-    }
-    &__connect-header {
-        @extend .chef-profile__about;
-        margin-top: 15%;
-
-        @include tablet {
-            margin-top: 10%;
         }
     }
 }

@@ -10,6 +10,7 @@
     background-image: url('../../assets/images/largebg.jpg');
     background-size: cover;
     background-position: center;
+    font-family: 'NotoSans';
 
     @include desktop {
         height: 120vh;
@@ -22,6 +23,7 @@
         color: $light-green;
         margin: 40% 0 10% 0;
         font-size: 2rem;
+        font-family: 'NotoSerif';
 
         @include tablet {
             font-size: 3rem;
@@ -62,7 +64,6 @@
     }
     &__location-header {
         font-size: 1rem;
-        font-family: 'Chivo';
         margin-bottom: 2%;
 
         @include tablet {
@@ -89,6 +90,7 @@
         @include submit-buttons;
         background-color: $dark-green;
         color: $light-green;
+        margin-top: 3%;
 
         &:hover {
             background-color: $light-green;
