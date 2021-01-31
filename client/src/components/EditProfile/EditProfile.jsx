@@ -8,36 +8,16 @@ import Reviews from '../Reviews/Reviews';
 import Modal from 'react-modal';
 import MessageModal from '../MessageModal/MessageModal';
 import Star from '../../assets/icons/star.png';
-
-
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 function EditProfile({user}){
     let [currentChef, setCurrentChef] = useState({});
     let [isOpen, setOpenModal] = useState(false);
-    let {id} = useParams();
-
     const db = fire.firestore();
-
-    console.log(id)
-
     const newID = user.uid;
 
-    console.log(newID)
-
-    const ref = db.collection('chefs').where('id', '==', newID);
-
- 
-    // function getCurrentChef() {
-    //     ref
-    //     .onSnapshot((querySnapshot))
-    //     .then((document) => {
-    //         console.log(document.data())
-    //     //   setCurrentChef(document.data());
-    //     })
-    //     .catch((error) => {
-    //         console.log(`Error: ${error}`);
-    //     });
-    // };
+    const ref = db.collection('chefs').where('id', '==', newID);     //need to target the logged in user with the id field in chef collection that has matching uid
 
     function getCurrentChef() {
 
@@ -75,41 +55,54 @@ function EditProfile({user}){
         <div className="edit-profile">
             <div className="edit-profile__card">
                 <img src={currentChef.image} alt="Chef" className="edit-profile__image"/>
-                <div className="edit-profile__top-container">
-                </div>
+                <div className="edit-profile__top-container"></div>
                 <div className="edit-profile__info">
-                <div className="edit-profile__chef-container">
-                    <h1 className="edit-profile__name">Chef {currentChef.name}</h1>
-                    <button onClick={handleOpenModal} className="edit-profile__connect-button">Message</button>
-                        <div className="edit-profile__chef-rating">
-                            <img src={Star} alt="Star" className="edit-profile__star"/>
-                            <img src={Star} alt="Star" className="edit-profile__star"/>
-                            <img src={Star} alt="Star" className="edit-profile__star"/>
-                            <img src={Star} alt="Star" className="edit-profile__star"/>
-                            <img src={Star} alt="Star" className="edit-profile__star"/>
-                        </div>
+                    <div className="edit-profile__chef-container">
+                        <h1 className="edit-profile__name">Welcome Back, Chef {currentChef.name}!</h1>
+                        <button onClick={handleOpenModal} className="edit-profile__connect-button">View Messages</button>
+                        <h3>Edit your Profile:</h3>
                     </div>
+                <form>
                 <div className="edit-profile__about-container">
                     <h4 className="edit-profile__about">About Me</h4>
-                    <p className="edit-profile__about">{currentChef.description}</p>
+                    <textarea 
+                        className="edit-profile__about-input"
+                        type="text"
+                        value={currentChef.description}/>
                 </div>
                 <div className="edit-profile__wage-container">
-                    <h4 className="edit-profile__wage">Pricing</h4>
-                    <p className="edit-profile__about">Starting at {currentChef.wage} a head.</p>
+                    <h4 className="edit-profile__wage">Pricing Per Head</h4>
+                    <input 
+                    className="edit-profile__wage-input"
+                    type="text"
+                    value={currentChef.wage}/>
                 </div>
                 <div className="edit-profile__rest-container">
                     <h4 className="edit-profile__restaurant">Restaurant</h4>
-                    <p className="edit-profile__about">{currentChef.restaurant}</p>
+                    <input 
+                    className="edit-profile__rest-input"
+                    type="text"
+                    value={currentChef.restaurant}/>
                 </div>
                 <div className="edit-profile__cuisine-container">
                     <h4 className="edit-profile__cuisine">Cuisine</h4>
-                    <p className="edit-profile__about">{currentChef.cuisine}</p>
+                    <input 
+                    className="edit-profile__cuisine-input"
+                    type="text"
+                    value={currentChef.cuisine}/>
                 </div>
+                
+                <div className="edit-profile__allergies">
+                <h4 className="edit-profile__cuisine">Allergy Friendly</h4>
+                    <select className="edit-profile__allergy-input">
+                        <option value="true">True</option>
+                        <option value="false">False</option>
+                    </select>
                 </div>
-                    <div className={currentChef.allergy === true ? 'edit-profile__allergies' : 'edit-profile__no-allergies'}>
-                        <img src={GF} alt="GF" className="edit-profile__allergy"/>
-                        <img src={Vegan} alt="GF" className="edit-profile__allergy"/>
-                    </div>
+                </form>
+                </div>
+                    <Calendar/>
+                    <button className="edit-profile__button">SUBMIT</button>
             </div>
 
             <Modal

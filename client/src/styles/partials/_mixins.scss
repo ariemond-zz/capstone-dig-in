@@ -34,18 +34,22 @@
 }
 
 @mixin submit-buttons {
-    width: 100px;
-    height: 30px;
-    border: none;
     border-radius: 5px;
     text-transform: uppercase;
-    font-family: 'NotoSans';
     font-weight: 500;
-    font-size: 0.7rem;
-    margin-bottom: 5%;
-    color: rgb(49, 49, 49);
+    height: 40px;
+    width: 40%;
+    background-color: $dark-green;
+    color: $light-green;
+    border: none;
+    font-size: 0.9rem;
 
-    @include tablet {
-        font-size: 1rem;
+    &:hover {
+        background-color: $green;
+        color: $dark-green;
+    }
+    &:focus {
+        background-color: $green;
+        color: $dark-green;
     }
 }
