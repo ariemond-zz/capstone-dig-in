@@ -94,7 +94,7 @@ function ChefProfile({user}){
                         <img src={GF} alt="GF" className="chef-profile__allergy"/>
                         <img src={Vegan} alt="GF" className="chef-profile__allergy"/>
                     </div>
-                {!!reviews ? <Reviews reviews={reviews} amount={reviews.length} name={chef.name} id={chef.id}/> : null}
+                {!!reviews ? <Reviews reviews={reviews} amount={reviews.length} name={chef.name} key={chef.id}/> : null}
             </div>
 
             <Modal

@@ -6,7 +6,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
 
-function Reviews({amount, name}) {
+function Reviews() {
   let [reviews, setReviews] = useState([]);
 
   const db = fire.firestore();
@@ -76,7 +76,7 @@ function Reviews({amount, name}) {
             dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px">
 
-            {reviews.map(review => <p className="reviews__single">{review.reviews}</p>)} 
+            {reviews.map(review => <p className="reviews__single" key={review.id}>{review.reviews}</p>)} 
 
         </Carousel>
       </div>

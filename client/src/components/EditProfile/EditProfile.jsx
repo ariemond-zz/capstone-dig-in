@@ -63,7 +63,8 @@ function EditProfile({user}){
                 allergy
             })
         .then(res => {
-            history.push(`/chefs/${currentDoc}`)
+            history.push(`/chefs/${currentDoc}`);
+            window.scrollTo(0, 0);
         })
      };
 
@@ -86,8 +87,6 @@ function EditProfile({user}){
     const handleAllergy = e => {
         setAllergy(e.target.value);
     };
-
-
 
 
     const handleOpenModal = () => {
@@ -120,6 +119,7 @@ function EditProfile({user}){
                         className="edit-profile__about-input"
                         type="text"
                         name="description"
+                        value={description}
                         onChange={handleDescription}
                         />
                 </div>
@@ -129,6 +129,7 @@ function EditProfile({user}){
                     className="edit-profile__wage-input"
                     type="text"
                     name="wage"
+                    value={wage}
                     onChange={handleWage}/>
                 </div>
                 <div className="edit-profile__rest-container">
@@ -137,6 +138,7 @@ function EditProfile({user}){
                     className="edit-profile__rest-input"
                     type="text"
                     name="restaurant"
+                    value={restaurant}
                     onChange={handleRestaurant}/>
                 </div>
                 <div className="edit-profile__cuisine-container">
@@ -145,6 +147,7 @@ function EditProfile({user}){
                     className="edit-profile__cuisine-input"
                     type="text"
                     name="cuisine"
+                    value={cuisine}
                     onChange={handleCuisine}/>
                 </div>
                 
@@ -153,14 +156,15 @@ function EditProfile({user}){
                     <select 
                         className="edit-profile__allergy-input" 
                         name="allergy"
+                        id="allergy"
                         onChange={handleAllergy}>
                         <option value="true">True</option>
                         <option value="false">False</option>
                     </select>
                 </div>
                 <div className="edit-profile__calendar-section">
-                    <h4 className="edit-profile__availability">Update Availability:</h4>
-                    <DayPicker
+                <h4 className="edit-profile__availability">Update Availability:</h4>
+                <DayPicker
                         initialMonth={new Date(2021, 1)}
                         selectedDays={[
                             new Date(2021, 1, 12),
@@ -171,8 +175,8 @@ function EditProfile({user}){
                             },
                         ]}
                         />
+                        <button className="edit-profile__button">SUBMIT</button>
                 </div>
-                    <button className="edit-profile__button">SUBMIT</button>
                 </form>
                 </div>
             </div>
@@ -191,7 +195,7 @@ function EditProfile({user}){
                     transform: "translate(-50%, -50%)",
                     },
                 }}>
-                    <ChefMessages doc={currentDoc} closeModal={handleCloseModal} name={currentChef.name} user={user}/>
+                    <ChefMessages id={currentDoc} closeModal={handleCloseModal} name={currentChef.name} user={user}/>
             </Modal>
         </div>
         );

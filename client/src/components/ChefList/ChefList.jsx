@@ -27,7 +27,6 @@ function ChefList({user}) {
    const ref = fire.firestore().collection('chefs').where("location", "==", uppercaseCity(city));
 
    function getChefs() {
-
        ref.onSnapshot((querySnapshot) => {
            const chefsSnapshot = [];
            querySnapshot.forEach((doc) => {

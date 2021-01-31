@@ -5,19 +5,17 @@ import '../ChefMessages/chefMessages.scss';
 import fire from '../../config/fire';
 
 
-function ChefMessages({closeModal, doc, user}) {
+function ChefMessages({closeModal, id, user}) {
 
-    let {id} = useParams();
     const db = fire.firestore();
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const newID = user.uid;
     const ref = db.collection('chefs').where('id', '==', newID);
 
-    console.log(doc)
 
     useEffect(() => {
-        doc
+      fire.firestore().doc(`chefs/${id}`)
           .collection("messages")
           .orderBy("createdAt")
           .limit(50)
@@ -36,7 +34,7 @@ function ChefMessages({closeModal, doc, user}) {
       const handleOnSubmit = (event) => {
         event.preventDefault();
         if (fire.firestore()) {
-          doc.collection("messages").add({
+          fire.firestore().doc(`chefs/${id}`).collection("messages").add({
             content: newMessage,
             createdAt: fire.firestore.FieldValue.serverTimestamp(),
             uid: user.uid

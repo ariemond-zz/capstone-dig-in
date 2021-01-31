@@ -13,7 +13,7 @@ class DinerForm extends React.Component {
       this.setState({
           selectedDate: date
       });
-  };
+    };
 
 
     updateLocation = e => {
@@ -36,19 +36,19 @@ class DinerForm extends React.Component {
             <h2 className="diner__header">Get Started:</h2>
                 <div className="diner__form-div">
                     <form onSubmit={this.handleSubmit} className="diner__form">
-                    <h5 className="diner__location-header">Where are you located?</h5>
-                    <input 
-                        className="diner__input-location"
-                        name="location"
-                        type="text"
-                        placeholder="City"
-                        value={this.state.location}
-                        onChange={this.updateLocation}/>
-                    <h5 className="diner__date-header">When would you like your meal?</h5>
-                    <div className="diner__day-picker">
-                        <DatePicker/>
-                    </div>
-                    <button className="diner__button">Submit</button>
+                        <h5 className="diner__location-header">Where are you located?</h5>
+                        <input 
+                            className="diner__input-location"
+                            name="location"
+                            type="text"
+                            placeholder="City"
+                            value={this.state.location}
+                            onChange={this.updateLocation}/>
+                        <h5 className="diner__date-header">When would you like your meal?</h5>
+                        <div className="diner__day-picker">
+                            <DatePicker/>
+                        </div>
+                        <button className="diner__button">Submit</button>
                     </form>
                 </div>
              </section>
