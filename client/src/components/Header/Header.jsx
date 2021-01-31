@@ -33,8 +33,8 @@ function Header(props) {
             </div>
             </nav>
         </header>
-            );
-        };
+    );
+};
         
 
 export default withRouter(Header)

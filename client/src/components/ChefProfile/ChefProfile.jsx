@@ -22,6 +22,7 @@ function ChefProfile({user}){
         db.doc(`chefs/${id}`)
         .get()
         .then((document) => {
+            console.log(db.doc(`chefs/${id}`))
           setChef(document.data());
         })
         .catch((error) => {

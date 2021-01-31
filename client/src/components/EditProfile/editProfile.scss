@@ -48,21 +48,6 @@
         display: flex;
         flex-direction: column;
     }
-    &__chef-rating {
-        display: flex;
-        margin: 1% 0 5% 0;
-    }
-    &__star {
-        width: 10%;
-
-        @include tablet {
-            width: 12%;
-        }
-
-        @include desktop {
-            width: 15%;
-        }
-    }
     &__connect-button {
         border-radius: 5px;
         text-transform: uppercase;
@@ -103,12 +88,12 @@
         text-align: center;
 
         @include tablet {
+            margin-top: 2%;
             font-size: 2.5rem;
-            width: 65%;
         }
         @include desktop {
+            margin-top: 6%;
             font-size: 3rem;
-            width: 75%;
         }
     }
     &__image {
@@ -132,6 +117,15 @@
             height: 300px;
         }
     }
+    &__form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        @include tablet {
+            flex-flow: row wrap;
+        }
+    }
     &__info {
         margin-top: 15%;
         padding: 0 5%;
@@ -145,16 +139,13 @@
     }
     &__about-container {
         width: 100%;
-        @include tablet {
-            margin-bottom: 5%;
-        }
     }
     &__about {
         margin: 5% 0;
 
         @include tablet {
             font-size: 1.2rem;
-            margin-bottom: 0;
+            margin-bottom: 2%;
             margin-top: 5%;
         }
     }
@@ -164,11 +155,20 @@
         border: $green solid 1px;
         height: 150px;
         font-family: 'NotoSans';
+
+        @include tablet {
+            width: 100%;
+            height: 150px;
+        }
     }
     &__wage-input {
         @include inputs;
         border: $green solid 1px;
         font-family: 'NotoSans';
+
+        @include tablet {
+            width: 80%;
+        }
     }
     &__rest-input {
         @extend .edit-profile__wage-input;
@@ -180,18 +180,11 @@
         width: 100%;
 
         @include tablet {
-            width: 30%;
+            width: 50%;
         }
     }
     &__rest-container {
         width: 50%;
-
-        @include tablet {
-            width: 30%;
-            margin-left: 5%;
-            padding-left: 5%;
-            border-left: 2px solid $light-green;
-        }
     }
     &__cuisine-container {
         @extend .edit-profile__rest-container;
@@ -206,14 +199,32 @@
         @extend .edit-profile__about;
     }
     &__allergies {
+        @extend .edit-profile__rest-container;
+    }
+    &__allergy {
         @extend .edit-profile__about;
     }
     &__allergy-input {
         @extend .edit-profile__rest-input;
+    }
+    &__calendar-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__availability {
+        @extend .edit-profile__about;
+        align-self: start;
     }
     &__button {
         @include submit-buttons;
         margin-top: 5%;
         align-self: center;
     }
+}
+
+.DayPicker-Day--selected {
+    background-color: $green;
+    color: $green;
 }
