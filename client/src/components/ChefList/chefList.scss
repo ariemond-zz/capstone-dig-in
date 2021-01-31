@@ -34,9 +34,12 @@
         flex-wrap: wrap;
         justify-content: center;
         width: 95%;
+
+        @include tablet {
+            justify-content: flex-end;
+        }
         
         @include desktop {
-            justify-content: flex-end;
             margin-bottom: 3%;
             width: 100%;
         }
@@ -61,6 +64,7 @@
         }
 
         @include tablet {
+            font-size: 1rem;
             width: 35%;
             height: 36px;
             padding-left: 2%;

@@ -57,7 +57,7 @@ function Reviews({amount, name}) {
   
   return (
     <section className="reviews">
-      <h4 className="reviews__title">{amount} Reviews for Chef {name}</h4>
+      <h4 className="reviews__title">Testimonies</h4>
       <div className="reviews__all">
         <Carousel 
             swipeable={false}

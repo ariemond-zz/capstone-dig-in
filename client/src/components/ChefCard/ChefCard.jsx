@@ -25,7 +25,7 @@ function ChefCard({name, image, cuisine, restaurant, wage, id}) {
                 </div>
                 </Link>
             </div>
-    )
-}
+    );
+};
 
 export default ChefCard

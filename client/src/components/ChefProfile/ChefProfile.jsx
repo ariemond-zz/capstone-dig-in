@@ -70,8 +70,9 @@ function ChefProfile({user}){
                             <img src={Star} alt="Star" className="chef-profile__star"/>
                             <img src={Star} alt="Star" className="chef-profile__star"/>
                         </div>
-                    </div>
+                        </div>
                 <div className="chef-profile__about-container">
+                    <p className="chef-profile__top-reviews">{reviews.length} reviews</p>
                     <h4 className="chef-profile__about">About Me</h4>
                     <p className="chef-profile__about">{chef.description}</p>
                 </div>
@@ -96,20 +97,20 @@ function ChefProfile({user}){
             </div>
 
             <Modal
-            isOpen={isOpen}
-            onRequestClose={handleCloseModal}
-            ariaHideApp={false}
-            style={{
-                content: {
-                top: "40%",
-                left: "50%",
-                right: "auto",
-                bottom: "auto",
-                marginRight: "-50%",
-                transform: "translate(-50%, -50%)",
-                },
-            }}>
-                <MessageModal closeModal={handleCloseModal} name={chef.name} user={user}/>
+                isOpen={isOpen}
+                onRequestClose={handleCloseModal}
+                ariaHideApp={false}
+                style={{
+                    content: {
+                    top: "40%",
+                    left: "50%",
+                    right: "auto",
+                    bottom: "auto",
+                    marginRight: "-50%",
+                    transform: "translate(-50%, -50%)",
+                    },
+                }}>
+                    <MessageModal closeModal={handleCloseModal} name={chef.name} user={user}/>
             </Modal>
         </div>
         );

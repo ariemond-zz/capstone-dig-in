@@ -11,6 +11,7 @@ function Header(props) {
         props.history.push('/');
     };
 
+
     return (
         <header className="header">
             <Link to="/" className="header__logo-link">
@@ -26,8 +27,8 @@ function Header(props) {
               <ul id="menu">
                 <Link to="/"><li className="navigation__list-item">Home</li></Link>
                 <Link to="/diner"><li className="navigation__list-item">Find a Chef</li></Link>
-                <Link to="/editprofile"><li className="navigation__list-item">Edit Profile</li></Link>
-                <li onClick={logout} className="navigation__list-item">Log Out</li>
+                <Link to={`/editprofile`}><li className="navigation__list-item">Edit Profile</li></Link>
+                <li onClick={logout} className="navigation__list-item">Logout</li>
               </ul>
             </div>
             </nav>

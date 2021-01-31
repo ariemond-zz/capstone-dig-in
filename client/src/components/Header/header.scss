@@ -34,17 +34,6 @@
             margin: 1% 0 0 65%;
         }
     }
-    &__logout-link {
-        display: flex;
-        width: 20%;
-        color: $dark-green;
-        height: 20px;
-        background-color: transparent;
-        border: none;
-    }
-    &__logout-hidden {
-        display: none;
-    }
 }
 
 
@@ -74,16 +63,20 @@
  #menuToggle a
  {
    text-decoration: none;
-   color: $light-green;
+   color: $green;
    
    transition: color 0.3s ease;
  }
  
+ #menuToggle li:hover
+ {
+    text-decoration: line-through;
+ }
+
  #menuToggle a:hover
  {
     text-decoration: line-through;
  }
- 
  
  #menuToggle input
  {
@@ -96,15 +89,12 @@
    
    cursor: pointer;
    
-   opacity: 0; /* hide this */
-   z-index: 2; /* and place it over the hamburger */
+   opacity: 0;
+   z-index: 2; 
    
    -webkit-touch-callout: none;
  }
  
- /*
-  * Just a quick hamburger
-  */
  #menuToggle span
  {
    display: block;
@@ -113,7 +103,7 @@
    margin-bottom: 5px;
    position: relative;
    
-   background: $light-green;
+   background: $green;
    border-radius: 3px;
    
    z-index: 1;
@@ -135,71 +125,55 @@
    transform-origin: 0% 100%;
  }
  
- /* 
-  * Transform all the slices of hamburger
-  * into a crossmark.
-  */
  #menuToggle input:checked ~ span
  {
    opacity: 1;
    transform: rotate(45deg) translate(-2px, -1px);
-   background: $light-green;
+   background: $green;
  }
  
- /*
-  * But let's hide the middle one.
-  */
  #menuToggle input:checked ~ span:nth-last-child(3)
  {
    opacity: 0;
    transform: rotate(0deg) scale(0.2, 0.2);
  }
- 
- /*
-  * Ohyeah and the last one should go the other direction
-  */
+
  #menuToggle input:checked ~ span:nth-last-child(2)
  {
    transform: rotate(-45deg) translate(0, -1px);
  }
  
- /*
-  * Make this absolute positioned
-  * at the top left of the screen
-  */
  #menu
  {
     position: absolute;
     font-family: 'NotoSans';
     width: 110px;
     margin: 5% 0 0 -110%;
-    
     list-style-type: none;
     -webkit-font-smoothing: antialiased;
-    /* to stop flickering of text in safari */
-    
     transform-origin: 0% 0%;
     transform: translate(100%, 0);    
     transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+
+    @include tablet {
+      margin: 5% 0 0 -180%;
+    }
  }
  
  #menu li
  {
     padding: 5%;
     font-size: 0.8rem;
-    background: $dark-green;
-    // border-radius: 10px;
-
-
-    // transform: rotate(90deg);
+    background: $green;
     font-weight: 500;
-    color: $light-green;
+    color: $dark-green;
+
+    @include tablet {
+      font-size: 1rem;
+    }
 
  }
  
- /*
-  * And let's slide it in from the left
-  */
  #menuToggle input:checked ~ ul
  {
    transform: none;

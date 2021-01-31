@@ -1,2 +1,206 @@
 @import "../../styles/global.scss";
 
+.edit-profile {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30%;
+    background-image: url('../../assets/images/cheflistbg.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+    font-family: 'NotoSans';
+
+    @include tablet {
+        padding-top: 15%;
+    }
+    &__card {
+        width: 90%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        border-radius: 5px;
+        box-shadow: 5px 10px 20px #888888;
+        position: relative;
+        margin-bottom: 20%;
+        padding-bottom: 5%;
+
+        @include tablet {
+            width: 70%;
+        }
+    }
+    &__top-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        background-image: url('../../assets/images/dish.png');
+        background-size: cover;
+        border-radius: 5px;
+        height: 150px;
+
+        @include tablet {
+            height: 200px;
+        }
+    }
+    &__chef-container {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    &__chef-rating {
+        display: flex;
+        margin: 1% 0 5% 0;
+    }
+    &__star {
+        width: 10%;
+
+        @include tablet {
+            width: 12%;
+        }
+
+        @include desktop {
+            width: 15%;
+        }
+    }
+    &__connect-button {
+        border-radius: 5px;
+        text-transform: uppercase;
+        font-weight: 500;
+        height: 40px;
+        width: 40%;
+        background-color: $dark-green;
+        color: $light-green;
+        border: none;
+        font-size: 0.9rem;
+
+        &:hover {
+            background-color: $green;
+            color: $dark-green;
+        }
+        &:focus {
+            background-color: $green;
+            color: $dark-green;
+        }
+
+        @include tablet {
+            width: 30%;
+            font-size: 1rem;
+        }
+        @include desktop {
+            width: 25%;
+            font-size: 1.2rem;
+        }
+    }
+    &__name {
+        color: $dark-green;
+        font-family: 'NotoSerif';
+        font-weight: 500;
+        width: 60%;
+
+        @include tablet {
+            font-size: 2.5rem;
+            width: 65%;
+        }
+        @include desktop {
+            font-size: 3rem;
+            width: 75%;
+        }
+    }
+    &__image {
+        width: 150px;
+        height: 150px;
+        border-radius: 100%;
+        object-fit: cover;
+        background: transparent;
+        position: absolute;
+        left: 25%;
+        top: 2%;
+
+        @include tablet {
+            width: 250px;
+            height: 250px;
+            top: 2%;
+            left: 32%;
+        }
+        @include desktop {
+            width: 300px;
+            height: 300px;
+        }
+    }
+    &__info {
+        margin-top: 15%;
+        padding: 0 5%;
+        display: flex;
+        flex-flow: row wrap;
+
+        @include tablet {
+            margin-top: 10%;
+            flex-flow: row wrap;
+        }
+    }
+    &__about-container {
+        @include tablet {
+            margin-bottom: 5%;
+        }
+    }
+    &__about {
+        margin: 5% 0;
+
+        @include tablet {
+            font-size: 1.2rem;
+            margin-bottom: 0;
+            margin-top: 5%;
+        }
+    }
+    &__wage-container {
+        width: 100%;
+
+        @include tablet {
+            width: 30%;
+        }
+    }
+    &__rest-container {
+        width: 50%;
+
+        @include tablet {
+            width: 30%;
+            margin-left: 5%;
+            padding-left: 5%;
+            border-left: 2px solid $light-green;
+        }
+    }
+    &__cuisine-container {
+        @extend .edit-profile__rest-container;
+        padding-left: 15%;
+        border-left: 2px solid $light-green;
+
+        @include tablet {
+            padding-left: 5%;
+        }
+    }
+    &__wage {
+        @extend .edit-profile__about;
+    }
+    &__restaurant {
+        @extend .edit-profile__about;
+    }
+    &__cuisine {
+        @extend .edit-profile__about;
+    }
+    &__allergies {
+        margin: 5% 0 0 5%;
+    }
+    &__no-allergies {
+        display: none;
+    }
+    &__allergy {
+        width: 10%;
+        margin-right: 2%;
+
+        @include tablet {
+            width: 5%;
+        }
+    }
+}
