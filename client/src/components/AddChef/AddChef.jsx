@@ -1,44 +1,48 @@
 import React, {useState, useEffect} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 import '../AddChef/addChef.scss';
 import fire from '../../config/fire';
 import 'react-day-picker/lib/style.css';
-
+import {storage} from '../../config/fire';
 
 //MUST BE LOGGED IN AS AN EXISTING CHEF TO VIEW THIS PAGE
 //TRY chefjoe@digin.com, password 123456
 
 
 function AddChef({user}){
-    let [currentChef, setCurrentChef] = useState({});
+    const [name, setName] = useState("");
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
     const [restaurant, setRestaurant] = useState("");
     const [wage, setWage] = useState("");
     const [cuisine, setCuisine] = useState("");
     const [allergy, setAllergy] = useState("");
-    const [currentDoc, setCurrentDoc] = useState();
+    const [image, setImage] = useState(null);
+    const [url, setURL] = useState("");
 
     const history = useHistory();
     const db = fire.firestore();
-    const newID = user.uid;
     const ref = db.collection('chefs');     //need to target the logged in user with the id field in chef collection that has matching uid
-
+    const id = useParams();
 
 
      function addChef(e){
         e.preventDefault();
         ref.add({
+                name,
+                image,
                 description,
                 wage,
                 cuisine,
                 restaurant,
                 allergy,
-                location
+                location,
+                id: user.uid
             })
         .then(res => {
-            history.push(`/chefs/${currentDoc}`);
-            window.scrollTo(0, 0);
+            // history.push(`/chefs/${id}`);
+            // window.scrollTo(0, 0);
+            console.log(res);
         })
         .catch((error) => {
             console.log(`Error: ${error}`);
@@ -46,7 +50,36 @@ function AddChef({user}){
      };
 
 
+     //upload image
+
+     const handleImage = e => {
+        setImage(e.target.files[0])
+     };
+
+     const handleUpload = e => {
+         e.preventDefault();
+
+         const uploadTask = storage.ref(`images/${image.name}`).put(image);
+
+         uploadTask.on("state_changed", console.log, console.error, () => {
+             storage
+                .ref("images")
+                .child(image.name)
+                .getDownloadURL()
+                .then((url) => {
+                    setImage(url);
+                    setURL(url);
+                });
+         });
+     };
+
+
      //on change handlers for each input field
+
+    const handleName = e => {
+        setName(e.target.value);
+    };
+    
     const handleDescription = e => {
         setDescription(e.target.value);
     };
@@ -79,13 +112,28 @@ function AddChef({user}){
     return (
         <div className="add-chef">
             <div className="add-chef__card">
-                <img src={currentChef.image} alt="Chef" className="add-chef__image"/>
                 <div className="add-chef__top-container"></div>
                 <div className="add-chef__info">
                     <div className="add-chef__chef-container">
                         <h1 className="add-chef__name">Create a Chef Profile:</h1>
                     </div>
+                    <img src={url} alt="" width="40px"/>
+                <form onSubmit={handleUpload}>
+                    <input type="file" onChange={handleImage}/>
+                    <button disabled={!image}>Upload</button>
+                </form>
                 <form className="add-chef__form" onSubmit={addChef}>
+                <div>
+                </div>
+                <div className="add-chef__wage-container">
+                    <h4 className="add-chef__wage">Name</h4>
+                    <input 
+                    className="add-chef__wage-input"
+                    type="text"
+                    name="name"
+                    placeholder="First name"
+                    onChange={handleName}/>
+                </div>
                 <div className="add-chef__about-container">
                     <h4 className="add-chef__about">About Me</h4>
                     <textarea 
@@ -138,10 +186,9 @@ function AddChef({user}){
                         className="add-chef__allergy-input" 
                         name="allergy"
                         id="allergy"
-                        value={allergy}
                         onChange={handleAllergy}>
-                        <option value={true}>True</option>
-                        <option value={false}>False</option>
+                        <option value="true">True</option>
+                        <option value="false">False</option>
                     </select>
                 </div>
                     <button className="add-chef__button">SUBMIT</button>
