@@ -73,10 +73,6 @@
         width: 30%;
         margin-bottom: 2%;
 
-        &:hover {
-            background-color: $light-green;
-            color: $dark-green;
-        }
         @include tablet {
             width: 20%;
         }

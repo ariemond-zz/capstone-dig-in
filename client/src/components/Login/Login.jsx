@@ -3,6 +3,10 @@ import '../Login/login.scss';
 import {Link, useHistory} from 'react-router-dom';
 import fire from '../../config/fire';
 
+
+//To log in as a "diner"... email: hello@digin.com, password: 123456
+//To log in as a chef... email: chefjoe@digin.com, password: 123456
+
 function Login() {
     const email = useRef();
     const password = useRef();
@@ -19,7 +23,6 @@ function Login() {
             setError("Failed log in.")
         };
     };
-
 
 return (
     <section className="login">

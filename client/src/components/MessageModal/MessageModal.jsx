@@ -6,14 +6,14 @@ import fire from '../../config/fire';
 
 
 function MessageModal({closeModal, name, user}) {
-
+    const db = fire.firestore();
     let {id} = useParams();
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
 
 
     useEffect(() => {
-        fire.firestore().doc(`chefs/${id}`)
+        db.doc(`chefs/${id}`)
           .collection("messages")
           .orderBy("createdAt")
           .limit(50)
@@ -25,14 +25,17 @@ function MessageModal({closeModal, name, user}) {
             setMessages(data);
           });
       }, []);
+
       
       const handleOnChange = (event) => {
         setNewMessage(event.target.value);
       };
+
+      
       const handleOnSubmit = (event) => {
         event.preventDefault();
-        if (fire.firestore()) {
-          fire.firestore().doc(`chefs/${id}`).collection("messages").add({
+        if (db) {
+          db.doc(`chefs/${id}`).collection("messages").add({
             content: newMessage,
             createdAt: fire.firestore.FieldValue.serverTimestamp(),
             uid: user.uid

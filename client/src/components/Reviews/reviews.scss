@@ -25,7 +25,7 @@
         font-style: italic;
 
         @include tablet {
-            height: 100px;
+            height: 130px;
             font-size: 1rem;
         }
     }
@@ -69,10 +69,7 @@
         font-size: 0.9rem;
         padding: 2%;
         height: auto;
-
-        &:focus {
-            border-color: $green;
-        }
+        resize: none;
 
         @include tablet {
             height: auto;
@@ -81,19 +78,14 @@
     }
     &__form-button {
         @include submit-buttons;
-        height: 40px;
-        background-color: $dark-green;
-        color: $light-green;
-        border: none;
-        font-size: 0.9rem;
 
-        &:hover {
-            background-color: $green;
-            color: $dark-green;
+        @include tablet {
+            width: 30%;
+            font-size: 1rem;
         }
-        &:focus {
-            background-color: $green;
-            color: $dark-green;
+        @include desktop {
+            width: 25%;
+            font-size: 1.2rem;
         }
     }
 }

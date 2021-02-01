@@ -4,8 +4,9 @@ import ChefCard from '../ChefCard/ChefCard';
 import fire from '../../config/fire';
 
 
-function ChefList({user}) {
+function ChefList() {
 
+    const db = fire.firestore();
     let params = (new URL(document.location)).searchParams;
     let city = params.get('location');
     let date = params.get('date');                //need to match dates to dates blocked with chefs
@@ -24,7 +25,7 @@ function ChefList({user}) {
     //Initial Firebase call to get all chefs
    const [chefs, setChefs] = useState([]);
    const [allChefs, setAllChefs] = useState([]);
-   const ref = fire.firestore().collection('chefs').where("location", "==", uppercaseCity(city));
+   const ref = db.collection('chefs').where("location", "==", uppercaseCity(city));
 
    function getChefs() {
        ref.onSnapshot((querySnapshot) => {

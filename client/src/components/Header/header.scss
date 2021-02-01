@@ -6,6 +6,7 @@
     position: fixed;
     justify-content: space-between;
     background-color: transparent;
+    // z-index: 2;
     
     &__logo-link {
         width: 20%;
@@ -26,9 +27,10 @@
         @include tablet {
             display: flex;
             font-family: 'NotoSans';
-            width: 30%;
+            width: 28%;
             margin: 2% 0 0 50%;
             color: $dark-green;
+            border-radius: 20px;
         }
         @include desktop {
             margin: 1% 0 0 65%;
@@ -85,7 +87,7 @@
    width: 30px;
    height: 30px;
    position: absolute;
-   top: -7px;
+   top: -17px;
    right: 5px;
    
    cursor: pointer;

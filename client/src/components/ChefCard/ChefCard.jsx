@@ -6,9 +6,9 @@ import Star from '../../assets/icons/star.png';
 function ChefCard({name, image, cuisine, restaurant, wage, id}) {
     return (
         <div className="card">
-        <Link to={`/chefs/${id}`} className="card__link">
-            <img className="card__chef-image" src={image} alt="Chef Headshot"/>
-            <div className="card__top-container">
+            <Link to={`/chefs/${id}`} className="card__link">
+                <img className="card__chef-image" src={image} alt="Chef Headshot"/>
+                <div className="card__top-container">
                     <h3 className="card__name">Chef {name}</h3>
                 </div>
                 <div className="card__chef-info">
@@ -23,8 +23,8 @@ function ChefCard({name, image, cuisine, restaurant, wage, id}) {
                             <img src={Star} alt="Star" className="card__star"/>
                         </div>
                 </div>
-                </Link>
-            </div>
+            </Link>
+        </div>
     );
 };
 

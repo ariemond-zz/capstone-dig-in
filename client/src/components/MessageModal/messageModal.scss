@@ -42,7 +42,6 @@
         background-color: $green;
         text-align: right;
         width: 50%;
-        height: 35px;
         border-radius: 20px 20px 20px 20px;
         margin-bottom: 2%;
         align-self: flex-end;
@@ -69,24 +68,7 @@
         }
     }
     &__button {
-        border-radius: 5px;
-        text-transform: uppercase;
-        font-weight: 500;
-        height: 30px;
-        width: 30%;
-        background-color: $dark-green;
-        color: $light-green;
-        border: none;
-        font-size: 0.9rem;
-
-        &:hover {
-            background-color: $green;
-            color: $dark-green;
-        }
-        &:focus {
-            background-color: $green;
-            color: $dark-green;
-        }
+        @include submit-buttons;
     }
 }
 

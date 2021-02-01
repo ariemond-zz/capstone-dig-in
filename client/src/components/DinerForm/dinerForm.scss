@@ -26,7 +26,7 @@
         font-family: 'NotoSerif';
 
         @include tablet {
-            font-size: 3rem;
+            font-size: 3.2rem;
             margin: 30% 0 10% 0;
         }
         @include desktop {
@@ -91,11 +91,6 @@
         background-color: $dark-green;
         color: $light-green;
         margin-top: 3%;
-
-        &:hover {
-            background-color: $light-green;
-            color: $dark-green;
-        }
 
         @include desktop {
             margin: 3% 0 0 0;

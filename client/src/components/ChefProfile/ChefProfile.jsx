@@ -71,9 +71,9 @@ function ChefProfile({user}){
                             <img src={Star} alt="Star" className="chef-profile__star"/>
                             <img src={Star} alt="Star" className="chef-profile__star"/>
                         </div>
-                        </div>
+                        <a href="#reviews" className="chef-profile__top-reviews">{reviews.length} reviews</a>
+                </div>
                 <div className="chef-profile__about-container">
-                    <p className="chef-profile__top-reviews">{reviews.length} reviews</p>
                     <h4 className="chef-profile__about">About Me</h4>
                     <p className="chef-profile__about">{chef.description}</p>
                 </div>
@@ -90,11 +90,11 @@ function ChefProfile({user}){
                     <p className="chef-profile__about">{chef.cuisine}</p>
                 </div>
                 </div>
-                    <div className={chef.allergy === true ? 'chef-profile__allergies' : 'chef-profile__no-allergies'}>
+                    <div className={chef.allergy === "true" ? 'chef-profile__allergies' : 'chef-profile__no-allergies'}>
                         <img src={GF} alt="GF" className="chef-profile__allergy"/>
                         <img src={Vegan} alt="GF" className="chef-profile__allergy"/>
                     </div>
-                {!!reviews ? <Reviews reviews={reviews} amount={reviews.length} name={chef.name} key={chef.id}/> : null}
+                {!!reviews ? <Reviews reviews={reviews} amount={reviews.length} name={chef.name} key={chef.id} user={user}/> : null}
             </div>
 
             <Modal

@@ -92,7 +92,8 @@
             font-size: 2.5rem;
         }
         @include desktop {
-            margin-top: 6%;
+            margin-top: 10%;
+            margin-bottom: 3%;
             font-size: 3rem;
         }
     }
@@ -221,10 +222,15 @@
         @include submit-buttons;
         margin-top: 5%;
         align-self: center;
+
+        @include tablet {
+            width: 30%;
+            font-size: 1rem;
+        }
+        @include desktop {
+            width: 25%;
+            font-size: 1.2rem;
+        }
     }
 }
 
-.DayPicker-Day--selected {
-    background-color: $green;
-    color: $green;
-}

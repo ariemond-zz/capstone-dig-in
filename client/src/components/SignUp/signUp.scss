@@ -36,7 +36,6 @@
     }
     &__form-header {
         color: $lightest;
-        font-family: 'NotoSans';
         font-weight: 400;
         font-size: 0.8rem;
         margin-bottom: 2%;
@@ -75,10 +74,6 @@
         width: 30%;
         margin-bottom: 2%;
 
-        &:hover {
-            background-color: $light-green;
-            color: $dark-green;
-        }
         @include tablet {
             width: 20%;
         }

@@ -6,15 +6,15 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
 
-function Reviews() {
-  let [reviews, setReviews] = useState([]);
+function Reviews({user}) {
 
-  const db = fire.firestore();
+  const db = fire.firestore()
   let {id} = useParams();
+  let [reviews, setReviews] = useState([]);
   const review = useRef();
   const timestamp = fire.firestore.FieldValue.serverTimestamp();
   
-  
+
   useEffect(() => {
     db.doc(`chefs/${id}`)
     .collection("reviews")
@@ -26,13 +26,19 @@ function Reviews() {
         setReviews(data);
       });
     }, []);
+
     
     const reviewSubmit = (event) => {
       event.preventDefault();
       db.doc(`chefs/${id}`).collection("reviews").add({
         reviews: review.current.value,
+        from: user.email,                                 //add current user's email to review without input field
         createdAt: timestamp
       })
+      .catch((error) => {
+        console.log(`Error: ${error}`);
+      });
+      
       event.target.reset();
     };
 
@@ -56,7 +62,7 @@ function Reviews() {
   };
   
   return (
-    <section className="reviews">
+    <section className="reviews" id="reviews">
       <h4 className="reviews__title">Testimonies</h4>
       <div className="reviews__all">
         <Carousel 
@@ -76,7 +82,9 @@ function Reviews() {
             dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px">
 
-            {reviews.map(review => <p className="reviews__single" key={review.id}>{review.reviews}</p>)} 
+            {reviews.map(review => 
+              <p className="reviews__single" key={review.id}>"{review.reviews}" <br/>- {review.from}</p>
+              )} 
 
         </Carousel>
       </div>

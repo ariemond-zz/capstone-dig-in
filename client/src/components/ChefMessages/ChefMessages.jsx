@@ -10,12 +10,10 @@ function ChefMessages({closeModal, id, user}) {
     const db = fire.firestore();
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
-    const newID = user.uid;
-    const ref = db.collection('chefs').where('id', '==', newID);
 
 
     useEffect(() => {
-      fire.firestore().doc(`chefs/${id}`)
+      db.doc(`chefs/${id}`)
           .collection("messages")
           .orderBy("createdAt")
           .limit(50)
@@ -33,8 +31,8 @@ function ChefMessages({closeModal, id, user}) {
       };
       const handleOnSubmit = (event) => {
         event.preventDefault();
-        if (fire.firestore()) {
-          fire.firestore().doc(`chefs/${id}`).collection("messages").add({
+        if (db) {
+          db.doc(`chefs/${id}`).collection("messages").add({
             content: newMessage,
             createdAt: fire.firestore.FieldValue.serverTimestamp(),
             uid: user.uid
