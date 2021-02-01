@@ -9,7 +9,6 @@ function ChefList() {
     const db = fire.firestore();
     let params = (new URL(document.location)).searchParams;
     let city = params.get('location');
-    let date = params.get('date');                //need to match dates to dates blocked with chefs
 
     //Making search input for city case insensitive 
     const uppercaseCity = (city) => {
@@ -22,7 +21,7 @@ function ChefList() {
         return newCity.join(" ");
     };
 
-    //Initial Firebase call to get all chefs
+    //Initial Firebase call to get all chefs that match query
    const [chefs, setChefs] = useState([]);
    const [allChefs, setAllChefs] = useState([]);
    const ref = db.collection('chefs').where("location", "==", uppercaseCity(city));

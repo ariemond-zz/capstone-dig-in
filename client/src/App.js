@@ -8,6 +8,7 @@ import DinerForm from './components/DinerForm/DinerForm';
 import ChefList from './components/ChefList/ChefList';
 import ChefProfile from './components/ChefProfile/ChefProfile';
 import EditProfile from './components/EditProfile/EditProfile';
+import AddChef from './components/AddChef/AddChef';
 
 function App(){
   const [user, setUser] = useState(null);
@@ -54,6 +55,7 @@ function App(){
           <PrivateRoute path='/chefs' exact component={ChefList}/>
           <PrivateRoute path="/chefs/:id" component={(routerProps) => <ChefProfile {...routerProps} user={user}/>}/>
           <PrivateRoute path="/editprofile" component={(routerProps) => <EditProfile {...routerProps} user={user}/>}/>
+          <PrivateRoute path="/createprofile" component={(routerProps) => <AddChef {...routerProps} user={user}/>}/>
         </Switch>
         </div>
         </BrowserRouter>
