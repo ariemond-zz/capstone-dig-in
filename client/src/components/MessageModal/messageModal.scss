@@ -40,8 +40,9 @@
     }
     &__sent {
         background-color: $green;
+        display: flex;
+        flex-wrap: wrap;
         text-align: right;
-        width: 50%;
         border-radius: 20px 20px 20px 20px;
         margin-bottom: 2%;
         align-self: flex-end;

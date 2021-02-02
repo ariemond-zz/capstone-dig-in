@@ -232,6 +232,14 @@
             font-size: 1.2rem;
         }
     }
+    &__delete{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    &__delete-button {
+        @extend .edit-profile__button;
+    }
     &__add-photo {
         @extend .edit-profile__about;
         margin-bottom: 5%;

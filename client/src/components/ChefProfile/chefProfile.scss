@@ -139,6 +139,8 @@
         }
     }
     &__about-container {
+        width: 100%;
+        
         @include tablet {
             margin-bottom: 5%;
         }

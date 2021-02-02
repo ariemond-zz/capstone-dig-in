@@ -42,20 +42,20 @@ function ChefMessages({closeModal, id, user}) {
       };
 
     return (
-        <div className="message-modal">
-        <div className="message-modal__top">
-            <h4 className="message-modal__header">Your Recent Messages</h4>
+        <div className="chef-messages">
+        <div className="chef-messages__top">
+            <h4 className="chef-messages__header">Your Recent Messages</h4>
         </div>
-            <img onClick={closeModal} className="message-modal__closeButton" src={closeButton} alt=""/>
-            <div className="message-modal__chat">
+            <img onClick={closeModal} className="chef-messages__closeButton" src={closeButton} alt=""/>
+            <div className="chef-messages__chat">
               {messages.map((message) => (
-                <div key={message.id} className={message.uid === user.uid ? 'message-modal__sent' : 'message-modal__received'}>
+                <div key={message.id} className={message.uid === user.uid ? 'chef-messages__sent' : 'chef-messages__received'}>
                   {message.content}
                 </div>
               ))}
-          <form onSubmit={handleOnSubmit} className="message-modal__form">
-            <input type="text" value={newMessage} onChange={handleOnChange} placeholder="" className="message-modal__input"/>
-            <button type="submit" disabled={!newMessage} className="message-modal__button">Send</button>
+          <form onSubmit={handleOnSubmit} className="chef-messages__form">
+            <input type="text" value={newMessage} onChange={handleOnChange} placeholder="" className="chef-messages__input"/>
+            <button type="submit" disabled={!newMessage} className="chef-messages__button">Send</button>
           </form>
             </div>
         </div>

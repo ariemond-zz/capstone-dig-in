@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useHistory, useParams} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import '../EditProfile/editProfile.scss';
 import fire from '../../config/fire';
 import Modal from 'react-modal';
@@ -10,11 +10,12 @@ import 'react-day-picker/lib/style.css';
 
 
 //MUST BE LOGGED IN AS AN EXISTING CHEF TO VIEW THIS PAGE
-//TRY chefjoe@digin.com, password 123456
+//TRY chefali@digin.com, password 123456
+//OR CREATE A CHEF AND THEN VIEW EDIT
 
 
 function EditProfile({user}){
-    let [currentChef, setCurrentChef] = useState({});
+    const [currentChef, setCurrentChef] = useState({});
     let [isOpen, setOpenModal] = useState(false);
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
@@ -26,16 +27,17 @@ function EditProfile({user}){
     const [url, setURL] = useState("");
     const [currentDoc, setCurrentDoc] = useState();
 
-    const id = useParams();
     const history = useHistory();
     const db = fire.firestore();
     const newID = user.uid;
     const ref = db.collection('chefs').where('id', '==', newID);     //need to target the logged in user with the id field in chef collection that has matching uid
 
 
-    //get current chef that is logged in, grab the document ID to be able to run update function
-    function getCurrentChef() {
+    //Get current chef that is logged in, grab the document ID to be able to run update function
+    
+    const getCurrentChef = () => {
         ref.onSnapshot((querySnapshot) => {
+
             const chefSnapshot = [];
             let docID;
             querySnapshot.forEach((doc) => {
@@ -43,14 +45,9 @@ function EditProfile({user}){
                 docID = doc.id;
             });
             setCurrentChef(chefSnapshot[0]);
-            setLocation(chefSnapshot[0].location)
-            setDescription(chefSnapshot[0].description);
-            setRestaurant(chefSnapshot[0].restaurant);
-            setCuisine(chefSnapshot[0].cuisine);
-            setWage(chefSnapshot[0].wage);
-            setAllergy(chefSnapshot[0].allergy);
             setCurrentDoc(docID);
         });
+        getEdits();
     };
     
     useEffect(() => {
@@ -58,6 +55,22 @@ function EditProfile({user}){
             getCurrentChef(); 
         }
      }, []);
+
+     const getEdits = () => {
+         setLocation(currentChef.location);
+         setDescription(currentChef.description);
+         setRestaurant(currentChef.restaurant);
+         setAllergy(currentChef.allergy);
+         setWage(currentChef.wage);
+         setCuisine(currentChef.cuisine);
+     }
+
+     useEffect(() => {
+        if(currentChef) {
+            getEdits(); 
+        }
+     }, [currentChef]);
+     
 
      function editProfile(e){
         e.preventDefault();
@@ -79,31 +92,32 @@ function EditProfile({user}){
         });
      };
 
-          //Upload image
 
-          const handleImage = e => {
-            setImage(e.target.files[0])
-         };
-    
-         const handleUpload = e => {
-             e.preventDefault();
-    
-             const uploadTask = storage.ref(`images/${image.name}`).put(image);
-    
-             uploadTask.on("state_changed", console.log, console.error, () => {
-                 storage
-                    .ref("images")
-                    .child(image.name)
-                    .getDownloadURL()
-                    .then((url) => {
-                        setImage(url);
-                        setURL(url);
-                    });
-             });
-         };
+    //Upload image
+
+     const handleImage = e => {
+     setImage(e.target.files[0])
+     };
+
+     const handleUpload = e => {
+        e.preventDefault();
+
+        const uploadTask = storage.ref(`images/${image.name}`).put(image);
+
+        uploadTask.on("state_changed", console.log, console.error, () => {
+            storage
+            .ref("images")
+            .child(image.name)
+            .getDownloadURL()
+            .then((url) => {
+                setImage(url);
+                setURL(url);
+            });
+        });
+     };
 
 
-     //onChange handlers for each input field
+    //onChange handlers for each input field
     const handleDescription = e => {
         setDescription(e.target.value);
     };
@@ -137,11 +151,12 @@ function EditProfile({user}){
         setOpenModal(false)
     };
 
+
     //Delete profile
     const deleteProfile = () => {
         if (window.confirm('Are you sure you want to delete your profile?')) {
 
-            db.doc(`chefs/${id}`)
+            db.doc(`chefs/${currentDoc}`)
             .delete()
             .then(res => {
                 history.push(`/createprofile`);
@@ -150,10 +165,10 @@ function EditProfile({user}){
             .catch((error) => {
                 console.log(`Error: ${error}`);
             });
-        }
-    }
+        };
+    };
     
-    if (!user) {
+    if (!user || !currentChef) {
         return <div></div>
     }
 
@@ -240,7 +255,6 @@ function EditProfile({user}){
                 <div className="edit-profile__calendar-section">
                 <h4 className="edit-profile__availability">Update Availability:</h4>
                 <DayPicker
-                        className="day-picker"
                         initialMonth={new Date(2021, 1)}
                         selectedDays={[
                             new Date(2021, 1, 10),
@@ -253,7 +267,9 @@ function EditProfile({user}){
                         <button className="edit-profile__button">SUBMIT</button>
                 </div>
                 </form>
-                <button onClick={deleteProfile} className="edit-profile__button">Delete Profile</button>
+                <div className="edit-profile__delete">
+                    <button onClick={deleteProfile} className="edit-profile__delete-button">Delete Profile</button>
+                </div>
                 </div>
             </div>
 

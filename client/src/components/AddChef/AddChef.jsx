@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {useHistory, useParams} from 'react-router-dom';
+import React, {useState} from 'react';
+import {useHistory} from 'react-router-dom';
 import '../AddChef/addChef.scss';
 import fire from '../../config/fire';
 import 'react-day-picker/lib/style.css';
@@ -112,7 +112,7 @@ function AddChef({user}){
     return (
         <div className="add-chef">
             <div className="add-chef__card">
-            <img src={url} alt="Upload Photo" className="add-chef__image"/>
+            <img src={url} alt="Upload a photo" className="add-chef__image"/>
                 <div className="add-chef__top-container"></div>
                 <div className="add-chef__info">
                     <div className="add-chef__chef-container">
@@ -202,8 +202,8 @@ function AddChef({user}){
                 </div>
             </div>
         </div>
-        );
-    };
+    );
+};
                 
 
 export default AddChef
