@@ -35,7 +35,7 @@ function ChefList() {
            setChefs(chefsSnapshot);
            setAllChefs(chefsSnapshot);
        });
-   };
+    };
    
    useEffect(() => {
        getChefs(); 

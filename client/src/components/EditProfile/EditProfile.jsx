@@ -183,93 +183,93 @@ function EditProfile({user}){
                         <button onClick={handleOpenModal} className="edit-profile__connect-button">View Messages</button>
                         <h2 className="edit-profile__edit-header">Edit Your Profile:</h2>
                     </div>
-                <div className="edit-profile__wage-container">
-                    <h4 className="edit-profile__add-photo">Add Photo</h4>
-                    <form onSubmit={handleUpload}>
-                        <label className="edit-profile__image-input">
-                            Choose File
-                            <input className="edit-profile__input-button" type="file" onChange={handleImage} />
-                        </label>
-                        <button className="edit-profile__image-button" disabled={!image}>Upload</button>
+                    <div className="edit-profile__wage-container">
+                        <h4 className="edit-profile__add-photo">Add Photo</h4>
+                        <form onSubmit={handleUpload}>
+                            <label className="edit-profile__image-input">
+                                Choose File
+                                <input className="edit-profile__input-button" type="file" onChange={handleImage} />
+                            </label>
+                            <button className="edit-profile__image-button" disabled={!image}>Upload</button>
+                        </form>
+                    </div>
+                    <form className="edit-profile__form" onSubmit={editProfile}>
+                        <div className="edit-profile__about-container">
+                            <h4 className="edit-profile__about">About Me</h4>
+                            <textarea 
+                                className="edit-profile__about-input"
+                                type="text"
+                                name="description"
+                                value={description}
+                                onChange={handleDescription}
+                                />
+                        </div>
+                        <div className="edit-profile__wage-container">
+                            <h4 className="edit-profile__wage">Pricing Per Head</h4>
+                            <input 
+                            className="edit-profile__wage-input"
+                            type="text"
+                            name="wage"
+                            value={wage}
+                            onChange={handleWage}/>
+                        </div>
+                        <div className="edit-profile__rest-container">
+                            <h4 className="edit-profile__restaurant">Restaurant</h4>
+                            <input 
+                            className="edit-profile__rest-input"
+                            type="text"
+                            name="restaurant"
+                            value={restaurant}
+                            onChange={handleRestaurant}/>
+                        </div>
+                        <div className="edit-profile__cuisine-container">
+                            <h4 className="edit-profile__cuisine">Cuisine</h4>
+                            <input 
+                            className="edit-profile__cuisine-input"
+                            type="text"
+                            name="cuisine"
+                            value={cuisine}
+                            onChange={handleCuisine}/>
+                        </div>
+                        <div className="edit-profile__cuisine-container">
+                            <h4 className="edit-profile__cuisine">Location</h4>
+                            <input 
+                            className="edit-profile__cuisine-input"
+                            type="text"
+                            name="location"
+                            value={location}
+                            onChange={handleLocation}/>
+                        </div>
+                        <div className="edit-profile__allergies">
+                            <h4 className="edit-profile__allergy">Allergy Friendly</h4>
+                            <select 
+                                className="edit-profile__allergy-input" 
+                                name="allergy"
+                                id="allergy"
+                                value={allergy}
+                                onChange={handleAllergy}>
+                                <option value={true}>True</option>
+                                <option value={false}>False</option>
+                            </select>
+                        </div>
+                        <div className="edit-profile__calendar-section">
+                            <h4 className="edit-profile__availability">Update Availability:</h4>
+                            <DayPicker
+                                    initialMonth={new Date(2021, 1)}
+                                    selectedDays={[
+                                        new Date(2021, 1, 10),
+                                        new Date(2021, 1, 13),
+                                        new Date(2021, 1, 19),
+                                        new Date(2021, 1, 20),
+                                        new Date(2021, 1, 21),
+                                    ]}
+                                    />
+                            <button className="edit-profile__button">SUBMIT</button>
+                        </div>
                     </form>
-                </div>
-                <form className="edit-profile__form" onSubmit={editProfile}>
-                <div className="edit-profile__about-container">
-                    <h4 className="edit-profile__about">About Me</h4>
-                    <textarea 
-                        className="edit-profile__about-input"
-                        type="text"
-                        name="description"
-                        value={description}
-                        onChange={handleDescription}
-                        />
-                </div>
-                <div className="edit-profile__wage-container">
-                    <h4 className="edit-profile__wage">Pricing Per Head</h4>
-                    <input 
-                    className="edit-profile__wage-input"
-                    type="text"
-                    name="wage"
-                    value={wage}
-                    onChange={handleWage}/>
-                </div>
-                <div className="edit-profile__rest-container">
-                    <h4 className="edit-profile__restaurant">Restaurant</h4>
-                    <input 
-                    className="edit-profile__rest-input"
-                    type="text"
-                    name="restaurant"
-                    value={restaurant}
-                    onChange={handleRestaurant}/>
-                </div>
-                <div className="edit-profile__cuisine-container">
-                    <h4 className="edit-profile__cuisine">Cuisine</h4>
-                    <input 
-                    className="edit-profile__cuisine-input"
-                    type="text"
-                    name="cuisine"
-                    value={cuisine}
-                    onChange={handleCuisine}/>
-                </div>
-                <div className="edit-profile__cuisine-container">
-                <h4 className="edit-profile__cuisine">Location</h4>
-                <input 
-                className="edit-profile__cuisine-input"
-                type="text"
-                name="location"
-                value={location}
-                onChange={handleLocation}/>
-                </div>
-                <div className="edit-profile__allergies">
-                    <h4 className="edit-profile__allergy">Allergy Friendly</h4>
-                    <select 
-                        className="edit-profile__allergy-input" 
-                        name="allergy"
-                        id="allergy"
-                        value={allergy}
-                        onChange={handleAllergy}>
-                        <option value={true}>True</option>
-                        <option value={false}>False</option>
-                    </select>
-                </div>
-                <div className="edit-profile__calendar-section">
-                <h4 className="edit-profile__availability">Update Availability:</h4>
-                <DayPicker
-                        initialMonth={new Date(2021, 1)}
-                        selectedDays={[
-                            new Date(2021, 1, 10),
-                            new Date(2021, 1, 13),
-                            new Date(2021, 1, 19),
-                            new Date(2021, 1, 20),
-                            new Date(2021, 1, 21),
-                        ]}
-                        />
-                        <button className="edit-profile__button">SUBMIT</button>
-                </div>
-                </form>
-                <div className="edit-profile__delete">
-                    <button onClick={deleteProfile} className="edit-profile__delete-button">Delete Profile</button>
-                </div>
+                    <div className="edit-profile__delete">
+                        <button onClick={deleteProfile} className="edit-profile__delete-button">Delete Profile</button>
+                    </div>
                 </div>
             </div>
 

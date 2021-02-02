@@ -112,8 +112,8 @@ function ChefProfile({user}){
                     <MessageModal closeModal={handleCloseModal} name={chef.name} user={user}/>
             </Modal>
         </div>
-        );
-    };
+    );
+};
                 
 
 export default ChefProfile

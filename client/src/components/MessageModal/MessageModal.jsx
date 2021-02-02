@@ -24,44 +24,44 @@ function MessageModal({closeModal, name, user}) {
             }));
             setMessages(data);
           });
-      }, []);
+    }, []);
 
       
-      const handleOnChange = (event) => {
-        setNewMessage(event.target.value);
-      };
+    const handleOnChange = (event) => {
+      setNewMessage(event.target.value);
+    };
 
-      
-      const handleOnSubmit = (event) => {
-        event.preventDefault();
-        if (db) {
-          db.doc(`chefs/${id}`).collection("messages").add({
-            content: newMessage,
-            createdAt: fire.firestore.FieldValue.serverTimestamp(),
-            uid: user.uid
-          });
-        }
-        setNewMessage("");
-      };
+    //Creates message collection off of each chef document 
+    const handleOnSubmit = (event) => {
+      event.preventDefault();
+      if (db) {
+        db.doc(`chefs/${id}`).collection("messages").add({
+          content: newMessage,
+          createdAt: fire.firestore.FieldValue.serverTimestamp(),
+          uid: user.uid
+        });
+      }
+      setNewMessage("");
+    };
 
     return (
-        <div className="message-modal">
+      <div className="message-modal">
         <div className="message-modal__top">
             <h4 className="message-modal__header">Your Chat With Chef {name}</h4>
         </div>
-            <img onClick={closeModal} className="message-modal__closeButton" src={closeButton} alt=""/>
-            <div className="message-modal__chat">
-              {messages.map((message) => (
-                <div key={message.id} className={message.uid === user.uid ? 'message-modal__sent' : 'message-modal__received'}>
-                  {message.content}
-                </div>
-              ))}
-          <form onSubmit={handleOnSubmit} className="message-modal__form">
-            <input type="text" value={newMessage} onChange={handleOnChange} placeholder="" className="message-modal__input"/>
-            <button type="submit" disabled={!newMessage} className="message-modal__button">Send</button>
-          </form>
-            </div>
+        <img onClick={closeModal} className="message-modal__closeButton" src={closeButton} alt=""/>
+        <div className="message-modal__chat">
+            {messages.map((message) => (
+              <div key={message.id} className={message.uid === user.uid ? 'message-modal__sent' : 'message-modal__received'}>
+                {message.content}
+              </div>
+            ))}
+            <form onSubmit={handleOnSubmit} className="message-modal__form">
+              <input type="text" value={newMessage} onChange={handleOnChange} placeholder="" className="message-modal__input"/>
+              <button type="submit" disabled={!newMessage} className="message-modal__button">Send</button>
+            </form>
         </div>
+      </div>
     );
 };
 
