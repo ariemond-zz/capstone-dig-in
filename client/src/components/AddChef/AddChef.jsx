@@ -23,13 +23,13 @@ function AddChef({user}){
     const history = useHistory();
     const db = fire.firestore();
     const ref = db.collection('chefs');     //need to target the logged in user with the id field in chef collection that has matching uid
-    const id = useParams();
-
-
+    
+    
      function addChef(e){
         e.preventDefault();
+
         ref.add({
-                name,
+            name,
                 image,
                 description,
                 wage,
@@ -39,10 +39,10 @@ function AddChef({user}){
                 location,
                 id: user.uid
             })
-        .then(res => {
-            // history.push(`/chefs/${id}`);
-            // window.scrollTo(0, 0);
-            console.log(res);
+            .then(res => {
+            const id = res.id;
+            history.push(`/chefs/${id}`);
+            window.scrollTo(0, 0);
         })
         .catch((error) => {
             console.log(`Error: ${error}`);
@@ -50,7 +50,7 @@ function AddChef({user}){
      };
 
 
-     //upload image
+     //Upload image
 
      const handleImage = e => {
         setImage(e.target.files[0])
@@ -74,7 +74,7 @@ function AddChef({user}){
      };
 
 
-     //on change handlers for each input field
+    //onChange handlers for each input field
 
     const handleName = e => {
         setName(e.target.value);
@@ -112,16 +112,22 @@ function AddChef({user}){
     return (
         <div className="add-chef">
             <div className="add-chef__card">
+            <img src={url} alt="Upload Photo" className="add-chef__image"/>
                 <div className="add-chef__top-container"></div>
                 <div className="add-chef__info">
                     <div className="add-chef__chef-container">
                         <h1 className="add-chef__name">Create a Chef Profile:</h1>
                     </div>
-                    <img src={url} alt="" width="40px"/>
-                <form onSubmit={handleUpload}>
-                    <input type="file" onChange={handleImage}/>
-                    <button disabled={!image}>Upload</button>
+                    <div className="add-chef__wage-container">
+                    <h4 className="add-chef__wage">Add Photo</h4>
+                    <form onSubmit={handleUpload}>
+                        <label className="add-chef__image-input">
+                            Choose File
+                            <input className="add-chef__input-button" type="file" onChange={handleImage} />
+                        </label>
+                        <button className="add-chef__image-button" disabled={!image}>Upload</button>
                 </form>
+                </div>
                 <form className="add-chef__form" onSubmit={addChef}>
                 <div>
                 </div>
@@ -141,8 +147,7 @@ function AddChef({user}){
                         type="text"
                         name="description"
                         placeholder="Tell us a little bit about yourself and the way you like to cook."
-                        onChange={handleDescription}
-                        />
+                        onChange={handleDescription}/>
                 </div>
                 <div className="add-chef__wage-container">
                     <h4 className="add-chef__wage">Pricing Per Head</h4>
@@ -172,13 +177,13 @@ function AddChef({user}){
                     onChange={handleCuisine}/>
                 </div>
                 <div className="add-chef__cuisine-container">
-                <h4 className="add-chef__cuisine">Location</h4>
-                <input 
-                className="add-chef__cuisine-input"
-                type="text"
-                name="location"
-                placeholder="City"
-                onChange={handleLocation}/>
+                    <h4 className="add-chef__cuisine">Location</h4>
+                    <input 
+                    className="add-chef__cuisine-input"
+                    type="text"
+                    name="location"
+                    placeholder="City"
+                    onChange={handleLocation}/>
                 </div>
                 <div className="add-chef__allergies">
                     <h4 className="add-chef__allergy">Allergy Friendly</h4>
@@ -186,9 +191,10 @@ function AddChef({user}){
                         className="add-chef__allergy-input" 
                         name="allergy"
                         id="allergy"
+                        value={allergy}
                         onChange={handleAllergy}>
-                        <option value="true">True</option>
-                        <option value="false">False</option>
+                        <option value={true}>True</option>
+                        <option value={false}>False</option>
                     </select>
                 </div>
                     <button className="add-chef__button">SUBMIT</button>

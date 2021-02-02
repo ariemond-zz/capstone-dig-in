@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 import '../EditProfile/editProfile.scss';
 import fire from '../../config/fire';
 import Modal from 'react-modal';
 import ChefMessages from '../ChefMessages/ChefMessages';
-import DayPicker, { DateUtils } from 'react-day-picker';
+import DayPicker from 'react-day-picker';
+import {storage} from '../../config/fire';
 import 'react-day-picker/lib/style.css';
 
 
@@ -21,9 +22,11 @@ function EditProfile({user}){
     const [wage, setWage] = useState("");
     const [cuisine, setCuisine] = useState("");
     const [allergy, setAllergy] = useState("");
-    const [dates, setDates] = useState(null);
+    const [image, setImage] = useState(null);
+    const [url, setURL] = useState("");
     const [currentDoc, setCurrentDoc] = useState();
 
+    const id = useParams();
     const history = useHistory();
     const db = fire.firestore();
     const newID = user.uid;
@@ -59,6 +62,7 @@ function EditProfile({user}){
      function editProfile(e){
         e.preventDefault();
         db.doc(`chefs/${currentDoc}`).update({
+                image,
                 description,
                 wage,
                 cuisine,
@@ -75,13 +79,31 @@ function EditProfile({user}){
         });
      };
 
+          //Upload image
 
-     const handleDayClick = (day, selected) => {
-         setDates(selected ? undefined : day)
-     };
+          const handleImage = e => {
+            setImage(e.target.files[0])
+         };
+    
+         const handleUpload = e => {
+             e.preventDefault();
+    
+             const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    
+             uploadTask.on("state_changed", console.log, console.error, () => {
+                 storage
+                    .ref("images")
+                    .child(image.name)
+                    .getDownloadURL()
+                    .then((url) => {
+                        setImage(url);
+                        setURL(url);
+                    });
+             });
+         };
 
 
-     //on change handlers for each input field
+     //onChange handlers for each input field
     const handleDescription = e => {
         setDescription(e.target.value);
     };
@@ -114,6 +136,22 @@ function EditProfile({user}){
     const handleCloseModal = () => {
         setOpenModal(false)
     };
+
+    //Delete profile
+    const deleteProfile = () => {
+        if (window.confirm('Are you sure you want to delete your profile?')) {
+
+            db.doc(`chefs/${id}`)
+            .delete()
+            .then(res => {
+                history.push(`/createprofile`);
+                window.scrollTo(0, 0);
+            })
+            .catch((error) => {
+                console.log(`Error: ${error}`);
+            });
+        }
+    }
     
     if (!user) {
         return <div></div>
@@ -122,7 +160,7 @@ function EditProfile({user}){
     return (
         <div className="edit-profile">
             <div className="edit-profile__card">
-                <img src={currentChef.image} alt="Chef" className="edit-profile__image"/>
+                <img src={url ? url : currentChef.image} alt="Chef" className="edit-profile__image"/>
                 <div className="edit-profile__top-container"></div>
                 <div className="edit-profile__info">
                     <div className="edit-profile__chef-container">
@@ -130,6 +168,16 @@ function EditProfile({user}){
                         <button onClick={handleOpenModal} className="edit-profile__connect-button">View Messages</button>
                         <h2 className="edit-profile__edit-header">Edit Your Profile:</h2>
                     </div>
+                <div className="edit-profile__wage-container">
+                    <h4 className="edit-profile__add-photo">Add Photo</h4>
+                    <form onSubmit={handleUpload}>
+                        <label className="edit-profile__image-input">
+                            Choose File
+                            <input className="edit-profile__input-button" type="file" onChange={handleImage} />
+                        </label>
+                        <button className="edit-profile__image-button" disabled={!image}>Upload</button>
+                    </form>
+                </div>
                 <form className="edit-profile__form" onSubmit={editProfile}>
                 <div className="edit-profile__about-container">
                     <h4 className="edit-profile__about">About Me</h4>
@@ -201,11 +249,11 @@ function EditProfile({user}){
                             new Date(2021, 1, 20),
                             new Date(2021, 1, 21),
                         ]}
-                        onDayClick={handleDayClick}
                         />
                         <button className="edit-profile__button">SUBMIT</button>
                 </div>
                 </form>
+                <button onClick={deleteProfile} className="edit-profile__button">Delete Profile</button>
                 </div>
             </div>
 

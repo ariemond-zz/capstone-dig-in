@@ -78,6 +78,9 @@
     }
     &__connect-button {
         @include submit-buttons;
+        font-size: 0.8rem;
+        width: 30%;
+        align-self: flex-end;
 
         @include tablet {
             width: 30%;
@@ -92,7 +95,7 @@
         color: $dark-green;
         font-family: 'NotoSerif';
         font-weight: 500;
-        width: 60%;
+        width: 65%;
 
         @include tablet {
             font-size: 2.5rem;

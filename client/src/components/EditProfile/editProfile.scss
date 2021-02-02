@@ -98,8 +98,8 @@
         }
     }
     &__image {
-        width: 150px;
-        height: 150px;
+        width: 160px;
+        height: 160px;
         border-radius: 100%;
         object-fit: cover;
         background: transparent;
@@ -231,6 +231,24 @@
             width: 25%;
             font-size: 1.2rem;
         }
+    }
+    &__add-photo {
+        @extend .edit-profile__about;
+        margin-bottom: 5%;
+    }
+    &__image-button {
+        @include submit-buttons;
+        width: 25%;
+        height: 30px;
+    }
+    &__image-input {
+        @extend .edit-profile__wage-input;
+        padding: 2% 5%;
+        font-size: 0.9rem;
+        margin-right: 5%;
+    }
+    &__input-button {
+        display: none;
     }
 }
 
