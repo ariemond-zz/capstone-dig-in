@@ -19,7 +19,6 @@ function App(){
       if (user) {
         setUser(user);
         localStorage.setItem('isAuthenticated', 'true');
-        console.log(user)
       } else {
         setUser(null);
         localStorage.removeItem('isAuthenticated');

@@ -260,3 +260,62 @@
     }
 }
 
+.booking-calendar {
+    width: 80% !important;
+    border: none !important;
+
+    .header {
+        background: $dark-green !important;
+    }
+}
+
+
+.day-box .day {
+    background: $green !important;
+    color: white !important;
+    border: white solid 1px !important;
+}
+
+.week {
+    border: none !important;
+}
+
+
+.day.booked-day:before {
+    -webkit-transform: skewX(
+-18deg
+);
+    transform: skewX(
+-18deg
+);
+    background-color: $dark-green !important;
+    content: "";
+    height: 100%;
+    left: -80%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.day.booked-night:after {
+    -webkit-transform: skewX(
+-18deg
+);
+    transform: skewX(
+-18deg
+);
+    background-color: $dark-green !important;
+    content: "";
+    height: 100%;
+    left: -80%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.day.selected {
+    background: $dark-green !important;
+    color: white !important;
+}

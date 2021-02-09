@@ -1,10 +1,5 @@
 @import "../../styles/global.scss";
 
-modal {
-    width: 16rem;
-    height: 39rem;
-}
-
 .modal {
     padding-top: 10%;
     position: relative;
@@ -19,16 +14,9 @@ modal {
         padding-bottom: 5%;
 
         @include tablet {
-            padding-left: 12%;
+            padding-left: 10%;
             font-size: 2rem;
         }
-    }
-
-    &__closeButton {
-        height: 1.3rem;
-        position: absolute;
-        top: -1%;
-        right: -2%;
     }
 
     &__alert {
@@ -37,7 +25,7 @@ modal {
 
         @include tablet {
             font-size: 1.1rem;
-            padding: 0 12%;
+            padding: 0 10%;
         }
     }
 }
@@ -85,28 +73,28 @@ modal {
     }
 }
 
-.ReactModal__Content--after-open {
-    height: 35rem;
-    width: 12.5rem;
-}
+// .ReactModal__Content--after-open {
+//     height: 35rem;
+//     width: 12.5rem;
+// }
 
-.ReactModal__Content {
-    height: 40%;
-    width: 80%;
-    margin-top: 15%;
+// .ReactModal__Content {
+//     height: 40%;
+//     width: 80%;
+//     margin-top: 15%;
 
-    @include tablet {
-        height: 22%;
-        width: 60%;
-    }
+//     @include tablet {
+//         height: 22%;
+//         width: 60%;
+//     }
 
-    @include desktop {
-        height: 35%;
-        width: 50%;
-    }
-}
+//     @include desktop {
+//         height: 35%;
+//         width: 50%;
+//     }
+// }
 
-.ReactModal__Overlay--after-open,
-.ReactModal__Overlay--after-open {
-    background-color: rgba(19, 24, 44, 0.7) !important; //sorry have no idea how to change element styling. Searched for it extensively!
-}
+// .ReactModal__Overlay--after-open,
+// .ReactModal__Overlay--after-open {
+//     background-color: rgba(19, 24, 44, 0.7) !important;
+// }

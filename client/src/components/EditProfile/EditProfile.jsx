@@ -3,9 +3,10 @@ import {useHistory} from 'react-router-dom';
 import '../EditProfile/editProfile.scss';
 import fire from '../../config/fire';
 import Modal from 'react-modal';
+import Modal2 from 'react-responsive-modal';
 import ChefMessages from '../ChefMessages/ChefMessages';
 import DeleteModal from '../DeleteModal/DeleteModal';
-import DayPicker from 'react-day-picker';
+import BookingCalendar from 'react-booking-calendar';
 import {storage} from '../../config/fire';
 import 'react-day-picker/lib/style.css';
 
@@ -17,7 +18,8 @@ import 'react-day-picker/lib/style.css';
 
 function EditProfile({user}){
     const [currentChef, setCurrentChef] = useState({});
-    let [isOpen, setOpenModal] = useState(false);
+    const [isOpen, setOpenModal] = useState(false);
+    const [deleteOpen, setDeleteOpen] = useState(false);
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
     const [restaurant, setRestaurant] = useState("");
@@ -27,8 +29,6 @@ function EditProfile({user}){
     const [image, setImage] = useState(null);
     const [url, setURL] = useState("");
     const [currentDoc, setCurrentDoc] = useState();
-    let [deleteOpen, setDeleteOpen] = useState(false);
-
 
     const history = useHistory();
     const db = fire.firestore();
@@ -66,8 +66,8 @@ function EditProfile({user}){
          setAllergy(currentChef.allergy);
          setWage(currentChef.wage);
          setCuisine(currentChef.cuisine);
-     }
-
+    }
+        
      useEffect(() => {
         if(currentChef) {
             getEdits(); 
@@ -97,7 +97,6 @@ function EditProfile({user}){
 
 
     //Upload image
-
      const handleImage = e => {
      setImage(e.target.files[0])
      };
@@ -153,6 +152,18 @@ function EditProfile({user}){
     const handleCloseModal = () => {
         setOpenModal(false)
     };
+
+
+    //Calendar
+    const bookings = [
+        new Date(2021, 1, 1),
+        new Date(2021, 1, 2),
+        new Date(2021, 1, 3),
+        new Date(2021, 1, 9),
+        new Date(2021, 1, 10),
+        new Date(2021, 1, 11),
+        new Date(2021, 1, 12),
+    ]
 
 
     //Delete profile
@@ -264,15 +275,9 @@ function EditProfile({user}){
                         </div>
                         <div className="edit-profile__calendar-section">
                             <h4 className="edit-profile__availability">Update Availability:</h4>
-                            <DayPicker
-                                    initialMonth={new Date(2021, 1)}
-                                    selectedDays={[
-                                        new Date(2021, 1, 10),
-                                        new Date(2021, 1, 13),
-                                        new Date(2021, 1, 19),
-                                        new Date(2021, 1, 20),
-                                        new Date(2021, 1, 21),
-                                    ]}
+                            <BookingCalendar
+                                    bookings={bookings}
+                                    clickable={true}
                                     />
                             <button className="edit-profile__button">SUBMIT</button>
                         </div>
@@ -300,9 +305,9 @@ function EditProfile({user}){
                     <ChefMessages id={currentDoc} closeModal={handleCloseModal} name={currentChef.name} user={user}/>
             </Modal>
 
-            <Modal
-                isOpen={deleteOpen}
-                onRequestClose={handleDeleteClose}
+            <Modal2
+                open={deleteOpen}
+                onClose={handleDeleteClose}
                 ariaHideApp={false}
                 style={{
                     content: {
@@ -315,7 +320,7 @@ function EditProfile({user}){
                     },
                 }}>
                     <DeleteModal id={currentDoc} closeModal={handleDeleteClose} delete={deleteProfile}/>
-            </Modal>
+            </Modal2>
         </div>
         );
     };
