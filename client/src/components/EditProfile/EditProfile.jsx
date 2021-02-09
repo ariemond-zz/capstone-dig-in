@@ -4,6 +4,7 @@ import '../EditProfile/editProfile.scss';
 import fire from '../../config/fire';
 import Modal from 'react-modal';
 import ChefMessages from '../ChefMessages/ChefMessages';
+import DeleteModal from '../DeleteModal/DeleteModal';
 import DayPicker from 'react-day-picker';
 import {storage} from '../../config/fire';
 import 'react-day-picker/lib/style.css';
@@ -26,6 +27,8 @@ function EditProfile({user}){
     const [image, setImage] = useState(null);
     const [url, setURL] = useState("");
     const [currentDoc, setCurrentDoc] = useState();
+    let [deleteOpen, setDeleteOpen] = useState(false);
+
 
     const history = useHistory();
     const db = fire.firestore();
@@ -153,21 +156,28 @@ function EditProfile({user}){
 
 
     //Delete profile
-    const deleteProfile = () => {
-        if (window.confirm('Are you sure you want to delete your profile?')) {
+    const handleDeleteOpen = () => {
+        setDeleteOpen(true);
+    };
 
-            db.doc(`chefs/${currentDoc}`)
-            .delete()
-            .then(res => {
-                history.push(`/createprofile`);
-                window.scrollTo(0, 0);
-            })
-            .catch((error) => {
-                console.log(`Error: ${error}`);
-            });
-        };
+    const handleDeleteClose = () => {
+        setDeleteOpen(false)
+    };
+
+    const deleteProfile = () => {
+        db.doc(`chefs/${currentDoc}`)
+        .delete()
+        .then(res => {
+            history.push(`/createprofile`);
+            window.scrollTo(0, 0);
+        })
+        .catch((error) => {
+            console.log(`Error: ${error}`);
+        });
     };
     
+
+
     if (!user || !currentChef) {
         return <div></div>
     }
@@ -268,7 +278,7 @@ function EditProfile({user}){
                         </div>
                     </form>
                     <div className="edit-profile__delete">
-                        <button onClick={deleteProfile} className="edit-profile__delete-button">Delete Profile</button>
+                        <button onClick={handleDeleteOpen} className="edit-profile__delete-button">Delete Profile</button>
                     </div>
                 </div>
             </div>
@@ -288,6 +298,23 @@ function EditProfile({user}){
                     },
                 }}>
                     <ChefMessages id={currentDoc} closeModal={handleCloseModal} name={currentChef.name} user={user}/>
+            </Modal>
+
+            <Modal
+                isOpen={deleteOpen}
+                onRequestClose={handleDeleteClose}
+                ariaHideApp={false}
+                style={{
+                    content: {
+                    top: "40%",
+                    left: "50%",
+                    right: "auto",
+                    bottom: "auto",
+                    marginRight: "-50%",
+                    transform: "translate(-50%, -50%)",
+                    },
+                }}>
+                    <DeleteModal id={currentDoc} closeModal={handleDeleteClose} delete={deleteProfile}/>
             </Modal>
         </div>
         );
