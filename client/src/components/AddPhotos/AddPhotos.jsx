@@ -4,33 +4,33 @@ import fire from '../../config/fire';
 import {storage} from '../../config/fire';
 
 
-function AddPhotos({id}) {
+function AddPhotos({user, id}) {
 
   const db = fire.firestore();
-  let [image, setImage] = useState([]);
+  let [image, setImage] = useState(null);
+  const [dishes, setDishes] = useState([]);
   const [url, setURL] = useState("");
-  let [dishes, setDishes] = useState([]);
-  
+  const [newImage, setNewImage] = useState("");
+
 
   useEffect(() => {
     db.doc(`chefs/${id}`)
         .collection("photos")
         .onSnapshot((querySnapshot) => {
-          const data = querySnapshot.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-          }));
-          setDishes(data);
+            const data = querySnapshot.docs.map((doc) => (
+                doc.data()
+            ));
+            setDishes(data);
         });
-    }, []);
-
+    }, [id]);
     
     //Upload image
     const handleImage = e => {
         setImage(e.target.files[0])
         };
 
-        const handleUpload = e => {
+    const handleUpload = e => {
+        console.log(e)
         e.preventDefault();
 
         const uploadTask = storage.ref(`images/${image.name}`).put(image);
@@ -45,28 +45,41 @@ function AddPhotos({id}) {
                 setURL(url);
             });
         });
-        };
+
+        setTimeout(() => {
+            db.doc(`chefs/${id}`).collection("photos").add({
+                image: url
+            });
+            setImage(url);
+        }, 2000);
+    };
+
+
+    if (!user) {
+        return <div></div>
+    }
    
   return (
     <section className="add-photos">
-      <h4 className="add-photos__title">Your Dishes</h4>
+      <h4 className="add-photos__title">Your Photos</h4>
       <div className="add-photos__all">
         <div className="add-photos__wage-container">
-            <form onSubmit={handleUpload}>
+            <form className="add-photos__form">
                 <label className="add-photos__image-input">
                     Choose File
                     <input className="add-photos__input-button" type="file" onChange={handleImage} />
                 </label>
-                <button className="add-photos__image-button" disabled={!image}>Upload</button>
+                <button onClick={handleUpload} className="add-photos__image-button" disabled={!image}>Upload</button>
             </form>
         </div>
-            {dishes.map(dish => 
+            {!!dishes && dishes.map(dish => 
               <img className="add-photos__single" key={dish.id} src={dish.image} alt="Chef's Dish"/>
               )} 
+              {url ? <img src={url} alt="Dish" className="add-photos__new"/> : null}
         </div>
       </section>
-      );
-    };
+    );
+};
     
 
 export default AddPhotos

@@ -106,7 +106,7 @@ function ChefProfile({user}){
                     <img src={GF} alt="GF" className="chef-profile__allergy"/>
                     <img src={Vegan} alt="GF" className="chef-profile__allergy"/>
                 </div>
-                {!!dishes ? <Dishes dishes={dishes} key={chef.id} user={user} name={chef.name}/> : null}
+                {!!dishes ? <Dishes dishes={dishes} user={user} name={chef.name}/> : null}
                 {!!reviews ? <Reviews reviews={reviews} amount={reviews.length} name={chef.name} key={chef.id} user={user}/> : null}
             </div>
 

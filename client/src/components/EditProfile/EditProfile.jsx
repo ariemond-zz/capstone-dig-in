@@ -30,6 +30,7 @@ function EditProfile({user}){
     const [image, setImage] = useState(null);
     const [url, setURL] = useState("");
     const [currentDoc, setCurrentDoc] = useState();
+    const [dishes, setDishes] = useState([]);
 
     const history = useHistory();
     const db = fire.firestore();
@@ -155,6 +156,21 @@ function EditProfile({user}){
     };
 
 
+    //Photos of dishes
+    useEffect(() => {
+        console.log(currentDoc)
+        db.doc(`chefs/${currentDoc}`)
+            .collection("photos")
+            .onSnapshot((querySnapshot) => {
+              const data = querySnapshot.docs.map((doc) => ({
+                ...doc.data(),
+                id: doc.id,
+              }));
+              setDishes(data);
+            });
+        }, []);
+
+
     //Calendar
     const bookings = [
         new Date(2021, 1, 13),
@@ -164,7 +180,7 @@ function EditProfile({user}){
         new Date(2021, 1, 20),
         new Date(2021, 1, 11),
         new Date(2021, 1, 26),
-    ]
+    ];
 
 
     //Delete profile
@@ -188,7 +204,6 @@ function EditProfile({user}){
         });
     };
     
-
 
     if (!user || !currentChef) {
         return <div></div>
@@ -275,7 +290,7 @@ function EditProfile({user}){
                             </select>
                         </div>
                         <div className="edit-profile__add-photos">
-                            <AddPhotos id={currentDoc}/>
+                        {!!dishes ? <AddPhotos dishes={dishes} id={currentDoc} user={user}/> : null}
                         </div>
                         <div className="edit-profile__calendar-section">
                             <h4 className="edit-profile__availability">Update Availability:</h4>
