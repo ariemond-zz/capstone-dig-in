@@ -1,0 +1,54 @@
+@import "../../styles/global.scss";
+
+.add-photos {
+    &__add-photo {
+        margin: 5% 0;
+
+        @include tablet {
+        font-size: 1.2rem;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        }
+    }
+    &__image-button {
+        @include submit-buttons;
+        width: 25%;
+        height: 30px;
+    }
+    &__image-input {
+        padding: 2% 5%;
+        font-size: 0.9rem;
+        margin-right: 5%;
+        @include inputs;
+        border: $green solid 1px;
+        font-family: 'NotoSans';
+
+        @include tablet {
+            width: 80%;
+        }
+    }
+    &__input-button {
+        display: none;
+    }
+    &__wage-container {
+        width: 100%;
+
+        @include tablet {
+            width: 50%;
+        }
+    }
+    &__all {
+        width: 80%;
+        text-align: center;
+    }
+    &__single {
+        width: 50%;
+        font-style: italic;
+
+        @include tablet {
+            width: 10%;
+            height: auto;
+            font-size: 1rem;
+        }
+    }
+}

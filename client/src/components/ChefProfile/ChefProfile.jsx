@@ -5,6 +5,7 @@ import GF from '../../assets/icons/glutenfree.png';
 import Vegan from '../../assets/icons/vegan.png';
 import fire from '../../config/fire';
 import Reviews from '../Reviews/Reviews';
+import Dishes from '../Dishes/Dishes';
 import Modal from 'react-modal';
 import MessageModal from '../MessageModal/MessageModal';
 import Star from '../../assets/icons/star.png';
@@ -14,6 +15,7 @@ function ChefProfile({user}){
     let [chef, setChef] = useState({});
     let {id} = useParams();
     let [reviews, setReviews] = useState([]);
+    let [dishes, setDishes] = useState([]);
     let [isOpen, setOpenModal] = useState(false);
     const db = fire.firestore();
     
@@ -43,6 +45,18 @@ function ChefProfile({user}){
             setReviews(data);
           });
       }, []);
+
+
+    useEffect(() => {
+    db.doc(`chefs/${id}`)
+        .collection("photos")
+        .onSnapshot((querySnapshot) => {
+        const data = querySnapshot.docs.map((doc) => (
+            doc.data()
+        ));
+        setDishes(data);
+        });
+    }, []);
 
       const handleOpenModal = () => {
         setOpenModal(true);
@@ -92,6 +106,7 @@ function ChefProfile({user}){
                     <img src={GF} alt="GF" className="chef-profile__allergy"/>
                     <img src={Vegan} alt="GF" className="chef-profile__allergy"/>
                 </div>
+                {!!dishes ? <Dishes dishes={dishes} key={chef.id} user={user} name={chef.name}/> : null}
                 {!!reviews ? <Reviews reviews={reviews} amount={reviews.length} name={chef.name} key={chef.id} user={user}/> : null}
             </div>
 

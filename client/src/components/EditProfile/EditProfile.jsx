@@ -5,6 +5,7 @@ import fire from '../../config/fire';
 import Modal from 'react-modal';
 import Modal2 from 'react-responsive-modal';
 import ChefMessages from '../ChefMessages/ChefMessages';
+import AddPhotos from '../AddPhotos/AddPhotos';
 import DeleteModal from '../DeleteModal/DeleteModal';
 import BookingCalendar from 'react-booking-calendar';
 import {storage} from '../../config/fire';
@@ -156,13 +157,13 @@ function EditProfile({user}){
 
     //Calendar
     const bookings = [
-        new Date(2021, 1, 1),
+        new Date(2021, 1, 13),
         new Date(2021, 1, 2),
-        new Date(2021, 1, 3),
-        new Date(2021, 1, 9),
-        new Date(2021, 1, 10),
+        new Date(2021, 1, 14),
+        new Date(2021, 1, 6),
+        new Date(2021, 1, 20),
         new Date(2021, 1, 11),
-        new Date(2021, 1, 12),
+        new Date(2021, 1, 26),
     ]
 
 
@@ -272,6 +273,9 @@ function EditProfile({user}){
                                 <option value={true}>True</option>
                                 <option value={false}>False</option>
                             </select>
+                        </div>
+                        <div className="edit-profile__add-photos">
+                            <AddPhotos id={currentDoc}/>
                         </div>
                         <div className="edit-profile__calendar-section">
                             <h4 className="edit-profile__availability">Update Availability:</h4>

@@ -291,7 +291,7 @@
     background-color: $dark-green !important;
     content: "";
     height: 100%;
-    left: -80%;
+    left: -0% !important;
     position: absolute;
     top: 0;
     width: 100%;
@@ -300,15 +300,15 @@
 
 .day.booked-night:after {
     -webkit-transform: skewX(
--18deg
-);
+0
+) !important;
     transform: skewX(
--18deg
-);
+0deg
+) !important;
     background-color: $dark-green !important;
     content: "";
     height: 100%;
-    left: -80%;
+    left: -100% !important;
     position: absolute;
     top: 0;
     width: 100%;
