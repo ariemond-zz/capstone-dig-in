@@ -1,4 +1,4 @@
-import React, {useRef, useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import '../Dishes/dishes.scss';
 import {useParams} from 'react-router-dom';
 import fire from '../../config/fire';
@@ -11,8 +11,6 @@ function Dishes({name}) {
   const db = fire.firestore()
   let {id} = useParams();
   let [dishes, setDishes] = useState([]);
-  const review = useRef();
-  const timestamp = fire.firestore.FieldValue.serverTimestamp();
   
 
   useEffect(() => {
@@ -26,20 +24,6 @@ function Dishes({name}) {
       });
     }, []);
 
-    
-    // const reviewSubmit = (event) => {
-    //   event.preventDefault();
-    //   db.doc(`chefs/${id}`).collection("reviews").add({
-    //     reviews: review.current.value,
-    //     from: user.email,                                
-    //     createdAt: timestamp
-    //   })
-    //   .catch((error) => {
-    //     console.log(`Error: ${error}`);
-    //   });
-      
-    //   event.target.reset();
-    // };
 
   //mandatory props for carousel component
   const responsive = {
@@ -77,7 +61,7 @@ function Dishes({name}) {
             customTransition="all .5"
             transitionDuration={500}
             containerClass="carousel-container"
-            removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
+            removeArrowOnDeviceType={["mobile"]}
             dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px">
 
@@ -87,24 +71,9 @@ function Dishes({name}) {
 
         </Carousel>
       </div>
-      </section>
-      );
-    };
-    
-    // <div className="reviews__form-section">
-    //   <form className="reviews__form" onSubmit={reviewSubmit}>
-    //     <label htmlFor="name" className="reviews__form-label">Add a Review:</label>
-    //     <textarea 
-    //       className="reviews__form-review-input"
-    //       name="review" 
-    //       id="review" 
-    //       rows="5"
-    //       wrap="hard"
-    //       placeholder="Write review here"
-    //       ref={review}
-    //       required></textarea>
-    //     <button className="reviews__form-button" type="submit">SUBMIT</button>
-    //     </form>
-    // </div>
+    </section>
+    );
+};
+
 
 export default Dishes

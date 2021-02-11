@@ -238,7 +238,7 @@ function EditProfile({user}){
                                 name="description"
                                 value={description}
                                 onChange={handleDescription}
-                                />
+                            />
                         </div>
                         <div className="edit-profile__wage-container">
                             <h4 className="edit-profile__wage">Pricing Per Head</h4>

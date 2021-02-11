@@ -58,7 +58,6 @@ function AddPhotos({user, id}) {
   return (
     <section className="add-photos">
       <h4 className="add-photos__title">Your Photos</h4>
-      <div className="add-photos__all">
         <div className="add-photos__wage-container">
             <form className="add-photos__form">
                 <label className="add-photos__image-input">
@@ -68,14 +67,13 @@ function AddPhotos({user, id}) {
                 <button onClick={handleUpload} className="add-photos__image-button" disabled={!image}>Upload</button>
             </form>
         </div>
+        <div className="add-photos__photos">
             {!!dishes && dishes.map(dish => 
-              <img className="add-photos__single" key={dish.id} src={dish.image} alt="Chef's Dish"/>
-              )} 
-              {url ? <img src={url} alt="Dish" className="add-photos__new"/> : null}
-        </div>
-      </section>
-    );
-};
-    
+            <img className="add-photos__single" key={dish.id} src={dish.image} alt="Chef's Dish"/>
+            )} 
+            </div>
+            </section>
+            );
+        };    
 
 export default AddPhotos
