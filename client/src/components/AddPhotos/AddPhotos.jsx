@@ -7,11 +7,9 @@ import {storage} from '../../config/fire';
 function AddPhotos({user, id}) {
 
   const db = fire.firestore();
-  let [image, setImage] = useState(null);
+  const [image, setImage] = useState(null);
   const [dishes, setDishes] = useState([]);
   const [url, setURL] = useState("");
-  const [newImage, setNewImage] = useState("");
-
 
   useEffect(() => {
     db.doc(`chefs/${id}`)
@@ -41,17 +39,15 @@ function AddPhotos({user, id}) {
             .child(image.name)
             .getDownloadURL()
             .then((url) => {
+                console.log(url)
                 setImage(url);
                 setURL(url);
-            });
-        });
 
-        setTimeout(() => {
-            db.doc(`chefs/${id}`).collection("photos").add({
-                image: url
-            });
-            setImage(url);
-        }, 2000);
+                db.doc(`chefs/${id}`).collection("photos").add({
+                    image: url
+                });
+            })
+        });
     };
 
 

@@ -158,7 +158,6 @@ function EditProfile({user}){
 
     //Photos of dishes
     useEffect(() => {
-        console.log(currentDoc)
         db.doc(`chefs/${currentDoc}`)
             .collection("photos")
             .onSnapshot((querySnapshot) => {
