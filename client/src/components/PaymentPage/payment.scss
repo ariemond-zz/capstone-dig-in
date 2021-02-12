@@ -1,0 +1,23 @@
+@import "../../styles/global.scss";
+
+.payment {
+    padding-top: 10%;
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'NotoSans';
+
+    @include tablet {
+        padding-top: 5%;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+    }
+    &__card-element {
+        width: 100px;
+        height: 200px;
+    }
+}

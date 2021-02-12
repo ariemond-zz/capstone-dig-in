@@ -22,6 +22,7 @@ function AddPhotos({user, id}) {
         });
     }, [id]);
     
+    
     //Upload image
     const handleImage = e => {
         setImage(e.target.files[0])
@@ -71,9 +72,9 @@ function AddPhotos({user, id}) {
             {!!dishes && dishes.map(dish => 
             <img className="add-photos__single" key={dish.id} src={dish.image} alt="Chef's Dish"/>
             )} 
-            </div>
-            </section>
-            );
-        };    
+        </div>
+    </section>
+    );
+};    
 
 export default AddPhotos
