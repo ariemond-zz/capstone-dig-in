@@ -14,7 +14,6 @@ function Reviews({user}) {
   const review = useRef();
   const timestamp = fire.firestore.FieldValue.serverTimestamp();
   
-
   useEffect(() => {
     db.doc(`chefs/${id}`)
     .collection("reviews")
@@ -83,7 +82,7 @@ function Reviews({user}) {
             itemClass="carousel-item-padding-40-px">
 
             {reviews.map(review => 
-              <p className="reviews__single" key={review.id}>"{review.reviews}" <br/>- {review.from}</p>
+              <p className="reviews__single" key={review.createdAt}>"{review.reviews}" <br/>- {review.from}</p>
               )} 
 
         </Carousel>

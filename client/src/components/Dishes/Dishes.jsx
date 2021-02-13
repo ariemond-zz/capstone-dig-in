@@ -66,13 +66,13 @@ function Dishes({name}) {
             itemClass="carousel-item-padding-40-px">
 
             {dishes.map(dish => 
-              <img className="dishes__single" key={dish.id} src={dish.image} alt="Chef's Dish"/>
+              <img className="dishes__single" key={dish.image} src={dish.image} alt="Chef's Dish"/>
               )} 
 
         </Carousel>
       </div>
     </section>
-    );
+  );
 };
 
 

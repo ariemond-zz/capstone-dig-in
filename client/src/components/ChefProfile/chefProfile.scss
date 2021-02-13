@@ -203,4 +203,8 @@
             width: 5%;
         }
     }
+    &__stripe {
+        @extend .chef-profile__connect-button;
+        align-self: center;
+    }
 }

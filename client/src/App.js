@@ -9,6 +9,11 @@ import ChefList from './components/ChefList/ChefList';
 import ChefProfile from './components/ChefProfile/ChefProfile';
 import EditProfile from './components/EditProfile/EditProfile';
 import AddChef from './components/AddChef/AddChef';
+import {loadStripe} from '@stripe/stripe-js';
+import {stripeProvide, Elements, CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
+
+
+const stripePromise = loadStripe(process.env.PUBLISHABLE_KEY);
 
 function App(){
   const [user, setUser] = useState(null);
