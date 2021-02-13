@@ -1,22 +1,21 @@
-const cors = require("cors");
 const express = require("express");
+const cors = require("cors");
+const dotenv = require('dotenv');
+dotenv.config();
+const port = process.env.PORT || 8000;
 const stripe = require("stripe")(process.env.SECRET_KEY);
-const uuid = require("uuid/v4");
-
+const uuid = require('uuid4');
 const app = express();
 
 app.use(express.json());
 app.use(cors());
-
-app.get("/", (req, res) => {
-  res.send("Add your Stripe Secret Key to the .require('stripe') statement!");
-});
 
 app.post("/checkout", async (req, res) => {
   console.log("Request:", req.body);
 
   let error;
   let status;
+  
   try {
     const { product, token } = req.body;
 
@@ -25,14 +24,14 @@ app.post("/checkout", async (req, res) => {
       source: token.id
     });
 
-    const idempotency_key = uuid();
+    const idempotencyKey = uuid();
     const charge = await stripe.charges.create(
       {
-        amount: product.price * 100,
-        currency: "usd",
+        amount: product.price,
+        currency: "cad",
         customer: customer.id,
         receipt_email: token.email,
-        description: `Purchased the ${product.name}`,
+        description: `Dinner by ${product.name}`,
         shipping: {
           name: token.card.name,
           address: {
@@ -45,7 +44,7 @@ app.post("/checkout", async (req, res) => {
         }
       },
       {
-        idempotency_key
+        idempotencyKey
       }
     );
     console.log("Charge:", { charge });
@@ -58,4 +57,7 @@ app.post("/checkout", async (req, res) => {
   res.json({ error, status });
 });
 
-app.listen(8080);
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}.`)
+});

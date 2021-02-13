@@ -11,15 +11,19 @@ import Modal2 from 'react-responsive-modal';
 import Payment from '../PaymentPage/Payment';
 import MessageModal from '../MessageModal/MessageModal';
 import Star from '../../assets/icons/star.png';
+import axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout';
+import {toast} from 'react-toastify';
+
+toast.configure();
 
 function ChefProfile({user}){
-    let [chef, setChef] = useState({});
-    let {id} = useParams();
-    let [reviews, setReviews] = useState([]);
-    let [dishes, setDishes] = useState([]);
-    let [isOpen, setOpenModal] = useState(false);
-    let [isPaymentOpen, setPaymentOpen] = useState(false);
+    const [chef, setChef] = useState({});
+    const {id} = useParams();
+    const [reviews, setReviews] = useState([]);
+    const [dishes, setDishes] = useState([]);
+    const [isOpen, setOpenModal] = useState(false);
+    const [isPaymentOpen, setPaymentOpen] = useState(false);
     const db = fire.firestore();
     
     function getChef() {
@@ -77,9 +81,23 @@ function ChefProfile({user}){
         setPaymentOpen(false)
     };
 
-    function handleToken(token, addresses) {
-        console.log({token, addresses})
+    const product = {
+        name: chef.name,
+        price: ((chef.wage * 100) / 2)
     }
+
+    async function handleToken(token, addresses) {
+        const response = await axios.post('http://localhost:8000/checkout', {
+            token,
+            product
+        });
+        const {status} = response.data;
+        if (status === 'success') {
+            toast('Success! Check email for details.', {type: 'success'})
+        } else {
+            toast('Something went wrong. Please try again', {type: 'error'})
+        };
+    };
     
 
     return (
@@ -97,7 +115,8 @@ function ChefProfile({user}){
                             amount={(chef.wage * 100) / 2}
                             name={chef.name}
                             billingAddress
-                            shippingAddress/>                   
+                            shippingAddress
+                            className="chef-profile__stripe"/>                   
                             <div className="chef-profile__chef-rating">
                                     <img src={Star} alt="Star" className="chef-profile__star"/>
                                     <img src={Star} alt="Star" className="chef-profile__star"/>
@@ -113,7 +132,7 @@ function ChefProfile({user}){
                         </div>
                         <div className="chef-profile__wage-container">
                             <h4 className="chef-profile__wage">Pricing</h4>
-                            <p className="chef-profile__about">Starting at {chef.wage} a head.</p>
+                            <p className="chef-profile__about">Starting at ${chef.wage} a head.</p>
                         </div>
                         <div className="chef-profile__rest-container">
                             <h4 className="chef-profile__restaurant">Restaurant</h4>
@@ -129,7 +148,7 @@ function ChefProfile({user}){
                     <img src={Vegan} alt="GF" className="chef-profile__allergy"/>
                 </div>
                 {!!dishes ? <Dishes dishes={dishes} user={user} name={chef.name} key={chef.id}/> : null}
-                {!!reviews ? <Reviews key={chef.id} reviews={reviews} amount={reviews.length} name={chef.name} key={chef.id} user={user}/> : null}
+                {!!reviews ? <Reviews key='3454565' reviews={reviews} amount={reviews.length} name={chef.name} key={chef.id} user={user}/> : null}
             </div>
 
             <Modal
