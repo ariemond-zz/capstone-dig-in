@@ -9,11 +9,6 @@ import ChefList from './components/ChefList/ChefList';
 import ChefProfile from './components/ChefProfile/ChefProfile';
 import EditProfile from './components/EditProfile/EditProfile';
 import AddChef from './components/AddChef/AddChef';
-import {loadStripe} from '@stripe/stripe-js';
-import {stripeProvide, Elements, CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
-
-
-const stripePromise = loadStripe(process.env.PUBLISHABLE_KEY);
 
 function App(){
   const [user, setUser] = useState(null);
@@ -49,20 +44,20 @@ function App(){
 
     return (
       <BrowserRouter>
-      <div className="App">
-      <Header user={user}/>
-        <Switch>
-          <Route path='/' exact component={SignUp}/>
-          <Route path='/signup' component={SignUp}/>
-          <Route path='/login' component={Login} handler={handleLogin}/>
-          <PrivateRoute path='/diner' component={DinerForm} user={user}/>
-          <PrivateRoute path='/chefs' exact component={ChefList}/>
-          <PrivateRoute path="/chefs/:id" component={(routerProps) => <ChefProfile {...routerProps} user={user}/>}/>
-          <PrivateRoute path="/editprofile" component={(routerProps) => <EditProfile {...routerProps} user={user}/>}/>
-          <PrivateRoute path="/createprofile" component={(routerProps) => <AddChef {...routerProps} user={user}/>}/>
-        </Switch>
-        </div>
-        </BrowserRouter>
+        <div className="App">
+          <Header user={user}/>
+            <Switch>
+              <Route path='/' exact component={SignUp}/>
+              <Route path='/signup' component={SignUp}/>
+              <Route path='/login' component={Login} handler={handleLogin}/>
+              <PrivateRoute path='/diner' component={DinerForm} user={user}/>
+              <PrivateRoute path='/chefs' exact component={ChefList}/>
+              <PrivateRoute path="/chefs/:id" component={(routerProps) => <ChefProfile {...routerProps} user={user}/>}/>
+              <PrivateRoute path="/editprofile" component={(routerProps) => <EditProfile {...routerProps} user={user}/>}/>
+              <PrivateRoute path="/createprofile" component={(routerProps) => <AddChef {...routerProps} user={user}/>}/>
+            </Switch>
+          </div>
+      </BrowserRouter>
   );
 };
 

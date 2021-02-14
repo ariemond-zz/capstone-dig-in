@@ -49,45 +49,19 @@
         flex-wrap: wrap;
         align-items: center;
     }
-    &__chef-rating {
-        display: flex;
-        margin: 1% 0 5% 0;
-        width: 100%;
-
-        @include tablet {
-            width: 40%;
-        }
-    }
-    &__star {
-        width: 6%;
-
-        @include tablet {
-            width: 10%;
-        }
-    }
-    &__top-reviews {
-        text-decoration: underline;
-
-        @include tablet {
-            font-size: 1.2rem;
-            margin-left: 40%;
-        }
-        @include desktop {
-            margin-left: 45%;
-        }
-    }
     &__connect-button {
         @include submit-buttons;
         font-size: 0.8rem;
-        width: 30%;
-        align-self: flex-end;
-
+        width: 35%;
+        
         @include tablet {
             width: 30%;
+            margin-left: 5%;
             font-size: 1rem;
         }
         @include desktop {
             width: 25%;
+            margin-left: 0;
             font-size: 1.2rem;
         }
     }
@@ -96,7 +70,7 @@
         font-family: 'NotoSerif';
         font-weight: 500;
         width: 65%;
-
+        
         @include tablet {
             font-size: 2.5rem;
             width: 65%;
@@ -113,9 +87,9 @@
         object-fit: cover;
         background: transparent;
         position: absolute;
-        left: 25%;
+        left: 28%;
         top: 2%;
-
+        
         @include tablet {
             width: 250px;
             height: 250px;
@@ -125,6 +99,47 @@
         @include desktop {
             width: 300px;
             height: 300px;
+        }
+    }
+    &__chef-rating {
+        display: flex;
+        margin: 1% 0 5% 0;
+        width: 100%;
+
+        @include tablet {
+            width: 40%;
+        }
+    }
+    &__star {
+        width: 6%;
+        
+        @include tablet {
+            width: 10%;
+        }
+    }
+    &__stripe-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+    &__top-reviews {
+        text-decoration: underline;
+        width: 55%;
+
+        @include tablet {
+            font-size: 1.2rem;
+        }
+    }
+    &__stripe-button {
+        @include submit-buttons;
+        font-size: 0.8rem;
+        width: 100%;
+
+        @include tablet {
+            font-size: 1rem;
+        }
+        @include desktop {
+            font-size: 1.2rem;
         }
     }
     &__info {
@@ -203,8 +218,21 @@
             width: 5%;
         }
     }
-    &__stripe {
-        @extend .chef-profile__connect-button;
-        align-self: center;
+}
+
+.Toastify__toast-body {
+    background-color: $green !important;
+}
+
+.Toastify__toast--success {
+    background-color: $green !important;
+    color: $dark-green !important;
+}
+
+span {
+    width: 32%;
+
+    @include desktop {
+        width: 25%;
     }
 }

@@ -23,7 +23,6 @@ function ChefProfile({user}){
     const [reviews, setReviews] = useState([]);
     const [dishes, setDishes] = useState([]);
     const [isOpen, setOpenModal] = useState(false);
-    const [isPaymentOpen, setPaymentOpen] = useState(false);
     const db = fire.firestore();
     
     function getChef() {
@@ -64,13 +63,14 @@ function ChefProfile({user}){
         });
     }, []);
 
-      const handleOpenModal = () => {
-        setOpenModal(true);
-      };
 
-      const handleCloseModal = () => {
-          setOpenModal(false)
-      };
+    const handleOpenModal = () => {
+    setOpenModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setOpenModal(false)
+    };
 
     const product = {
         name: chef.name,
@@ -92,8 +92,6 @@ function ChefProfile({user}){
     };
 
     
-    
-
     return (
     <section className="chef-profile">
         <div className="chef-profile__card">
@@ -110,7 +108,22 @@ function ChefProfile({user}){
                     <img src={Star} alt="Star" className="chef-profile__star"/>
                     <img src={Star} alt="Star" className="chef-profile__star"/>
                 </div>
-                <a href="#reviews" className="chef-profile__top-reviews">{reviews.length} reviews</a>
+                <div className="chef-profile__stripe-container">
+                    <a href="#reviews" className="chef-profile__top-reviews">{reviews.length} reviews</a>
+                    <StripeCheckout
+                        stripeKey="pk_test_51IJgZCGQO6SRRWlIQysuM4pjKjmvYoYfoWCkjNGuUiU11r4Y8IBowrEN2NgJGuKqynOhUKFq773Doervs1akG8f1004IUuoOJs"
+                        token={handleToken}
+                        amount={(chef.wage * 100) / 2}
+                        name={`Book Chef ${chef.name}`}
+                        label="Book Now"
+                        billingAddress
+                        shippingAddress
+                        panelLabel="Book Now"
+                        email={user.email}
+                        className="chef-profile__stripe">
+                        <button className="chef-profile__stripe-button">Book Now</button>
+                    </StripeCheckout> 
+                </div>  
             </div>
             <div className="chef-profile__about-container">
                 <h4 className="chef-profile__about">About Me</h4>
@@ -137,36 +150,24 @@ function ChefProfile({user}){
         {!!dishes ? <Dishes dishes={dishes} user={user} name={chef.name} key={chef.id}/> : null}
         {!!reviews ? <Reviews key={3456} reviews={reviews} amount={reviews.length} name={chef.name} user={user}/> : null}
 
-        <StripeCheckout
-        stripeKey="pk_test_51IJgZCGQO6SRRWlIQysuM4pjKjmvYoYfoWCkjNGuUiU11r4Y8IBowrEN2NgJGuKqynOhUKFq773Doervs1akG8f1004IUuoOJs"
-        token={handleToken}
-        amount={(chef.wage * 100) / 2}
-        name={`Book Chef ${chef.name}`}
-        label="Book Now"
-        billingAddress
-        shippingAddress
-        panelLabel="Book Now"
-        className="chef-profile__stripe">
-            <button className="chef-profile__stripe">Book Now</button>
-        </StripeCheckout>            
     </div>
 
-    <Modal
-    isOpen={isOpen}
-    onRequestClose={handleCloseModal}
-    ariaHideApp={false}
-    style={{
-    content: {
-    top: "40%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    },
-    }}>
-    <MessageModal closeModal={handleCloseModal} name={chef.name} user={user}/>
-    </Modal>
+        <Modal
+            isOpen={isOpen}
+            onRequestClose={handleCloseModal}
+            ariaHideApp={false}
+            style={{
+            content: {
+            top: "40%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+            },
+            }}>
+            <MessageModal closeModal={handleCloseModal} name={chef.name} user={user}/>
+        </Modal>
     </section>
     );
 };

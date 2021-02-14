@@ -79,7 +79,7 @@ function Reviews({user}) {
             containerClass="carousel-container"
             removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
             dotListClass="custom-dot-list-style"
-            itemClass="carousel-item-padding-40-px">
+            itemClass="carousel-item-padding-50-px">
 
             {reviews.map(review => 
               <p className="reviews__single" key={review.createdAt}>"{review.reviews}" <br/>- {review.from}</p>
