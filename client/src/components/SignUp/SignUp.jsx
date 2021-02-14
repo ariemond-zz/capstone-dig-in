@@ -9,7 +9,7 @@ function SignUp() {
     const history = useHistory();
     const [error, setError] = useState("");
 
-    async function signup(event) {
+    async function handleSignup(event) {
         event.preventDefault();
         try {
             setError("");
@@ -28,7 +28,7 @@ function SignUp() {
             </div>
             <div className="signup__form-div">
                 <h5 className="signup__form-header">Sign up to get started:</h5>
-                <form onSubmit={signup} className="signup__form">
+                <form onSubmit={handleSignup} className="signup__form">
                     <input 
                     className="signup__email-input" 
                     type="text" 

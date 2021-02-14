@@ -10,20 +10,6 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// app.post('/pay', async (req, res) => {
-//   const {email} = req.body;
-  
-//   const paymentIntent = await stripe.paymentIntents.create({
-//       amount: product.price,
-//       currency: 'cad',
-//       // Verify your integration in this guide by including this parameter
-//       metadata: {integration_check: 'accept_a_payment'},
-//       receipt_email: email,
-//     });
-
-//     res.json({'client_secret': paymentIntent['client_secret']})
-// })
-
 app.post("/checkout", async (req, res) => {
   console.log("Request:", req.body);
 

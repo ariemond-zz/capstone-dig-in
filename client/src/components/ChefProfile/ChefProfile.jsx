@@ -14,9 +14,6 @@ import StripeCheckout from 'react-stripe-checkout';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
-toast.configure();
-
 function ChefProfile({user}){
     const [chef, setChef] = useState({});
     const {id} = useParams();
@@ -24,6 +21,8 @@ function ChefProfile({user}){
     const [dishes, setDishes] = useState([]);
     const [isOpen, setOpenModal] = useState(false);
     const db = fire.firestore();
+
+    toast.configure();
     
     function getChef() {
         db.doc(`chefs/${id}`)
@@ -100,7 +99,7 @@ function ChefProfile({user}){
         <div className="chef-profile__info">
             <div className="chef-profile__chef-container">
                 <h1 className="chef-profile__name">Chef {chef.name}</h1>
-                <button onClick={handleOpenModal} className="chef-profile__connect-button">Message</button>       
+                <button onClick={handleOpenModal} className="chef-profile__connect-button">Message     <ion-icon name="chatbubbles-outline"></ion-icon></button>       
                 <div className="chef-profile__chef-rating">
                     <img src={Star} alt="Star" className="chef-profile__star"/>
                     <img src={Star} alt="Star" className="chef-profile__star"/>
@@ -109,7 +108,6 @@ function ChefProfile({user}){
                     <img src={Star} alt="Star" className="chef-profile__star"/>
                 </div>
                 <div className="chef-profile__stripe-container">
-                    <a href="#reviews" className="chef-profile__top-reviews">{reviews.length} reviews</a>
                     <StripeCheckout
                         stripeKey="pk_test_51IJgZCGQO6SRRWlIQysuM4pjKjmvYoYfoWCkjNGuUiU11r4Y8IBowrEN2NgJGuKqynOhUKFq773Doervs1akG8f1004IUuoOJs"
                         token={handleToken}
@@ -119,10 +117,10 @@ function ChefProfile({user}){
                         billingAddress
                         shippingAddress
                         panelLabel="Book Now"
-                        email={user.email}
                         className="chef-profile__stripe">
-                        <button className="chef-profile__stripe-button">Book Now</button>
+                        <button className="chef-profile__stripe-button">Book Now   <ion-icon name="card-outline"></ion-icon></button>
                     </StripeCheckout> 
+                <a href="#reviews" className="chef-profile__top-reviews">{reviews.length} reviews</a>
                 </div>  
             </div>
             <div className="chef-profile__about-container">
