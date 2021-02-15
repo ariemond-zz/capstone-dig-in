@@ -43,11 +43,15 @@
             height: 200px;
         }
     }
-    &__chef-container {
+    &__button-container {
+        margin-top: 2%;
         width: 100%;
         display: flex;
-        flex-wrap: wrap;
-        align-items: center;
+        justify-content: space-between;
+
+        @include tablet {
+            justify-content: space-around;
+        }
     }
     &__connect-button {
         @include submit-buttons;
@@ -55,30 +59,21 @@
         width: 35%;
         
         @include tablet {
-            width: 30%;
-            margin-left: 5%;
+            width: 25%;
+            margin-right: 30%;
             font-size: 1rem;
         }
         @include desktop {
-            width: 25%;
-            margin-left: 0;
+            width: 20%;
             font-size: 1.2rem;
         }
     }
-    &__name {
-        color: $dark-green;
-        font-family: 'NotoSerif';
-        font-weight: 500;
-        width: 65%;
-        
-        @include tablet {
-            font-size: 2.5rem;
-            width: 65%;
-        }
-        @include desktop {
-            font-size: 3rem;
-            width: 75%;
-        }
+    &__chef-container {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
     }
     &__image {
         width: 150px;
@@ -87,47 +82,56 @@
         object-fit: cover;
         background: transparent;
         position: absolute;
-        left: 28%;
+        left: 30%;
         top: 2%;
         
         @include tablet {
             width: 250px;
             height: 250px;
             top: 2%;
-            left: 32%;
+            left: 33%;
         }
         @include desktop {
             width: 300px;
             height: 300px;
+            left: 34%;
+        }
+    }
+    &__name-rating {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    &__name {
+        color: $dark-green;
+        font-family: 'NotoSerif';
+        font-size: 1.8rem;
+        font-weight: 500;
+        width: 50%;
+        
+        @include tablet {
+            font-size: 2.5rem;
+            width: 50%;
+        }
+        @include desktop {
+            width: 50%;
+            font-size: 3rem;
         }
     }
     &__chef-rating {
-        display: flex;
-        margin: 1% 0 5% 0;
-        width: 100%;
-
-        @include tablet {
-            width: 40%;
-        }
+        width: 25%;
     }
     &__star {
-        width: 6%;
-        
-        @include tablet {
-            width: 10%;
-        }
-    }
-    &__stripe-container {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
+        width: 20%;
+        height: auto;
     }
     &__top-reviews {
         text-decoration: underline;
-        // width: 55%;
 
         @include tablet {
             font-size: 1.2rem;
+            margin-left: 10%;
         }
     }
     &__stripe-button {
@@ -143,13 +147,12 @@
         }
     }
     &__info {
-        margin-top: 15%;
+        margin-top: 5%;
         padding: 0 5%;
         display: flex;
         flex-flow: row wrap;
 
         @include tablet {
-            margin-top: 10%;
             flex-flow: row wrap;
         }
     }
@@ -166,7 +169,7 @@
         @include tablet {
             font-size: 1.2rem;
             margin-bottom: 0;
-            margin-top: 5%;
+            margin-top: 2%;
         }
     }
     &__wage-container {
@@ -230,9 +233,12 @@
 }
 
 span {
-    width: 32%;
+    width: 35%;
 
-    @include desktop {
+    @include tablet {
         width: 25%;
+    }
+    @include desktop {
+        width: 20%;
     }
 }

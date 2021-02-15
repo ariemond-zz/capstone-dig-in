@@ -101,7 +101,8 @@ function ChefList() {
                     cuisine={chef.cuisine}
                     restaurant={chef.restaurant}
                     allergy={chef.allergy}
-                    wage={chef.wage}/>)}
+                    wage={chef.wage}
+                    rating={chef.rating}/>)}
             </div>
         </section>
     );
