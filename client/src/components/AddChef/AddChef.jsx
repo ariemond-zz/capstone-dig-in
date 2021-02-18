@@ -155,7 +155,7 @@ function AddChef({user}){
                     className="add-chef__wage-input"
                     type="text"
                     name="wage"
-                    placeholder="Ex. $60"
+                    placeholder="Ex. 60"
                     onChange={handleWage}/>
                 </div>
                 <div className="add-chef__rest-container">

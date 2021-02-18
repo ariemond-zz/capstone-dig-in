@@ -3,7 +3,7 @@ import '../ChefCard/chefCard.scss';
 import {Link} from 'react-router-dom';
 import Star from '../../assets/icons/star.png';
 
-function ChefCard({name, image, cuisine, restaurant, wage, id}) {
+function ChefCard({name, image, cuisine, restaurant, wage, id, rating}) {
     return (
         <div className="card">
             <Link to={`/chefs/${id}`} className="card__link">

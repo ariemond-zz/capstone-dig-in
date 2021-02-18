@@ -113,15 +113,15 @@ function ChefProfile({user}){
                 </StripeCheckout> 
         </div>
         <div className="chef-profile__info">
-        <div className="chef-profile__name-rating">
-        <h1 className="chef-profile__name">Chef {chef.name}</h1>
-            <div className="chef-profile__chef-rating">
-                <img src={Star} alt="Star" className="chef-profile__star"/>
-                <img src={Star} alt="Star" className="chef-profile__star"/>
-                <img src={Star} alt="Star" className="chef-profile__star"/>
-                <img src={Star} alt="Star" className="chef-profile__star"/>
-                <img src={Star} alt="Star" className="chef-profile__star"/>
-            </div>
+            <div className="chef-profile__name-rating">
+                <h1 className="chef-profile__name">Chef {chef.name}</h1>
+                    <div className="chef-profile__chef-rating">
+                        <img src={Star} alt="Star" className="chef-profile__star"/>
+                        <img src={Star} alt="Star" className="chef-profile__star"/>
+                        <img src={Star} alt="Star" className="chef-profile__star"/>
+                        <img src={Star} alt="Star" className="chef-profile__star"/>
+                        <img src={Star} alt="Star" className="chef-profile__star"/>
+                    </div>
             </div>
             <div className="chef-profile__chef-container">
                     <a href="#reviews" className="chef-profile__top-reviews">{reviews.length} reviews</a>
