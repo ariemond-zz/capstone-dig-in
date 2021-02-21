@@ -95,63 +95,63 @@ function ChefProfile({user}){
     return (
     <section className="chef-profile">
         <div className="chef-profile__card">
-        <img src={chef.image} alt="Chef" className="chef-profile__image"/>
-        <div className="chef-profile__top-container"></div>
-        <div className="chef-profile__button-container">
-            <button onClick={handleOpenModal} className="chef-profile__connect-button">Message     <ion-icon name="chatbubbles-outline"></ion-icon></button>       
-                <StripeCheckout
-                    stripeKey="pk_test_51IJgZCGQO6SRRWlIQysuM4pjKjmvYoYfoWCkjNGuUiU11r4Y8IBowrEN2NgJGuKqynOhUKFq773Doervs1akG8f1004IUuoOJs"
-                    token={handleToken}
-                    amount={(chef.wage * 100) / 2}
-                    name={`Book Chef ${chef.name}`}
-                    label="Book Now"
-                    billingAddress
-                    shippingAddress
-                    panelLabel="Book Now"
-                    className="chef-profile__stripe">
-                    <button className="chef-profile__stripe-button">Book Now   <ion-icon name="card-outline"></ion-icon></button>
-                </StripeCheckout> 
-        </div>
-        <div className="chef-profile__info">
-            <div className="chef-profile__name-rating">
-                <h1 className="chef-profile__name">Chef {chef.name}</h1>
-                    <div className="chef-profile__chef-rating">
-                        <img src={Star} alt="Star" className="chef-profile__star"/>
-                        <img src={Star} alt="Star" className="chef-profile__star"/>
-                        <img src={Star} alt="Star" className="chef-profile__star"/>
-                        <img src={Star} alt="Star" className="chef-profile__star"/>
-                        <img src={Star} alt="Star" className="chef-profile__star"/>
-                    </div>
+            <img src={chef.image} alt="Chef" className="chef-profile__image"/>
+            <div className="chef-profile__top-container"></div>
+            <div className="chef-profile__button-container">
+                <button onClick={handleOpenModal} className="chef-profile__connect-button">Message     <ion-icon name="chatbubbles-outline"></ion-icon></button>       
+                    <StripeCheckout
+                        stripeKey="pk_test_51IJgZCGQO6SRRWlIQysuM4pjKjmvYoYfoWCkjNGuUiU11r4Y8IBowrEN2NgJGuKqynOhUKFq773Doervs1akG8f1004IUuoOJs"
+                        token={handleToken}
+                        amount={(chef.wage * 100) / 2}
+                        name={`Book Chef ${chef.name}`}
+                        label="Book Now"
+                        billingAddress
+                        shippingAddress
+                        panelLabel="Book Now"
+                        className="chef-profile__stripe">
+                        <button className="chef-profile__stripe-button">Book Now   <ion-icon name="card-outline"></ion-icon></button>
+                    </StripeCheckout> 
             </div>
-            <div className="chef-profile__chef-container">
-                    <a href="#reviews" className="chef-profile__top-reviews">{reviews.length} reviews</a>
+            <div className="chef-profile__info">
+                <div className="chef-profile__name-rating">
+                    <h1 className="chef-profile__name">Chef {chef.name}</h1>
+                        <div className="chef-profile__chef-rating">
+                            <img src={Star} alt="Star" className="chef-profile__star"/>
+                            <img src={Star} alt="Star" className="chef-profile__star"/>
+                            <img src={Star} alt="Star" className="chef-profile__star"/>
+                            <img src={Star} alt="Star" className="chef-profile__star"/>
+                            <img src={Star} alt="Star" className="chef-profile__star"/>
+                        </div>
+                </div>
+                <div className="chef-profile__chef-container">
+                        <a href="#reviews" className="chef-profile__top-reviews">{reviews.length} reviews</a>
+                </div>
+                <div className="chef-profile__about-container">
+                    <h4 className="chef-profile__about">About Me</h4>
+                    <p className="chef-profile__about">{chef.description}</p>
+                </div>
+                <div className="chef-profile__wage-container">
+                    <h4 className="chef-profile__wage">Pricing</h4>
+                    <p className="chef-profile__about">Starting at ${chef.wage} a head.</p>
+                </div>
+                <div className="chef-profile__rest-container">
+                    <h4 className="chef-profile__restaurant">Restaurant</h4>
+                    <p className="chef-profile__about">{chef.restaurant}</p>
+                </div>
+                <div className="chef-profile__cuisine-container">
+                    <h4 className="chef-profile__cuisine">Cuisine</h4>
+                    <p className="chef-profile__about">{chef.cuisine}</p>
+                </div>
             </div>
-            <div className="chef-profile__about-container">
-                <h4 className="chef-profile__about">About Me</h4>
-                <p className="chef-profile__about">{chef.description}</p>
+            <div className={chef.allergy === "true" ? 'chef-profile__allergies' : 'chef-profile__no-allergies'}>
+                <img src={GF} alt="GF" className="chef-profile__allergy"/>
+                <img src={Vegan} alt="GF" className="chef-profile__allergy"/>
             </div>
-            <div className="chef-profile__wage-container">
-                <h4 className="chef-profile__wage">Pricing</h4>
-                <p className="chef-profile__about">Starting at ${chef.wage} a head.</p>
-            </div>
-            <div className="chef-profile__rest-container">
-                <h4 className="chef-profile__restaurant">Restaurant</h4>
-                <p className="chef-profile__about">{chef.restaurant}</p>
-            </div>
-            <div className="chef-profile__cuisine-container">
-                <h4 className="chef-profile__cuisine">Cuisine</h4>
-                <p className="chef-profile__about">{chef.cuisine}</p>
-            </div>
-        </div>
-        <div className={chef.allergy === "true" ? 'chef-profile__allergies' : 'chef-profile__no-allergies'}>
-            <img src={GF} alt="GF" className="chef-profile__allergy"/>
-            <img src={Vegan} alt="GF" className="chef-profile__allergy"/>
-        </div>
 
-        {!!dishes ? <Dishes dishes={dishes} user={user} name={chef.name} key={chef.id}/> : null}
-        {!!reviews ? <Reviews key={3456} reviews={reviews} amount={reviews.length} name={chef.name} user={user}/> : null}
+            {!!dishes ? <Dishes dishes={dishes} user={user} name={chef.name} key={chef.id}/> : null}
+            {!!reviews ? <Reviews key={3456} reviews={reviews} amount={reviews.length} name={chef.name} user={user}/> : null}
 
-    </div>
+        </div>
 
         <Modal
             isOpen={isOpen}

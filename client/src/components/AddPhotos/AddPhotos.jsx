@@ -56,24 +56,24 @@ function AddPhotos({user, id}) {
         return <div></div>
     }
    
-  return (
-    <section className="add-photos">
-      <h4 className="add-photos__title">Your Photos</h4>
-        <div className="add-photos__wage-container">
-            <form className="add-photos__form">
-                <label className="add-photos__image-input">
-                    Choose File
-                    <input className="add-photos__input-button" type="file" onChange={handleImage} />
-                </label>
-                <button onClick={handleUpload} className="add-photos__image-button" disabled={!image}>Upload</button>
-            </form>
-        </div>
-        <div className="add-photos__photos">
-            {!!dishes && dishes.map(dish => 
-            <img className="add-photos__single" key={dish.id} src={dish.image} alt="Chef's Dish"/>
-            )} 
-        </div>
-    </section>
+    return (
+        <section className="add-photos">
+        <h4 className="add-photos__title">Your Photos</h4>
+            <div className="add-photos__wage-container">
+                <form className="add-photos__form">
+                    <label className="add-photos__image-input">
+                        Choose File
+                        <input className="add-photos__input-button" type="file" onChange={handleImage} />
+                    </label>
+                    <button onClick={handleUpload} className="add-photos__image-button" disabled={!image}>Upload</button>
+                </form>
+            </div>
+            <div className="add-photos__photos">
+                {!!dishes && dishes.map(dish => 
+                <img className="add-photos__single" key={dish.id} src={dish.image} alt="Chef's Dish"/>
+                )} 
+            </div>
+        </section>
     );
 };    
 

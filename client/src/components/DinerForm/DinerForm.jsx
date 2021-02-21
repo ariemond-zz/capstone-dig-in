@@ -9,10 +9,10 @@ class DinerForm extends React.Component {
         selectedDate: ((new Date()).getTime()) / 1000      //convert to firebase timestamp format
     }
     
-  handleDateChange = (date) => {
-      this.setState({
-          selectedDate: date
-      });
+    handleDateChange = (date) => {
+        this.setState({
+            selectedDate: date
+        });
     };
 
     updateLocation = e => {
