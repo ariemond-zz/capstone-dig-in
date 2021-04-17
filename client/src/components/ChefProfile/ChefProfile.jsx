@@ -10,20 +10,16 @@ import Modal from 'react-modal';
 import MessageModal from '../MessageModal/MessageModal';
 import Star from '../../assets/icons/star.png';
 import axios from 'axios';
-import StripeCheckout from 'react-stripe-checkout';
-import {toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 function ChefProfile({user}){
     const [chef, setChef] = useState({});
     const {id} = useParams();
     const [reviews, setReviews] = useState([]);
-    const [rating, setRating] = useState();
     const [dishes, setDishes] = useState([]);
     const [isOpen, setOpenModal] = useState(false);
     const db = fire.firestore();
 
-    toast.configure();
     
     function getChef() {
         db.doc(`chefs/${id}`)
@@ -75,20 +71,6 @@ function ChefProfile({user}){
     const product = {
         name: chef.name,
         price: ((chef.wage * 100) / 2)
-    }
-
-    async function handleToken(token) {
-        const response = await axios.post(`http://localhost:8080/checkout`, {
-            token,
-            product
-        });
-        const {status} = response.data;
-        console.log({status})
-        if (status === 'success') {
-            toast('Success! Check email for details.', {type: 'success'})
-        } else {
-            toast('Something went wrong. Please try again', {type: 'error'})
-        };
     };
 
     
@@ -98,19 +80,7 @@ function ChefProfile({user}){
             <img src={chef.image} alt="Chef" className="chef-profile__image"/>
             <div className="chef-profile__top-container"></div>
             <div className="chef-profile__button-container">
-                <button onClick={handleOpenModal} className="chef-profile__connect-button">Message     <ion-icon name="chatbubbles-outline"></ion-icon></button>       
-                    <StripeCheckout
-                        stripeKey="pk_test_51IJgZCGQO6SRRWlIQysuM4pjKjmvYoYfoWCkjNGuUiU11r4Y8IBowrEN2NgJGuKqynOhUKFq773Doervs1akG8f1004IUuoOJs"
-                        token={handleToken}
-                        amount={(chef.wage * 100) / 2}
-                        name={`Book Chef ${chef.name}`}
-                        label="Book Now"
-                        billingAddress
-                        shippingAddress
-                        panelLabel="Book Now"
-                        className="chef-profile__stripe">
-                        <button className="chef-profile__stripe-button">Book Now   <ion-icon name="card-outline"></ion-icon></button>
-                    </StripeCheckout> 
+                <button onClick={handleOpenModal} className="chef-profile__connect-button">Message     <ion-icon name="chatbubbles-outline"></ion-icon></button>      
             </div>
             <div className="chef-profile__info">
                 <div className="chef-profile__name-rating">
