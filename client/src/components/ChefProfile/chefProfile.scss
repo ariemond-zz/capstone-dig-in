@@ -47,10 +47,10 @@
         margin-top: 2%;
         width: 100%;
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
 
         @include tablet {
-            justify-content: space-around;
+            justify-content: flex-end;
         }
     }
     &__connect-button {
@@ -60,7 +60,7 @@
         
         @include tablet {
             width: 25%;
-            margin-right: 30%;
+            margin-right: 5%;
             font-size: 1rem;
         }
         @include desktop {
@@ -89,7 +89,7 @@
             width: 250px;
             height: 250px;
             top: 2%;
-            left: 33%;
+            left: 25%;
         }
         @include desktop {
             width: 300px;
@@ -132,18 +132,6 @@
         @include tablet {
             font-size: 1.2rem;
             margin-left: 10%;
-        }
-    }
-    &__stripe-button {
-        @include submit-buttons;
-        font-size: 0.8rem;
-        width: 100%;
-
-        @include tablet {
-            font-size: 1rem;
-        }
-        @include desktop {
-            font-size: 1.2rem;
         }
     }
     &__info {
